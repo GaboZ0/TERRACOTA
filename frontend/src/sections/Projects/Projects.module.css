@@ -1,0 +1,268 @@
+.projects {
+
+    position: relative;
+
+    padding: 120px 0;
+
+    background: #090909;
+
+    overflow: hidden;
+}
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 28px;
+
+    margin-top: 80px;
+}
+
+.card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background: #101010;
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    transition:
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+.card:first-child {
+
+    grid-column: span 2;
+}
+
+.card:hover {
+
+    transform: translateY(-8px);
+
+    border-color: rgba(216,137,51,.3);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.35),
+        0 0 35px rgba(216,137,51,.08);
+}
+
+/* ============================
+   Imagen
+============================ */
+
+.imageWrapper {
+
+    position: relative;
+
+    height: 320px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 70% 30%,
+            rgba(216,137,51,.22),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #171717,
+            #0c0c0c
+        );
+}
+
+.card:first-child .imageWrapper {
+
+    height: 400px;
+}
+
+.imagePlaceholder {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.imagePlaceholder span {
+
+    color: rgba(216,137,51,.18);
+
+    font-size: clamp(6rem, 15vw, 12rem);
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    user-select: none;
+}
+
+.overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 35%,
+            rgba(9,9,9,.75) 100%
+        );
+}
+
+/* ============================
+   Contenido
+============================ */
+
+.content {
+
+    padding: 30px 32px 34px;
+}
+
+.meta {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+
+    color: #d88933;
+
+    font-size: .75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+.content h3 {
+
+    margin: 0 0 12px;
+
+    color: #ffffff;
+
+    font-size: 1.7rem;
+
+    font-weight: 700;
+
+    line-height: 1.25;
+}
+
+.content p {
+
+    max-width: 650px;
+
+    margin: 0;
+
+    color: rgba(255,255,255,.65);
+
+    font-size: .98rem;
+
+    line-height: 1.75;
+}
+
+/* ============================
+   Tecnologías
+============================ */
+
+.technologies {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 24px;
+}
+
+.technologies span {
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.04);
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    color: rgba(255,255,255,.62);
+
+    font-size: .78rem;
+
+    font-weight: 500;
+}
+
+/* ============================
+   Tablet
+============================ */
+
+@media (max-width: 768px) {
+
+    .projects {
+
+        padding: 90px 0;
+    }
+
+    .grid {
+
+        grid-template-columns: 1fr;
+
+        margin-top: 60px;
+    }
+
+    .card:first-child {
+
+        grid-column: span 1;
+    }
+
+    .imageWrapper,
+    .card:first-child .imageWrapper {
+
+        height: 280px;
+    }
+
+}
+
+/* ============================
+   Mobile
+============================ */
+
+@media (max-width: 480px) {
+
+    .content {
+
+        padding: 25px;
+    }
+
+    .content h3 {
+
+        font-size: 1.4rem;
+    }
+
+    .imageWrapper,
+    .card:first-child .imageWrapper {
+
+        height: 230px;
+    }
+
+}
