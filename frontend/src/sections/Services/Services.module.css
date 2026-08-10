@@ -1,23 +1,26 @@
 .services {
-
     position: relative;
 
     padding: 120px 0;
 
     background:
-        radial-gradient(circle at top,
-            rgba(216,137,51,.08),
-            transparent 40%),
+        radial-gradient(
+            circle at top,
+            rgba(216, 137, 51, .08),
+            transparent 40%
+        ),
         #0d0d0d;
 
     overflow: hidden;
 }
 
 .grid {
-
     display: grid;
 
-    grid-template-columns: repeat(3, minmax(0,1fr));
+    grid-template-columns: repeat(
+        3,
+        minmax(0, 1fr)
+    );
 
     gap: 32px;
 
@@ -26,29 +29,55 @@
     align-items: stretch;
 }
 
-@media (max-width:1024px){
+/* ============================
+   Tablet
+============================ */
 
-    .grid{
+@media (max-width: 1024px) {
 
-        grid-template-columns:repeat(2,minmax(0,1fr));
+    .grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 24px;
     }
-
 }
 
-@media (max-width:768px){
+/* ============================
+   Mobile
+============================ */
 
-    .services{
+@media (max-width: 768px) {
 
-        padding:90px 0;
+    .services {
+        padding: 80px 0;
     }
 
-    .grid{
+    .grid {
+        grid-template-columns: 1fr;
 
-        grid-template-columns:1fr;
+        gap: 18px;
 
-        gap:24px;
+        margin-top: 45px;
+    }
+}
 
-        margin-top:50px;
+/* ============================
+   Mobile pequeño
+============================ */
+
+@media (max-width: 480px) {
+
+    .services {
+        padding: 70px 0;
     }
 
+    .grid {
+        gap: 16px;
+
+        margin-top: 38px;
+    }
 }

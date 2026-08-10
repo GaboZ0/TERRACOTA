@@ -13,16 +13,20 @@
     gap: 12px;
 
     z-index: 3;
+
+    pointer-events: none;
 }
 
 .text {
-    color: rgba(255,255,255,.65);
+    color: rgba(255, 255, 255, .65);
 
     font-size: .9rem;
 
     letter-spacing: 2px;
 
     text-transform: uppercase;
+
+    white-space: nowrap;
 }
 
 .mouse {
@@ -30,7 +34,7 @@
 
     height: 48px;
 
-    border: 2px solid rgba(255,255,255,.45);
+    border: 2px solid rgba(255, 255, 255, .45);
 
     border-radius: 30px;
 
@@ -39,6 +43,8 @@
     justify-content: center;
 
     padding-top: 8px;
+
+    box-sizing: border-box;
 }
 
 .wheel {
@@ -57,6 +63,7 @@
 
     0% {
         opacity: 0;
+
         transform: translateY(0);
     }
 
@@ -66,6 +73,40 @@
 
     100% {
         opacity: 0;
+
         transform: translateY(14px);
+    }
+}
+
+/* ============================
+   Mobile
+============================ */
+
+@media (max-width: 576px) {
+
+    .container {
+        bottom: 25px;
+
+        gap: 8px;
+    }
+
+    .text {
+        font-size: .68rem;
+
+        letter-spacing: 2px;
+    }
+
+    .mouse {
+        width: 24px;
+
+        height: 40px;
+
+        padding-top: 6px;
+    }
+
+    .wheel {
+        width: 3px;
+
+        height: 7px;
     }
 }
