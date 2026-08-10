@@ -2,7 +2,7 @@ import styles from "./Hero.module.css";
 
 import Container from "../../components/Container";
 import Button from "../../components/Button";
-import ScrollIndicator from "../../components/scrollIndicator";
+import ScrollIndicator from "../../components/ScrollIndicator";
 
 import heroData from "./heroData";
 import heroImage from "../../assets/images/hero.jpg";
