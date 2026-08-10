@@ -1,0 +1,95 @@
+/* ============================
+   Animaciones de entrada
+============================ */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+
+    will-change:
+        opacity,
+        transform;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* ============================
+   Variantes
+============================ */
+
+.reveal-up {
+    opacity: 0;
+
+    transform: translateY(45px);
+
+    transition:
+        opacity .75s ease,
+        transform .75s ease;
+}
+
+.reveal-up.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+
+    transform: translateX(-40px);
+
+    transition:
+        opacity .75s ease,
+        transform .75s ease;
+}
+
+.reveal-left.visible {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+
+    transform: translateX(40px);
+
+    transition:
+        opacity .75s ease,
+        transform .75s ease;
+}
+
+.reveal-right.visible {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+/* ============================
+   Respeta preferencias
+   de movimiento reducido
+============================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .reveal,
+    .reveal-up,
+    .reveal-left,
+    .reveal-right {
+
+        opacity: 1;
+
+        transform: none;
+
+        transition: none;
+    }
+}

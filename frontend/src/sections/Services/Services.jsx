@@ -3,6 +3,7 @@ import styles from "./Services.module.css";
 import Container from "../../components/Container";
 import SectionTitle from "../../components/SectionTitle";
 import ServiceCard from "../../components/ServiceCard";
+import useInView from "../../hooks/useInView";
 
 import servicesData from "./servicesData";
 
