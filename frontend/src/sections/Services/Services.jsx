@@ -8,6 +8,7 @@ import useInView from "../../hooks/useInView";
 import servicesData from "./servicesData";
 
 function Services() {
+
     const {
         eyebrow,
         title,
@@ -15,12 +16,18 @@ function Services() {
         services,
     } = servicesData;
 
+    const [sectionRef, sectionVisible] = useInView();
+
     return (
         <section
             id="servicios"
-            className={styles.services}
+            ref={sectionRef}
+            className={`${styles.services} ${
+                sectionVisible ? "visible" : ""
+            } reveal`}
         >
             <Container>
+
                 <SectionTitle
                     eyebrow={eyebrow}
                     title={title}
@@ -28,15 +35,20 @@ function Services() {
                 />
 
                 <div className={styles.grid}>
+
                     {services.map((service) => (
+
                         <ServiceCard
                             key={service.id}
                             icon={service.icon}
                             title={service.title}
                             description={service.description}
                         />
+
                     ))}
+
                 </div>
+
             </Container>
         </section>
     );
