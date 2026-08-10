@@ -1,0 +1,79 @@
+.sectionTitle {
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:18px;
+
+  margin-bottom:70px;
+
+}
+
+.center{
+
+  align-items:center;
+
+  text-align:center;
+
+}
+
+.left{
+
+  align-items:flex-start;
+
+  text-align:left;
+
+}
+
+.eyebrow{
+
+  display:inline-flex;
+
+  padding:8px 18px;
+
+  border-radius:999px;
+
+  background:rgba(216,137,51,.10);
+
+  border:1px solid rgba(216,137,51,.20);
+
+  color:#d88933;
+
+  font-size:.78rem;
+
+  font-weight:700;
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
+
+}
+
+.title{
+
+  margin:0;
+
+  color:white;
+
+  font-size:clamp(2.4rem,5vw,4rem);
+
+  line-height:1.1;
+
+  font-weight:800;
+
+  letter-spacing:-2px;
+
+}
+
+.description{
+
+  max-width:720px;
+
+  color:rgba(255,255,255,.72);
+
+  font-size:1.1rem;
+
+  line-height:1.9;
+
+}

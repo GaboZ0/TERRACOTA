@@ -1,0 +1,38 @@
+.divider {
+    position: relative;
+
+    height: 140px;
+
+    margin-top: -70px;
+
+    z-index: 5;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(13,13,13,0),
+        rgba(13,13,13,.95) 55%,
+        var(--color-background) 100%
+    );
+}
+
+.glow {
+    position: absolute;
+
+    top: 10px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 380px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        rgba(242,183,5,.18),
+        transparent 70%
+    );
+
+    filter: blur(45px);
+}
