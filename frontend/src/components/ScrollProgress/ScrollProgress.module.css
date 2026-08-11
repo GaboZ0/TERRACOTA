@@ -1,0 +1,392 @@
+/* ============================
+   Contenedor
+============================ */
+
+.scrollProgress {
+
+    position: fixed;
+
+    top: 50%;
+    right: px;
+
+    width: 24px;
+    height: 260px;
+
+    transform: translateY(-50%);
+
+    z-index: 950;
+
+    pointer-events: none;
+}
+
+
+/* ============================
+   Línea de progreso
+============================ */
+
+.track {
+    position: absolute;
+
+    top: 0;
+    right: 50%;
+
+    width: 1px;
+    height: 100%;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, .09);
+
+    transform: translateX(50%);
+}
+
+
+.progress {
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 1px;
+
+    min-height: 0;
+
+    border-radius: 999px;
+
+    background:
+        rgba(216, 137, 51, .55);
+
+    box-shadow:
+        0 0 5px
+        rgba(216, 137, 51, .12);
+
+    transition:
+        height .25s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* ============================
+   Indicador normal
+============================ */
+
+.indicator {
+
+    position: absolute;
+
+    top:
+        calc(
+            var(--progress-position) - 11px
+        );
+
+    right: 9px;
+
+    width: 7px;
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(216, 137, 51, .38);
+
+    border-radius: 999px;
+
+    background:
+        rgba(13, 13, 13, .92);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(216, 137, 51, .025);
+
+    transition:
+        top .25s cubic-bezier(.22, 1, .36, 1),
+        width .65s cubic-bezier(.22, 1, .36, 1),
+        height .65s cubic-bezier(.22, 1, .36, 1),
+        right .65s cubic-bezier(.22, 1, .36, 1),
+        border-radius .65s cubic-bezier(.22, 1, .36, 1),
+        background .5s ease,
+        border-color .5s ease,
+        box-shadow .5s ease;
+}
+
+
+/* ============================
+   Pequeño detalle interior
+============================ */
+
+.dot {
+
+    width: 3px;
+    height: 8px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(216, 137, 51, .72);
+
+    box-shadow:
+        0 0 6px
+        rgba(216, 137, 51, .18);
+
+    transition:
+        width .5s cubic-bezier(.22, 1, .36, 1),
+        height .5s cubic-bezier(.22, 1, .36, 1),
+        background .5s ease,
+        box-shadow .5s ease;
+}
+
+
+/* ============================
+   Nombre de sección
+============================ */
+
+.sectionName {
+
+    position: absolute;
+
+    right: 9px;
+
+    padding:
+        7px 11px;
+
+    white-space: nowrap;
+
+    color:
+        rgba(255, 255, 255, .72);
+
+    font-family:
+        "Manrope",
+        sans-serif;
+
+    font-size: .64rem;
+
+    font-weight: 600;
+
+    letter-spacing: .1%;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    transform:
+        translateX(5px);
+
+    pointer-events: none;
+
+    transition:
+        opacity .45s ease,
+        transform .6s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* ============================
+   Estado expandido
+============================ */
+
+.expanded {
+
+    /*
+     * El centro permanece exactamente
+     * donde estaba el indicador.
+     */
+
+    top:
+        calc(
+            var(--progress-position) - 15px
+        );
+
+    right: 2px;
+
+    width: 112px;
+    height: 30px;
+
+    justify-content: flex-start;
+
+    padding-left: 10px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(14, 14, 14, .94);
+
+    border:
+        1px solid
+        rgba(216, 137, 51, .22);
+
+    box-shadow:
+        0 6px 20px
+        rgba(0, 0, 0, .18);
+
+}
+
+
+/* ============================
+   Nombre visible
+============================ */
+
+.expanded .sectionName {
+
+    opacity: 1;
+
+    transform:
+        translateX(0);
+}
+
+
+/* ============================
+   Indicador interior expandido
+============================ */
+
+.expanded .dot {
+
+    width: 4px;
+    height: 9px;
+
+    background:
+        rgba(216, 137, 51, .82);
+
+    box-shadow:
+        0 0 7px
+        rgba(216, 137, 51, .18);
+}
+
+
+/* ============================
+   Tablet
+============================ */
+
+@media (max-width: 1100px) {
+
+    .scrollProgress {
+
+        right: 11px;
+
+        height: 220px;
+    }
+
+}
+
+
+/* ============================
+   Móvil
+============================ */
+
+@media (max-width: 768px) {
+
+    .scrollProgress {
+
+        top: auto;
+
+        right: 9px;
+        bottom: 24px;
+
+        width: 20px;
+        height: 150px;
+
+        transform: none;
+    }
+
+
+    .track {
+
+        right: 7px;
+    }
+
+
+    .indicator {
+
+        right: 1px;
+
+        width: 6px;
+        height: 19px;
+
+        top:
+            calc(
+                var(--progress-position) - 9px
+            );
+    }
+
+
+    .expanded {
+
+        right: 1px;
+
+        width: 106px;
+        height: 29px;
+
+        top:
+            calc(
+                var(--progress-position) - 14px
+            );
+
+        padding-left: 9px;
+    }
+
+
+    .sectionName {
+
+        right: 22px;
+
+        padding:
+            6px 9px;
+
+        font-size: .59rem;
+
+        letter-spacing: .8px;
+    }
+
+
+    .dot {
+
+        width: 3px;
+        height: 7px;
+    }
+
+}
+
+
+/* ============================
+   Móvil pequeño
+============================ */
+
+@media (max-width: 480px) {
+
+    .scrollProgress {
+
+        right: 7px;
+
+        bottom: 20px;
+
+        height: 130px;
+    }
+
+
+    .indicator {
+
+        width: 6px;
+        height: 18px;
+
+        top:
+            calc(
+                var(--progress-position) - 9px
+            );
+    }
+
+
+    .expanded {
+
+        width: 101px;
+        height: 28px;
+
+        top:
+            calc(
+                var(--progress-position) - 14px
+            );
+    }
+
+}

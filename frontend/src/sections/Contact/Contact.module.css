@@ -15,6 +15,11 @@
     overflow: hidden;
 }
 
+
+/* ============================
+   Layout
+============================ */
+
 .layout {
 
     display: grid;
@@ -27,6 +32,7 @@
 
     align-items: start;
 }
+
 
 /* ============================
    Información
@@ -82,6 +88,11 @@
 
     line-height: 1.8;
 }
+
+
+/* ============================
+   Detalles
+============================ */
 
 .details {
 
@@ -157,6 +168,7 @@
     font-size: .95rem;
 }
 
+
 /* ============================
    Formulario
 ============================ */
@@ -219,6 +231,11 @@
     font-weight: 400;
 }
 
+
+/* ============================
+   Inputs
+============================ */
+
 .field input,
 .field textarea {
 
@@ -277,6 +294,38 @@
         0 0 0 3px rgba(216,137,51,.08);
 }
 
+
+/* ============================
+   Campos con error
+============================ */
+
+.inputError {
+
+    border-color: rgba(229,139,139,.65) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(229,139,139,.07);
+}
+
+
+/* ============================
+   Mensajes de error
+============================ */
+
+.error {
+
+    display: block;
+
+    margin-top: -2px;
+
+    color: #e58b8b;
+
+    font-size: .75rem;
+
+    line-height: 1.4;
+}
+
+
 /* ============================
    Checkbox
 ============================ */
@@ -315,6 +364,7 @@
     cursor: pointer;
 }
 
+
 /* ============================
    Botón
 ============================ */
@@ -344,7 +394,8 @@
     transition:
         transform .25s ease,
         background .25s ease,
-        box-shadow .25s ease;
+        box-shadow .25s ease,
+        opacity .25s ease;
 }
 
 .submit:hover {
@@ -362,29 +413,61 @@
     transform: translateY(0);
 }
 
+.submit:disabled {
+
+    opacity: .6;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
 /* ============================
-   Mensaje demo
+   Mensaje de éxito
 ============================ */
 
-.demoMessage {
+.successMessage {
 
     margin: 16px 0 0;
 
-    padding: 12px 15px;
+    padding: 14px 16px;
 
     border-radius: 10px;
 
     background: rgba(216,137,51,.07);
 
-    border: 1px solid rgba(216,137,51,.12);
+    border: 1px solid rgba(216,137,51,.18);
 
-    color: rgba(255,255,255,.65);
+    color: rgba(255,255,255,.78);
 
-    font-size: .78rem;
+    font-size: .82rem;
 
-    line-height: 1.5;
+    line-height: 1.6;
 
+    animation:
+        successAppear .4s ease;
 }
+
+@keyframes successAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(8px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
 
 /* ============================
    Tablet
@@ -403,8 +486,8 @@
 
         max-width: 650px;
     }
-
 }
+
 
 /* ============================
    Mobile
@@ -440,5 +523,4 @@
 
         font-size: 2.3rem;
     }
-
 }

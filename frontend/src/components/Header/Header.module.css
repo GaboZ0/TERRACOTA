@@ -1,4 +1,5 @@
 .header {
+
     position: fixed;
 
     top: 0;
@@ -11,6 +12,7 @@
     z-index: 1000;
 
     display: flex;
+
     align-items: center;
 
     transition:
@@ -20,21 +22,35 @@
         border-color .35s ease;
 }
 
+
+/* ============================
+   Estado al hacer scroll
+============================ */
+
 .scrolled {
+
     background: rgba(10, 10, 10, .72);
 
     backdrop-filter: blur(18px);
 
-    border-bottom: 1px solid rgba(255, 255, 255, .05);
+    border-bottom:
+        1px solid rgba(255, 255, 255, .05);
 
     box-shadow:
         0 12px 40px rgba(0, 0, 0, .35);
 }
 
+
+/* ============================
+   Wrapper
+============================ */
+
 .wrapper {
+
     width: 100%;
 
     display: flex;
+
     align-items: center;
 
     justify-content: space-between;
@@ -42,11 +58,13 @@
     gap: 40px;
 }
 
+
 /* ============================
    Logo
 ============================ */
 
 .logoLink {
+
     display: flex;
 
     align-items: center;
@@ -62,14 +80,17 @@
 }
 
 .logoLink:hover {
+
     transform: scale(1.03);
 }
+
 
 /* ============================
    Navegación escritorio
 ============================ */
 
 .nav {
+
     flex: 1;
 
     display: flex;
@@ -78,6 +99,7 @@
 }
 
 .menu {
+
     display: flex;
 
     align-items: center;
@@ -87,14 +109,17 @@
     list-style: none;
 
     margin: 0;
+
     padding: 0;
 }
 
 .menu li {
+
     position: relative;
 }
 
 .menu a {
+
     position: relative;
 
     color: rgba(255, 255, 255, .82);
@@ -115,6 +140,7 @@
 }
 
 .menu a::after {
+
     content: "";
 
     position: absolute;
@@ -138,28 +164,22 @@
 }
 
 .menu a:hover {
+
     color: #ffffff;
 }
 
 .menu a:hover::after {
+
     width: 100%;
 }
 
-/* ============================
-   Botón escritorio
-============================ */
-
-.actions {
-    display: flex;
-
-    align-items: center;
-}
 
 /* ============================
    Botón hamburguesa
 ============================ */
 
 .menuButton {
+
     display: none;
 
     position: relative;
@@ -167,19 +187,23 @@
     z-index: 1003;
 
     width: 44px;
+
     height: 44px;
 
     padding: 0;
 
-    border: 1px solid rgba(255, 255, 255, .08);
+    border:
+        1px solid rgba(255, 255, 255, .08);
 
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, .035);
+    background:
+        rgba(255, 255, 255, .035);
 
     cursor: pointer;
 
     align-items: center;
+
     justify-content: center;
 
     flex-direction: column;
@@ -192,15 +216,20 @@
 }
 
 .menuButton:hover {
-    background: rgba(216, 137, 51, .08);
 
-    border-color: rgba(216, 137, 51, .25);
+    background:
+        rgba(216, 137, 51, .08);
+
+    border-color:
+        rgba(216, 137, 51, .25);
 }
 
 .menuButton span {
+
     display: block;
 
     width: 19px;
+
     height: 2px;
 
     border-radius: 999px;
@@ -212,33 +241,40 @@
         opacity .3s ease;
 }
 
+
 /* ============================
    Animación hamburguesa → X
 ============================ */
 
 .menuOpen .menuButton span:nth-child(1) {
+
     transform:
         translateY(7px)
         rotate(45deg);
 }
 
 .menuOpen .menuButton span:nth-child(2) {
+
     opacity: 0;
 }
 
 .menuOpen .menuButton span:nth-child(3) {
+
     transform:
         translateY(-7px)
         rotate(-45deg);
 }
+
 
 /* ============================
    Menú móvil
 ============================ */
 
 .mobileMenu {
+
     display: none;
 }
+
 
 /* ============================
    Tablet
@@ -247,10 +283,11 @@
 @media (max-width: 992px) {
 
     .menu {
+
         gap: 28px;
     }
-
 }
+
 
 /* ============================
    Móvil
@@ -259,33 +296,46 @@
 @media (max-width: 768px) {
 
     .header {
+
         height: 78px;
     }
 
+
     .wrapper {
+
         gap: 20px;
     }
 
-    .nav,
-    .actions {
+
+    .nav {
+
         display: none;
     }
 
+
     .menuButton {
+
         display: flex;
     }
 
+
     .mobileMenu {
+
+        display: block;
+
         position: absolute;
 
         top: 78px;
+
         left: 0;
 
         width: 100%;
 
-        max-height: calc(100vh - 78px);
+        max-height:
+            calc(100vh - 78px);
 
-        padding: 28px 20px 32px;
+        padding:
+            28px 20px 32px;
 
         overflow-y: auto;
 
@@ -296,9 +346,11 @@
                 rgba(7, 7, 7, .98)
             );
 
-        border-top: 1px solid rgba(255, 255, 255, .05);
+        border-top:
+            1px solid rgba(255, 255, 255, .05);
 
-        border-bottom: 1px solid rgba(255, 255, 255, .07);
+        border-bottom:
+            1px solid rgba(255, 255, 255, .07);
 
         box-shadow:
             0 25px 50px rgba(0, 0, 0, .45);
@@ -318,7 +370,9 @@
             transform .3s ease;
     }
 
+
     .mobileMenuOpen {
+
         opacity: 1;
 
         visibility: visible;
@@ -329,7 +383,9 @@
         pointer-events: auto;
     }
 
+
     .mobileMenu nav ul {
+
         display: flex;
 
         flex-direction: column;
@@ -339,31 +395,40 @@
         list-style: none;
 
         margin: 0;
+
         padding: 0;
     }
 
+
     .mobileMenu nav li {
+
         border-bottom:
             1px solid
             rgba(255, 255, 255, .06);
     }
 
+
     .mobileMenu nav li:first-child {
+
         border-top:
             1px solid
             rgba(255, 255, 255, .06);
     }
 
+
     .mobileMenu nav a {
+
         display: flex;
 
         align-items: center;
 
         min-height: 58px;
 
-        color: rgba(255, 255, 255, .82);
+        color:
+            rgba(255, 255, 255, .82);
 
-        font-family: "Manrope", sans-serif;
+        font-family:
+            "Manrope", sans-serif;
 
         font-size: 1rem;
 
@@ -376,23 +441,16 @@
             padding-left .25s ease;
     }
 
+
     .mobileMenu nav a:hover {
+
         color: #d88933;
 
         padding-left: 6px;
     }
 
-    .mobileAction {
-        margin-top: 25px;
-
-        width: 100%;
-    }
-
-    .mobileAction > * {
-        width: 100%;
-    }
-
 }
+
 
 /* ============================
    Móvil pequeño
@@ -401,10 +459,13 @@
 @media (max-width: 480px) {
 
     .header {
+
         height: 72px;
     }
 
+
     .mobileMenu {
+
         top: 72px;
 
         max-height:
@@ -414,12 +475,17 @@
             22px 18px 28px;
     }
 
+
     .menuButton {
+
         width: 42px;
+
         height: 42px;
     }
 
+
     .mobileMenu nav a {
+
         min-height: 54px;
 
         font-size: .95rem;

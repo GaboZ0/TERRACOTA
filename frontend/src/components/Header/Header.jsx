@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import styles from "./Header.module.css";
 
-import Button from "../Button";
 import Container from "../Container";
 import Logo from "../Logo";
 
@@ -15,15 +14,19 @@ function Header() {
 
     const [menuOpen, setMenuOpen] = useState(false);
 
+
     function handleMenuToggle() {
         setMenuOpen((previous) => !previous);
     }
+
 
     function handleMenuClose() {
         setMenuOpen(false);
     }
 
+
     return (
+
         <header
             className={`${styles.header} ${
                 isScrolled ? styles.scrolled : ""
@@ -41,6 +44,7 @@ function Header() {
                     >
                         <Logo />
                     </a>
+
 
                     <nav className={styles.nav}>
 
@@ -65,13 +69,6 @@ function Header() {
 
                     </nav>
 
-                    <div className={styles.actions}>
-
-                        <Button>
-                            Contáctanos
-                        </Button>
-
-                    </div>
 
                     <button
                         type="button"
@@ -92,6 +89,7 @@ function Header() {
                     </button>
 
                 </div>
+
 
                 <div
                     className={`${styles.mobileMenu} ${
@@ -123,14 +121,6 @@ function Header() {
                         </ul>
 
                     </nav>
-
-                    <div className={styles.mobileAction}>
-
-                        <Button>
-                            Contáctanos
-                        </Button>
-
-                    </div>
 
                 </div>
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-function useInView(options = {}) {
+function useInView() {
 
     const ref = useRef(null);
 
@@ -26,8 +26,8 @@ function useInView(options = {}) {
 
             },
             {
-                threshold: 0.15,
-                ...options
+                threshold: 0.05,
+                rootMargin: "0px 0px -35% 0px",
             }
         );
 
@@ -37,7 +37,7 @@ function useInView(options = {}) {
             observer.disconnect();
         };
 
-    }, [options]);
+    }, []);
 
     return [ref, isVisible];
 }

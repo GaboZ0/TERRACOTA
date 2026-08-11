@@ -19,3 +19,42 @@
   /* Animaciones */
   --transition: 0.3s ease;
 }
+
+
+/* ============================
+   Navegación entre secciones
+============================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 100px;
+}
+
+
+/* ============================
+   Tablet / Móvil
+============================ */
+
+@media (max-width: 768px) {
+
+  section {
+    scroll-margin-top: 86px;
+  }
+
+}
+
+
+/* ============================
+   Móvil pequeño
+============================ */
+
+@media (max-width: 480px) {
+
+  section {
+    scroll-margin-top: 80px;
+  }
+
+}

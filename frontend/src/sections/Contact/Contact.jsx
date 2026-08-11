@@ -14,36 +14,153 @@ function Contact() {
         email: "",
         company: "",
         message: "",
-        privacy: false
+        privacy: false,
     });
+
+    const [errors, setErrors] = useState({});
 
     const [submitted, setSubmitted] = useState(false);
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+
     function handleChange(event) {
 
-        const { name, value, type, checked } = event.target;
+        const {
+            name,
+            value,
+            type,
+            checked,
+        } = event.target;
 
         setFormData((previous) => ({
             ...previous,
-            [name]: type === "checkbox" ? checked : value
+            [name]:
+                type === "checkbox"
+                    ? checked
+                    : value,
+        }));
+
+        setErrors((previous) => ({
+            ...previous,
+            [name]: "",
         }));
 
         setSubmitted(false);
     }
 
-    function handleSubmit(event) {
+
+    function validateForm() {
+
+        const newErrors = {};
+
+
+        if (!formData.name.trim()) {
+
+            newErrors.name =
+                "Por favor, ingresá tu nombre.";
+
+        } else if (formData.name.trim().length < 2) {
+
+            newErrors.name =
+                "El nombre debe tener al menos 2 caracteres.";
+        }
+
+
+        if (!formData.email.trim()) {
+
+            newErrors.email =
+                "Por favor, ingresá tu email.";
+
+        } else if (
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+                formData.email.trim()
+            )
+        ) {
+
+            newErrors.email =
+                "Ingresá un email válido.";
+        }
+
+
+        if (!formData.message.trim()) {
+
+            newErrors.message =
+                "Por favor, escribí tu mensaje.";
+
+        } else if (formData.message.trim().length < 10) {
+
+            newErrors.message =
+                "El mensaje debe tener al menos 10 caracteres.";
+        }
+
+
+        if (!formData.privacy) {
+
+            newErrors.privacy =
+                "Necesitamos tu autorización para responder la consulta.";
+        }
+
+
+        return newErrors;
+    }
+
+
+    async function handleSubmit(event) {
 
         event.preventDefault();
 
+        setSubmitted(false);
+
+        const validationErrors = validateForm();
+
+        if (Object.keys(validationErrors).length > 0) {
+
+            setErrors(validationErrors);
+
+            return;
+        }
+
+
+        setErrors({});
+
+        setIsSubmitting(true);
+
+
+        /*
+         * En este momento solamente simulamos el envío.
+         *
+         * En el siguiente paso conectaremos este formulario
+         * con un servicio real de forma segura.
+         */
+
+        await new Promise((resolve) => {
+            setTimeout(resolve, 1000);
+        });
+
+
+        setIsSubmitting(false);
+
         setSubmitted(true);
 
+
+        setFormData({
+            name: "",
+            email: "",
+            company: "",
+            message: "",
+            privacy: false,
+        });
     }
 
+
     return (
+
         <section
             id="contacto"
             className={styles.contact}
         >
+
             <Container>
 
                 <SectionTitle
@@ -52,7 +169,9 @@ function Contact() {
                     description={contactData.description}
                 />
 
+
                 <div className={styles.layout}>
+
 
                     <div className={styles.info}>
 
@@ -77,6 +196,7 @@ function Contact() {
 
                         </div>
 
+
                         <div className={styles.details}>
 
                             {contactData.details.map((detail) => (
@@ -86,17 +206,23 @@ function Contact() {
                                     className={styles.detail}
                                 >
 
-                                    <span className={styles.detailIcon}>
+                                    <span
+                                        className={styles.detailIcon}
+                                    >
                                         {detail.icon}
                                     </span>
 
                                     <div>
 
-                                        <span className={styles.detailLabel}>
+                                        <span
+                                            className={styles.detailLabel}
+                                        >
                                             {detail.label}
                                         </span>
 
-                                        <span className={styles.detailValue}>
+                                        <span
+                                            className={styles.detailValue}
+                                        >
                                             {detail.value}
                                         </span>
 
@@ -110,12 +236,15 @@ function Contact() {
 
                     </div>
 
+
                     <form
                         className={styles.form}
                         onSubmit={handleSubmit}
+                        noValidate
                     >
 
                         <div className={styles.fieldGrid}>
+
 
                             <div className={styles.field}>
 
@@ -130,10 +259,32 @@ function Contact() {
                                     placeholder="Tu nombre"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    required
+                                    className={
+                                        errors.name
+                                            ? styles.inputError
+                                            : ""
+                                    }
+                                    aria-invalid={
+                                        Boolean(errors.name)
+                                    }
+                                    aria-describedby={
+                                        errors.name
+                                            ? "name-error"
+                                            : undefined
+                                    }
                                 />
 
+                                {errors.name && (
+                                    <span
+                                        id="name-error"
+                                        className={styles.error}
+                                    >
+                                        {errors.name}
+                                    </span>
+                                )}
+
                             </div>
+
 
                             <div className={styles.field}>
 
@@ -148,18 +299,45 @@ function Contact() {
                                     placeholder="tu@email.com"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    required
+                                    className={
+                                        errors.email
+                                            ? styles.inputError
+                                            : ""
+                                    }
+                                    aria-invalid={
+                                        Boolean(errors.email)
+                                    }
+                                    aria-describedby={
+                                        errors.email
+                                            ? "email-error"
+                                            : undefined
+                                    }
                                 />
+
+                                {errors.email && (
+                                    <span
+                                        id="email-error"
+                                        className={styles.error}
+                                    >
+                                        {errors.email}
+                                    </span>
+                                )}
 
                             </div>
 
                         </div>
 
+
                         <div className={styles.field}>
 
                             <label htmlFor="company">
+
                                 Empresa
-                                <span>Opcional</span>
+
+                                <span>
+                                    Opcional
+                                </span>
+
                             </label>
 
                             <input
@@ -172,6 +350,7 @@ function Contact() {
                             />
 
                         </div>
+
 
                         <div className={styles.field}>
 
@@ -186,10 +365,32 @@ function Contact() {
                                 placeholder="Contanos brevemente sobre tu proyecto..."
                                 value={formData.message}
                                 onChange={handleChange}
-                                required
+                                className={
+                                    errors.message
+                                        ? styles.inputError
+                                        : ""
+                                }
+                                aria-invalid={
+                                    Boolean(errors.message)
+                                }
+                                aria-describedby={
+                                    errors.message
+                                        ? "message-error"
+                                        : undefined
+                                }
                             />
 
+                            {errors.message && (
+                                <span
+                                    id="message-error"
+                                    className={styles.error}
+                                >
+                                    {errors.message}
+                                </span>
+                            )}
+
                         </div>
+
 
                         <label className={styles.checkbox}>
 
@@ -198,7 +399,14 @@ function Contact() {
                                 name="privacy"
                                 checked={formData.privacy}
                                 onChange={handleChange}
-                                required
+                                aria-invalid={
+                                    Boolean(errors.privacy)
+                                }
+                                aria-describedby={
+                                    errors.privacy
+                                        ? "privacy-error"
+                                        : undefined
+                                }
                             />
 
                             <span>
@@ -209,19 +417,36 @@ function Contact() {
 
                         </label>
 
+                        {errors.privacy && (
+                            <span
+                                id="privacy-error"
+                                className={styles.error}
+                            >
+                                {errors.privacy}
+                            </span>
+                        )}
+
+
                         <button
                             type="submit"
                             className={styles.submit}
+                            disabled={isSubmitting}
                         >
-                            Enviar mensaje
+
+                            {isSubmitting
+                                ? "Enviando..."
+                                : "Enviar mensaje"
+                            }
+
                         </button>
+
 
                         {submitted && (
 
-                            <p className={styles.demoMessage}>
-                                El formulario funciona correctamente.
-                                El envío real se configurará en el
-                                siguiente paso.
+                            <p className={styles.successMessage}>
+                                ¡Gracias por tu consulta!
+                                <br />
+                                Recibimos correctamente tus datos.
                             </p>
 
                         )}
@@ -231,6 +456,7 @@ function Contact() {
                 </div>
 
             </Container>
+
         </section>
     );
 }
