@@ -1,240 +1,424 @@
+/* =========================================================
+   SERVICE CARD
+========================================================= */
+
 .card {
-    position: relative;
 
-    display: flex;
+    position:
+        relative;
 
-    flex-direction: column;
+    display:
+        flex;
 
-    padding: 2rem;
+    flex-direction:
+        column;
 
-    min-height: 330px;
+    padding:
+        2rem;
 
-    border-radius: 24px;
+    min-height:
+        330px;
 
+    border-radius:
+        24px;
+
+    /*
+     * Fondo uniforme y muy ligeramente separado
+     * del fondo general.
+     */
     background:
-        linear-gradient(
-            180deg,
-            rgba(255, 255, 255, .03),
-            rgba(255, 255, 255, .015)
+        rgba(
+            255,
+            255,
+            255,
+            .025
         );
 
-    border: 1px solid rgba(255, 255, 255, .06);
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .06
+        );
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
     transition:
         transform .35s ease,
-        background .35s ease,
+        background-color .35s ease,
         border-color .35s ease,
         box-shadow .35s ease;
 }
 
+
+/* =========================================================
+   HOVER DECORATIVO
+========================================================= */
+
+/*
+ * Eliminamos completamente el radial-gradient
+ * naranja que aparecía en la esquina.
+ */
+
 .card::before {
-    content: "";
 
-    position: absolute;
+    content:
+        "";
 
-    inset: 0;
+    position:
+        absolute;
+
+    inset:
+        0;
 
     background:
-        radial-gradient(
-            circle at top right,
-            rgba(216, 137, 51, .12),
-            transparent 55%
-        );
+        transparent;
 
-    opacity: 0;
+    opacity:
+        0;
 
-    transition: .35s ease;
-
-    pointer-events: none;
+    pointer-events:
+        none;
 }
 
+
+/* =========================================================
+   HOVER
+========================================================= */
+
 .card:hover {
-    transform: translateY(-10px);
 
-    border-color: rgba(216, 137, 51, .30);
+    transform:
+        translateY(-7px);
 
+    border-color:
+        rgba(
+            216,
+            137,
+            51,
+            .28
+        );
+
+    /*
+     * Sin degradado.
+     * Solamente un cambio de tono extremadamente sutil.
+     */
     background:
-        linear-gradient(
-            180deg,
-            rgba(255, 255, 255, .045),
-            rgba(255, 255, 255, .02)
+        rgba(
+            255,
+            255,
+            255,
+            .035
         );
 
     box-shadow:
-        0 25px 50px rgba(0, 0, 0, .35),
-        0 0 30px rgba(216, 137, 51, .12);
+
+        0 20px 45px
+        rgba(
+            0,
+            0,
+            0,
+            .30
+        );
 }
+
+
+/*
+ * No aparece ninguna mancha naranja
+ * al hacer hover.
+ */
 
 .card:hover::before {
-    opacity: 1;
+
+    opacity:
+        0;
 }
 
-/* ============================
-   Icono
-============================ */
+
+/* =========================================================
+   ICONO
+========================================================= */
 
 .iconContainer {
-    width: 80px;
 
-    height: 80px;
+    width:
+        80px;
 
-    display: flex;
+    height:
+        80px;
 
-    align-items: center;
+    display:
+        flex;
 
-    justify-content: center;
+    align-items:
+        center;
 
-    margin-bottom: 1.8rem;
+    justify-content:
+        center;
 
-    border-radius: 22px;
+    margin-bottom:
+        1.8rem;
 
-    background: rgba(216, 137, 51, .08);
+    border-radius:
+        22px;
 
-    color: #d88933;
+    /*
+     * Mantenemos el pequeño fondo naranja,
+     * pero completamente plano.
+     */
+    background:
+        rgba(
+            216,
+            137,
+            51,
+            .08
+        );
+
+    color:
+        #d88933;
 
     transition:
         transform .35s ease,
-        background .35s ease,
+        background-color .35s ease,
         color .35s ease,
         box-shadow .35s ease;
 }
 
-.icon {
-    width: 52px;
 
-    height: 52px;
+/* =========================================================
+   ICONO SVG
+========================================================= */
+
+.icon {
+
+    width:
+        52px;
+
+    height:
+        52px;
 
     transition:
         transform .35s ease;
 }
 
+
+/* =========================================================
+   HOVER DEL ICONO
+========================================================= */
+
 .card:hover .iconContainer {
-    background: rgba(216, 137, 51, .18);
 
-    color: #f5b04c;
+    background:
+        rgba(
+            216,
+            137,
+            51,
+            .13
+        );
 
-    transform: translateY(-5px);
+    color:
+        #f5b04c;
 
+    transform:
+        translateY(-4px);
+
+    /*
+     * Quitamos el glow naranja fuerte.
+     */
     box-shadow:
-        0 0 25px rgba(216, 137, 51, .20);
+        none;
 }
+
 
 .card:hover .icon {
-    transform: scale(1.08);
+
+    transform:
+        scale(1.05);
 }
 
-/* ============================
-   Texto
-============================ */
+
+/* =========================================================
+   TEXTO
+========================================================= */
 
 .title {
-    margin: 0 0 1rem;
 
-    color: #ffffff;
+    margin:
+        0 0 1rem;
 
-    font-size: 1.4rem;
+    color:
+        #ffffff;
 
-    font-weight: 700;
+    font-size:
+        1.4rem;
 
-    line-height: 1.3;
+    font-weight:
+        700;
+
+    line-height:
+        1.3;
 }
+
 
 .description {
-    margin: 0;
 
-    color: rgba(255, 255, 255, .72);
+    margin:
+        0;
 
-    font-size: 1rem;
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            .72
+        );
 
-    line-height: 1.8;
+    font-size:
+        1rem;
 
-    flex: 1;
+    line-height:
+        1.8;
+
+    flex:
+        1;
 }
 
-/* ============================
-   Tablet
-============================ */
 
-@media (max-width: 768px) {
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+    max-width: 768px
+) {
 
     .card {
-        min-height: 0;
 
-        padding: 1.6rem;
+        min-height:
+            0;
 
-        border-radius: 20px;
+        padding:
+            1.6rem;
+
+        border-radius:
+            20px;
     }
+
 
     .iconContainer {
-        width: 64px;
 
-        height: 64px;
+        width:
+            64px;
 
-        margin-bottom: 1.25rem;
+        height:
+            64px;
 
-        border-radius: 18px;
+        margin-bottom:
+            1.25rem;
+
+        border-radius:
+            18px;
     }
+
 
     .icon {
-        width: 42px;
 
-        height: 42px;
+        width:
+            42px;
+
+        height:
+            42px;
     }
+
 
     .title {
-        margin-bottom: .7rem;
 
-        font-size: 1.2rem;
+        margin-bottom:
+            .7rem;
+
+        font-size:
+            1.2rem;
     }
+
 
     .description {
-        font-size: .92rem;
 
-        line-height: 1.65;
+        font-size:
+            .92rem;
+
+        line-height:
+            1.65;
     }
+
 
     .card:hover {
-        transform: translateY(-5px);
+
+        transform:
+            translateY(-5px);
     }
 }
 
-/* ============================
-   Mobile pequeño
-============================ */
 
-@media (max-width: 480px) {
+/* =========================================================
+   MOBILE PEQUEÑO
+========================================================= */
+
+@media (
+    max-width: 480px
+) {
 
     .card {
-        padding: 1.4rem;
 
-        border-radius: 18px;
+        padding:
+            1.4rem;
+
+        border-radius:
+            18px;
     }
+
 
     .iconContainer {
-        width: 58px;
 
-        height: 58px;
+        width:
+            58px;
 
-        margin-bottom: 1.1rem;
+        height:
+            58px;
 
-        border-radius: 16px;
+        margin-bottom:
+            1.1rem;
+
+        border-radius:
+            16px;
     }
+
 
     .icon {
-        width: 38px;
 
-        height: 38px;
+        width:
+            38px;
+
+        height:
+            38px;
     }
+
 
     .title {
-        font-size: 1.15rem;
+
+        font-size:
+            1.15rem;
     }
 
-    .description {
-        font-size: .9rem;
 
-        line-height: 1.6;
+    .description {
+
+        font-size:
+            .9rem;
+
+        line-height:
+            1.6;
     }
 }

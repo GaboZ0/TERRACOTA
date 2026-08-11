@@ -1,83 +1,133 @@
+/* =========================================================
+   SERVICES
+========================================================= */
+
 .services {
-    position: relative;
 
-    padding: 120px 0;
+    position:
+        relative;
 
+    padding:
+        120px 0;
+
+    /*
+     * Fondo uniforme.
+     *
+     * Eliminamos el radial-gradient naranja que
+     * generaba el halo detrás del título.
+     */
     background:
-        radial-gradient(
-            circle at top,
-            rgba(216, 137, 51, .08),
-            transparent 40%
-        ),
         #0d0d0d;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 }
+
+
+/* =========================================================
+   GRID
+========================================================= */
 
 .grid {
-    display: grid;
 
-    grid-template-columns: repeat(
-        3,
-        minmax(0, 1fr)
-    );
+    display:
+        grid;
 
-    gap: 32px;
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
 
-    margin-top: 70px;
+    gap:
+        32px;
 
-    align-items: stretch;
+    margin-top:
+        70px;
+
+    align-items:
+        stretch;
 }
 
-/* ============================
-   Tablet
-============================ */
 
-@media (max-width: 1024px) {
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+    max-width: 1024px
+) {
 
     .grid {
+
         grid-template-columns:
             repeat(
                 2,
-                minmax(0, 1fr)
+                minmax(
+                    0,
+                    1fr
+                )
             );
 
-        gap: 24px;
+        gap:
+            24px;
     }
 }
 
-/* ============================
-   Mobile
-============================ */
 
-@media (max-width: 768px) {
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+    max-width: 768px
+) {
 
     .services {
-        padding: 80px 0;
+
+        padding:
+            80px 0;
     }
 
+
     .grid {
-        grid-template-columns: 1fr;
 
-        gap: 18px;
+        grid-template-columns:
+            1fr;
 
-        margin-top: 45px;
+        gap:
+            18px;
+
+        margin-top:
+            45px;
     }
 }
 
-/* ============================
-   Mobile pequeño
-============================ */
 
-@media (max-width: 480px) {
+/* =========================================================
+   MOBILE PEQUEÑO
+========================================================= */
+
+@media (
+    max-width: 480px
+) {
 
     .services {
-        padding: 70px 0;
+
+        padding:
+            70px 0;
     }
 
-    .grid {
-        gap: 16px;
 
-        margin-top: 38px;
+    .grid {
+
+        gap:
+            16px;
+
+        margin-top:
+            38px;
     }
 }
