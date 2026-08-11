@@ -9,8 +9,8 @@ const headerData = {
     },
     {
       id: 2,
-      title: "Programas",
-      href: "#programas",
+      title: "Servicios",
+      href: "#servicios",
     },
     {
       id: 3,

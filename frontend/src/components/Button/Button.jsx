@@ -5,11 +5,23 @@ function Button({
   variant = "primary",
   onClick,
   type = "button",
+  href,
 }) {
   const className =
     variant === "secondary"
       ? styles.secondary
       : styles.primary;
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        className={className}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
     <button

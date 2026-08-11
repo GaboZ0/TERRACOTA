@@ -11,21 +11,21 @@ const aboutData = {
   features: [
     {
       id: 1,
-      icon: "🚀",
+      icon: "innovation",
       title: "Innovación",
       description:
         "Aplicamos tecnologías modernas para desarrollar soluciones eficientes y sostenibles.",
     },
     {
       id: 2,
-      icon: "🛡",
+      icon: "security",
       title: "Seguridad",
       description:
         "Cada proyecto se desarrolla siguiendo buenas prácticas para proteger la información y garantizar estabilidad.",
     },
     {
       id: 3,
-      icon: "⚡",
+      icon: "scalability",
       title: "Escalabilidad",
       description:
         "Creamos sistemas preparados para acompañar el crecimiento de cada empresa sin perder rendimiento.",

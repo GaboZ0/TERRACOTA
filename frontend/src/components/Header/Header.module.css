@@ -24,6 +24,27 @@
 
 
 /* ============================
+   Contenedor del Header
+============================ */
+
+/*
+ * El Header necesita aprovechar prácticamente
+ * todo el ancho de la pantalla.
+ *
+ * No modificamos Container globalmente porque
+ * las demás secciones sí necesitan su max-width.
+ */
+
+.header > div {
+
+    max-width: none;
+
+    padding-left: 46px;
+    padding-right: 46px;
+}
+
+
+/* ============================
    Estado al hacer scroll
 ============================ */
 
@@ -69,6 +90,8 @@
 
     align-items: center;
 
+    flex-shrink: 0;
+
     text-decoration: none;
 
     transition:
@@ -81,7 +104,7 @@
 
 .logoLink:hover {
 
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 
@@ -91,11 +114,11 @@
 
 .nav {
 
-    flex: 1;
+    flex: 0 0 auto;
 
     display: flex;
 
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .menu {
@@ -104,7 +127,7 @@
 
     align-items: center;
 
-    gap: 46px;
+    gap: 48px;
 
     list-style: none;
 
@@ -122,11 +145,13 @@
 
     position: relative;
 
-    color: rgba(255, 255, 255, .82);
+    color:
+        rgba(255, 255, 255, .86);
 
     text-decoration: none;
 
-    font-family: "Manrope", sans-serif;
+    font-family:
+        "Manrope", sans-serif;
 
     font-size: .98rem;
 
@@ -135,8 +160,7 @@
     letter-spacing: .3px;
 
     transition:
-        color .3s ease,
-        transform .3s ease;
+        color .3s ease;
 }
 
 .menu a::after {
@@ -153,7 +177,8 @@
 
     height: 2px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     border-radius: 999px;
 
@@ -243,7 +268,7 @@
 
 
 /* ============================
-   Animación hamburguesa → X
+   Animación hamburguesa
 ============================ */
 
 .menuOpen .menuButton span:nth-child(1) {
@@ -282,6 +307,12 @@
 
 @media (max-width: 992px) {
 
+    .header > div {
+
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
     .menu {
 
         gap: 28px;
@@ -300,24 +331,26 @@
         height: 78px;
     }
 
+    .header > div {
+
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 
     .wrapper {
 
         gap: 20px;
     }
 
-
     .nav {
 
         display: none;
     }
 
-
     .menuButton {
 
         display: flex;
     }
-
 
     .mobileMenu {
 
@@ -370,7 +403,6 @@
             transform .3s ease;
     }
 
-
     .mobileMenuOpen {
 
         opacity: 1;
@@ -382,7 +414,6 @@
 
         pointer-events: auto;
     }
-
 
     .mobileMenu nav ul {
 
@@ -399,7 +430,6 @@
         padding: 0;
     }
 
-
     .mobileMenu nav li {
 
         border-bottom:
@@ -407,14 +437,12 @@
             rgba(255, 255, 255, .06);
     }
 
-
     .mobileMenu nav li:first-child {
 
         border-top:
             1px solid
             rgba(255, 255, 255, .06);
     }
-
 
     .mobileMenu nav a {
 
@@ -441,14 +469,12 @@
             padding-left .25s ease;
     }
 
-
     .mobileMenu nav a:hover {
 
         color: #d88933;
 
         padding-left: 6px;
     }
-
 }
 
 
@@ -463,6 +489,11 @@
         height: 72px;
     }
 
+    .header > div {
+
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 
     .mobileMenu {
 
@@ -475,7 +506,6 @@
             22px 18px 28px;
     }
 
-
     .menuButton {
 
         width: 42px;
@@ -483,12 +513,10 @@
         height: 42px;
     }
 
-
     .mobileMenu nav a {
 
         min-height: 54px;
 
         font-size: .95rem;
     }
-
 }

@@ -29,7 +29,7 @@
 
 }
 
-.card::before{
+.card::before {
 
   content:"";
 
@@ -50,7 +50,7 @@
 
 }
 
-.card:hover{
+.card:hover {
 
   transform:translateY(-10px);
 
@@ -60,21 +60,87 @@
 
 }
 
-.card:hover::before{
+.card:hover::before {
 
   opacity:1;
 
 }
 
-.icon{
 
-  font-size:2.7rem;
+/* ============================
+   Icono
+============================ */
 
-  margin-bottom:30px;
+.icon {
+
+  position: relative;
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 30px;
+
+  color: #d88933;
+
+  transition:
+    color .35s ease,
+    transform .45s cubic-bezier(.22,1,.36,1);
 
 }
 
-.title{
+.iconSvg {
+
+  width: 48px;
+  height: 48px;
+
+  display: block;
+
+  overflow: visible;
+
+  color: currentColor;
+
+  transition:
+    transform .45s cubic-bezier(.22,1,.36,1),
+    filter .45s ease;
+
+}
+
+
+/* ============================
+   Microinteracción del icono
+============================ */
+
+.card:hover .icon {
+
+  transform: translateY(-3px);
+
+  color: #e09a4d;
+
+}
+
+.card:hover .iconSvg {
+
+  transform: scale(1.04);
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(216,137,51,.22)
+    );
+
+}
+
+
+/* ============================
+   Título
+============================ */
+
+.title {
 
   color:white;
 
@@ -84,7 +150,12 @@
 
 }
 
-.description{
+
+/* ============================
+   Descripción
+============================ */
+
+.description {
 
   color:rgba(255,255,255,.72);
 
@@ -94,7 +165,12 @@
 
 }
 
-.arrow{
+
+/* ============================
+   Flecha
+============================ */
+
+.arrow {
 
   margin-top:32px;
 
@@ -102,12 +178,28 @@
 
   font-size:1.6rem;
 
-  transition:transform .3s ease;
+  transition:
+    transform .3s ease;
 
 }
 
-.card:hover .arrow{
+.card:hover .arrow {
 
   transform:translateX(10px);
+
+}
+
+
+/* ============================
+   Responsive
+============================ */
+
+@media(max-width:992px) {
+
+  .icon {
+
+    margin-bottom:24px;
+
+  }
 
 }

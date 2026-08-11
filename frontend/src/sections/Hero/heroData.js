@@ -1,14 +1,18 @@
 const heroData = {
-  tag: "TECNOLOGÍA CON IDENTIDAD SANJUANINA",
+    titleTop:
+        "TECNOLOGÍA SÓLIDA,",
 
-  title: "Tecnología sólida para empresas que quieren crecer.",
+    titleAccent:
+        "DISEÑADA PARA",
 
-  description:
-    "Desarrollamos soluciones modernas, seguras y escalables inspiradas en la innovación y en la identidad única de San Juan.",
+    titleBottom:
+        "EMPRESAS EN CRECIMIENTO.",
 
-  primaryButton: "Ver soluciones",
+    description:
+        "Desarrollamos software profesional confiable, flexible y escalable para impulsar la evolución de tu negocio.",
 
-  secondaryButton: "Solicitar presupuesto",
+    primaryButton:
+        "CONOCÉ MÁS",
 };
 
 export default heroData;
