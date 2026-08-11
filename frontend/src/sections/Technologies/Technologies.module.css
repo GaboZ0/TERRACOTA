@@ -1,8 +1,8 @@
 .technologies {
-
     position: relative;
 
-    padding: 120px 0;
+    padding:
+        120px 0;
 
     background:
         linear-gradient(
@@ -14,8 +14,12 @@
     overflow: hidden;
 }
 
-.technologies::before {
 
+/* =========================================================
+   HALO
+========================================================= */
+
+.technologies::before {
     content: "";
 
     position: absolute;
@@ -28,111 +32,158 @@
 
     border-radius: 50%;
 
-    background: rgba(216,137,51,.06);
+    background:
+        rgba(
+            216,
+            137,
+            51,
+            .06
+        );
 
-    filter: blur(100px);
+    filter:
+        blur(100px);
 
     pointer-events: none;
 }
 
-.categories {
 
+/* =========================================================
+   CATEGORÍAS
+========================================================= */
+
+.categories {
     position: relative;
 
     z-index: 1;
 
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
     gap: 2px;
 
-    margin-top: 80px;
+    margin-top:
+        80px;
 
-    border: 1px solid rgba(255,255,255,.06);
+    border:
+        1px solid
+        rgba(255,255,255,.06);
 
-    border-radius: 24px;
+    border-radius:
+        24px;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
-    background: rgba(255,255,255,.04);
+    background:
+        rgba(255,255,255,.04);
 }
 
+
+/* =========================================================
+   CATEGORÍA
+========================================================= */
+
 .category {
+    padding:
+        42px;
 
-    padding: 42px;
-
-    background: rgba(13,13,13,.95);
+    background:
+        rgba(13,13,13,.95);
 
     transition:
         background .3s ease;
 }
 
 .category:hover {
-
-    background: rgba(216,137,51,.035);
-
+    background:
+        rgba(216,137,51,.035);
 }
 
-.categoryHeader {
 
+/* =========================================================
+   HEADER
+========================================================= */
+
+.categoryHeader {
     display: flex;
 
     align-items: center;
 
     gap: 18px;
 
-    margin-bottom: 28px;
+    margin-bottom:
+        28px;
 }
 
 .categoryNumber {
+    color:
+        #d88933;
 
-    color: #d88933;
+    font-family:
+        "IBM Plex Sans",
+        sans-serif;
 
-    font-family: "IBM Plex Sans", sans-serif;
+    font-size:
+        .78rem;
 
-    font-size: .78rem;
+    font-weight:
+        700;
 
-    font-weight: 700;
-
-    letter-spacing: 2px;
+    letter-spacing:
+        2px;
 }
 
 .categoryHeader h3 {
-
     margin: 0;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
-    font-size: 1.35rem;
+    font-size:
+        1.35rem;
 
-    font-weight: 700;
+    font-weight:
+        700;
 }
 
-.technologiesList {
 
+/* =========================================================
+   LISTA
+========================================================= */
+
+.technologiesList {
     display: flex;
 
     flex-wrap: wrap;
 
-    gap: 10px;
+    gap:
+        10px;
 }
 
 .technology {
+    padding:
+        9px 15px;
 
-    padding: 9px 15px;
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border-radius:
+        999px;
 
-    border-radius: 999px;
+    background:
+        rgba(255,255,255,.025);
 
-    background: rgba(255,255,255,.025);
+    color:
+        rgba(255,255,255,.72);
 
-    color: rgba(255,255,255,.72);
+    font-size:
+        .88rem;
 
-    font-size: .88rem;
-
-    font-weight: 500;
+    font-weight:
+        500;
 
     transition:
         color .3s ease,
@@ -142,61 +193,106 @@
 }
 
 .technology:hover {
+    transform:
+        translateY(-2px);
 
-    transform: translateY(-2px);
+    color:
+        #ffffff;
 
-    color: #ffffff;
+    border-color:
+        rgba(216,137,51,.4);
 
-    border-color: rgba(216,137,51,.4);
-
-    background: rgba(216,137,51,.08);
-
+    background:
+        rgba(216,137,51,.08);
 }
 
-/* ============================
-   Tablet
-============================ */
+
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 768px) {
 
     .technologies {
-
-        padding: 90px 0;
-
+        padding:
+            65px 0;
     }
 
     .categories {
+        grid-template-columns:
+            1fr;
 
-        grid-template-columns: 1fr;
+        margin-top:
+            38px;
 
-        margin-top: 60px;
-
+        border-radius:
+            18px;
     }
 
     .category {
-
-        padding: 30px;
-
+        padding:
+            24px;
     }
 
+    .categoryHeader {
+        margin-bottom:
+            20px;
+
+        gap:
+            14px;
+    }
+
+    .technologiesList {
+        gap:
+            7px;
+    }
+
+    .technology {
+        padding:
+            7px 11px;
+
+        font-size:
+            .8rem;
+    }
 }
 
-/* ============================
-   Mobile
-============================ */
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
 
 @media (max-width: 480px) {
 
+    .technologies {
+        padding:
+            56px 0;
+    }
+
+    .categories {
+        margin-top:
+            32px;
+    }
+
     .category {
+        padding:
+            20px;
+    }
 
-        padding: 25px;
-
+    .categoryHeader {
+        margin-bottom:
+            16px;
     }
 
     .categoryHeader h3 {
-
-        font-size: 1.15rem;
-
+        font-size:
+            1.08rem;
     }
 
+    .technology {
+        padding:
+            6px 10px;
+
+        font-size:
+            .76rem;
+    }
 }

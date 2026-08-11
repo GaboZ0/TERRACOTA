@@ -41,25 +41,14 @@ function Hero() {
 
             /*
              * Seguimiento suavizado del scroll.
-             *
-             * El valor bajo evita que el fondo
-             * se mueva de manera brusca.
              */
-
             currentScroll +=
                 (targetScroll - currentScroll) * 0.045;
 
 
             /*
              * Oscurecimiento progresivo.
-             *
-             * Al comenzar el Hero está prácticamente
-             * transparente.
-             *
-             * Al avanzar hacia abajo se transforma
-             * progresivamente en negro.
              */
-
             const darkness = Math.min(
                 Math.max(
                     targetScroll /
@@ -72,12 +61,7 @@ function Hero() {
 
             /*
              * Parallax extremadamente suave.
-             *
-             * El movimiento es pequeño para que la
-             * imagen conserve una apariencia estática
-             * y elegante.
              */
-
             const parallax = Math.min(
                 currentScroll * 0.055,
                 window.innerHeight * 0.055
@@ -171,7 +155,7 @@ function Hero() {
 
 
             {/* =================================================
-                OSCURECIMIENTO POR SCROLL
+                OSCURECIMIENTO DURANTE EL SCROLL
             ================================================= */}
 
             <div
@@ -184,61 +168,64 @@ function Hero() {
                 CONTENIDO PRINCIPAL
             ================================================= */}
 
-            <Container>
+            <div className={styles.contentWrapper}>
 
-                <div className={styles.content}>
+                <Container>
 
-                    <div className={styles.left}>
+                    <div className={styles.content}>
 
-                        <h1 className={styles.title}>
+                        <div className={styles.left}>
 
-                            <span>
-                                {heroData.titleTop}
-                            </span>
+                            <h1 className={styles.title}>
 
-                            <span
-                                className={styles.accent}
-                            >
-                                {heroData.titleAccent}
-                            </span>
+                                <span>
+                                    {heroData.titleTop}
+                                </span>
 
-                            <span
-                                className={styles.accent}
-                            >
-                                {heroData.titleBottom}
-                            </span>
+                                <span
+                                    className={styles.accent}
+                                >
+                                    {heroData.titleAccent}
+                                </span>
 
-                        </h1>
+                                <span
+                                    className={styles.accent}
+                                >
+                                    {heroData.titleBottom}
+                                </span>
 
-
-                        <p className={styles.description}>
-
-                            {heroData.description}
-
-                        </p>
+                            </h1>
 
 
-                        <div className={styles.buttons}>
+                            <p className={styles.description}>
 
-                            <Button href="#servicios">
-                                {heroData.primaryButton}
-                            </Button>
+                                {heroData.description}
+
+                            </p>
+
+
+                            <div className={styles.buttons}>
+
+                                <Button href="#servicios">
+                                    {heroData.primaryButton}
+                                </Button>
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                </Container>
 
-            </Container>
+            </div>
 
 
             {/* =================================================
-                CARACTERÍSTICAS DEL HERO
+                CARACTERÍSTICAS
             ================================================= */}
 
             <div className={styles.heroFeatures}>
-
 
                 <FeatureCard
                     variant="hero"
@@ -270,7 +257,6 @@ function Hero() {
                     title="Soporte"
                     description="Acompañamiento real, siempre que lo necesitás."
                 />
-
 
             </div>
 

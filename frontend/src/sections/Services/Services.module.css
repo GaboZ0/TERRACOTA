@@ -3,24 +3,15 @@
 ========================================================= */
 
 .services {
-
-    position:
-        relative;
+    position: relative;
 
     padding:
         120px 0;
 
-    /*
-     * Fondo uniforme.
-     *
-     * Eliminamos el radial-gradient naranja que
-     * generaba el halo detrás del título.
-     */
     background:
         #0d0d0d;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 }
 
 
@@ -29,27 +20,19 @@
 ========================================================= */
 
 .grid {
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(
             3,
-            minmax(
-                0,
-                1fr
-            )
+            minmax(0, 1fr)
         );
 
-    gap:
-        32px;
+    gap: 32px;
 
-    margin-top:
-        70px;
+    margin-top: 70px;
 
-    align-items:
-        stretch;
+    align-items: stretch;
 }
 
 
@@ -57,77 +40,58 @@
    TABLET
 ========================================================= */
 
-@media (
-    max-width: 1024px
-) {
+@media (max-width: 1024px) {
 
     .grid {
-
         grid-template-columns:
             repeat(
                 2,
-                minmax(
-                    0,
-                    1fr
-                )
+                minmax(0, 1fr)
             );
 
-        gap:
-            24px;
+        gap: 24px;
     }
 }
 
 
 /* =========================================================
-   MOBILE
+   MÓVIL
 ========================================================= */
 
-@media (
-    max-width: 768px
-) {
+@media (max-width: 768px) {
 
     .services {
-
         padding:
-            80px 0;
+            65px 0;
     }
 
-
     .grid {
-
         grid-template-columns:
             1fr;
 
-        gap:
-            18px;
+        gap: 14px;
 
         margin-top:
-            45px;
+            34px;
     }
 }
 
 
 /* =========================================================
-   MOBILE PEQUEÑO
+   MÓVIL PEQUEÑO
 ========================================================= */
 
-@media (
-    max-width: 480px
-) {
+@media (max-width: 480px) {
 
     .services {
-
         padding:
-            70px 0;
+            56px 0;
     }
 
-
     .grid {
-
-        gap:
-            16px;
+        gap: 12px;
 
         margin-top:
-            38px;
+            30px;
     }
 }

@@ -1,85 +1,198 @@
 .stats {
-    background: var(--color-background);
+    background:
+        var(--color-background);
 
-    padding: 120px 0;
+    padding:
+        105px 0;
 }
 
-.grid {
 
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid {
     display: grid;
 
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns:
+        repeat(4, 1fr);
 
     gap: 30px;
 }
 
+
+/* =========================================================
+   CARD
+========================================================= */
+
 .card {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .03
+        );
 
-    background: rgba(255,255,255,.03);
-
-    border: 1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .08
+        );
 
     border-radius: 20px;
 
-    padding: 40px 30px;
+    padding:
+        38px 28px;
 
-    transition: .35s;
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
 
     text-align: center;
 }
 
 .card:hover {
+    transform:
+        translateY(-8px);
 
-    transform: translateY(-8px);
+    border-color:
+        rgba(
+            242,
+            183,
+            5,
+            .35
+        );
 
-    border-color: rgba(242,183,5,.35);
-
-    box-shadow: 0 15px 45px rgba(0,0,0,.35);
+    box-shadow:
+        0 15px 45px
+        rgba(0, 0, 0, .35);
 }
 
-.number {
 
+/* =========================================================
+   NÚMERO
+========================================================= */
+
+.number {
     display: block;
 
-    color: var(--color-primary);
+    color:
+        var(--color-primary);
 
     font-size: 3rem;
 
     font-weight: 800;
 
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
 
 .card h3 {
+    color:
+        var(--color-text);
 
-    color: var(--color-text);
+    margin-bottom: 14px;
 
-    margin-bottom: 16px;
-
-    font-size: 1.25rem;
+    font-size:
+        1.2rem;
 }
+
+
+/* =========================================================
+   TEXTO
+========================================================= */
 
 .card p {
+    color:
+        var(--color-text-secondary);
 
-    color: var(--color-text-secondary);
-
-    line-height: 1.7;
+    line-height: 1.65;
 }
 
-@media (max-width: 992px){
 
-    .grid{
+/* =========================================================
+   TABLET
+========================================================= */
 
-        grid-template-columns: repeat(2,1fr);
+@media (max-width: 992px) {
+
+    .stats {
+        padding:
+            80px 0;
     }
 
+    .grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 20px;
+    }
+
+    .card {
+        padding:
+            30px 22px;
+    }
+
+    .number {
+        font-size:
+            2.6rem;
+    }
 }
 
-@media (max-width:640px){
 
-    .grid{
+/* =========================================================
+   MÓVIL
+========================================================= */
 
-        grid-template-columns:1fr;
+@media (max-width: 640px) {
+
+    .stats {
+        padding:
+            62px 0;
     }
 
+    .grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 14px;
+    }
+
+    .card {
+        padding:
+            25px 20px;
+
+        border-radius:
+            17px;
+    }
+
+    .number {
+        font-size:
+            2.35rem;
+
+        margin-bottom:
+            10px;
+    }
+
+    .card h3 {
+        margin-bottom:
+            10px;
+
+        font-size:
+            1.08rem;
+    }
+
+    .card p {
+        line-height:
+            1.55;
+    }
 }

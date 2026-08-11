@@ -1,8 +1,8 @@
 .contact {
-
     position: relative;
 
-    padding: 120px 0;
+    padding:
+        120px 0;
 
     background:
         radial-gradient(
@@ -16,244 +16,309 @@
 }
 
 
-/* ============================
-   Layout
-============================ */
+/* =========================================================
+   LAYOUT
+========================================================= */
 
 .layout {
-
     display: grid;
 
-    grid-template-columns: .85fr 1.15fr;
+    grid-template-columns:
+        .85fr 1.15fr;
 
-    gap: 100px;
+    gap:
+        100px;
 
-    margin-top: 80px;
+    margin-top:
+        80px;
 
-    align-items: start;
+    align-items:
+        start;
 }
 
 
-/* ============================
-   Información
-============================ */
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
 
 .info {
-
-    padding-top: 10px;
+    padding-top:
+        10px;
 }
 
 .infoIntro {
-
-    max-width: 470px;
+    max-width:
+        470px;
 }
 
 .label {
-
     display: block;
 
-    margin-bottom: 20px;
+    margin-bottom:
+        20px;
 
-    color: #d88933;
+    color:
+        #d88933;
 
-    font-size: .75rem;
+    font-size:
+        .75rem;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    letter-spacing: 3px;
+    letter-spacing:
+        3px;
 }
 
 .infoIntro h3 {
+    margin:
+        0 0 22px;
 
-    margin: 0 0 22px;
+    color:
+        #ffffff;
 
-    color: #ffffff;
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3.2rem
+        );
 
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight:
+        700;
 
-    font-weight: 700;
+    line-height:
+        1.05;
 
-    line-height: 1.05;
-
-    letter-spacing: -1px;
+    letter-spacing:
+        -1px;
 }
 
 .infoIntro p {
+    margin:
+        0;
 
-    margin: 0;
+    color:
+        rgba(255,255,255,.62);
 
-    color: rgba(255,255,255,.62);
+    font-size:
+        1rem;
 
-    font-size: 1rem;
-
-    line-height: 1.8;
+    line-height:
+        1.8;
 }
 
 
-/* ============================
-   Detalles
-============================ */
+/* =========================================================
+   DETALLES
+========================================================= */
 
 .details {
-
     display: flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    gap: 24px;
+    gap:
+        24px;
 
-    margin-top: 55px;
+    margin-top:
+        55px;
 }
 
 .detail {
-
     display: flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 18px;
+    gap:
+        18px;
 }
 
 .detailIcon {
+    width:
+        48px;
 
-    width: 48px;
+    height:
+        48px;
 
-    height: 48px;
+    display:
+        flex;
 
-    display: flex;
+    align-items:
+        center;
 
-    align-items: center;
+    justify-content:
+        center;
 
-    justify-content: center;
+    flex-shrink:
+        0;
 
-    flex-shrink: 0;
+    border-radius:
+        12px;
 
-    border-radius: 12px;
+    background:
+        rgba(216,137,51,.08);
 
-    background: rgba(216,137,51,.08);
+    border:
+        1px solid
+        rgba(216,137,51,.15);
 
-    border: 1px solid rgba(216,137,51,.15);
+    color:
+        #d88933;
 
-    color: #d88933;
-
-    font-size: 1.1rem;
+    font-size:
+        1.1rem;
 }
 
 .detail div {
+    display:
+        flex;
 
-    display: flex;
+    flex-direction:
+        column;
 
-    flex-direction: column;
-
-    gap: 4px;
+    gap:
+        4px;
 }
 
 .detailLabel {
+    color:
+        rgba(255,255,255,.42);
 
-    color: rgba(255,255,255,.42);
+    font-size:
+        .72rem;
 
-    font-size: .72rem;
+    font-weight:
+        700;
 
-    font-weight: 700;
+    letter-spacing:
+        1.5px;
 
-    letter-spacing: 1.5px;
-
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 }
 
 .detailValue {
+    color:
+        rgba(255,255,255,.85);
 
-    color: rgba(255,255,255,.85);
-
-    font-size: .95rem;
+    font-size:
+        .95rem;
 }
 
 
-/* ============================
-   Formulario
-============================ */
+/* =========================================================
+   FORMULARIO
+========================================================= */
 
 .form {
+    padding:
+        42px;
 
-    padding: 42px;
+    border:
+        1px solid
+        rgba(255,255,255,.07);
 
-    border: 1px solid rgba(255,255,255,.07);
+    border-radius:
+        24px;
 
-    border-radius: 24px;
-
-    background: rgba(255,255,255,.025);
+    background:
+        rgba(255,255,255,.025);
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,.25);
+        0 25px 70px
+        rgba(0,0,0,.25);
 }
 
 .fieldGrid {
+    display:
+        grid;
 
-    display: grid;
+    grid-template-columns:
+        1fr 1fr;
 
-    grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
+    gap:
+        20px;
 }
 
 .field {
+    display:
+        flex;
 
-    display: flex;
+    flex-direction:
+        column;
 
-    flex-direction: column;
+    gap:
+        9px;
 
-    gap: 9px;
-
-    margin-bottom: 22px;
+    margin-bottom:
+        22px;
 }
 
 .field label {
+    display:
+        flex;
 
-    display: flex;
+    align-items:
+        center;
 
-    align-items: center;
+    justify-content:
+        space-between;
 
-    justify-content: space-between;
+    color:
+        rgba(255,255,255,.82);
 
-    color: rgba(255,255,255,.82);
+    font-size:
+        .85rem;
 
-    font-size: .85rem;
-
-    font-weight: 600;
+    font-weight:
+        600;
 }
 
 .field label span {
+    color:
+        rgba(255,255,255,.35);
 
-    color: rgba(255,255,255,.35);
+    font-size:
+        .72rem;
 
-    font-size: .72rem;
-
-    font-weight: 400;
+    font-weight:
+        400;
 }
 
 
-/* ============================
-   Inputs
-============================ */
+/* =========================================================
+   INPUTS
+========================================================= */
 
 .field input,
 .field textarea {
+    width:
+        100%;
 
-    width: 100%;
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border-radius:
+        12px;
 
-    border-radius: 12px;
+    outline:
+        none;
 
-    outline: none;
+    background:
+        rgba(0,0,0,.25);
 
-    background: rgba(0,0,0,.25);
+    color:
+        #ffffff;
 
-    color: #ffffff;
+    font-family:
+        inherit;
 
-    font-family: inherit;
-
-    font-size: .92rem;
+    font-size:
+        .92rem;
 
     transition:
         border-color .25s ease,
@@ -262,134 +327,160 @@
 }
 
 .field input {
+    height:
+        52px;
 
-    height: 52px;
-
-    padding: 0 16px;
+    padding:
+        0 16px;
 }
 
 .field textarea {
+    min-height:
+        145px;
 
-    min-height: 145px;
+    padding:
+        15px 16px;
 
-    padding: 15px 16px;
-
-    resize: vertical;
+    resize:
+        vertical;
 }
 
 .field input::placeholder,
 .field textarea::placeholder {
-
-    color: rgba(255,255,255,.28);
+    color:
+        rgba(255,255,255,.28);
 }
 
 .field input:focus,
 .field textarea:focus {
+    border-color:
+        rgba(216,137,51,.55);
 
-    border-color: rgba(216,137,51,.55);
-
-    background: rgba(216,137,51,.025);
+    background:
+        rgba(216,137,51,.025);
 
     box-shadow:
-        0 0 0 3px rgba(216,137,51,.08);
+        0 0 0 3px
+        rgba(216,137,51,.08);
 }
 
 
-/* ============================
-   Campos con error
-============================ */
+/* =========================================================
+   ERRORES
+========================================================= */
 
 .inputError {
-
-    border-color: rgba(229,139,139,.65) !important;
+    border-color:
+        rgba(229,139,139,.65) !important;
 
     box-shadow:
-        0 0 0 3px rgba(229,139,139,.07);
+        0 0 0 3px
+        rgba(229,139,139,.07);
 }
-
-
-/* ============================
-   Mensajes de error
-============================ */
 
 .error {
+    display:
+        block;
 
-    display: block;
+    margin-top:
+        -2px;
 
-    margin-top: -2px;
+    color:
+        #e58b8b;
 
-    color: #e58b8b;
+    font-size:
+        .75rem;
 
-    font-size: .75rem;
-
-    line-height: 1.4;
+    line-height:
+        1.4;
 }
 
 
-/* ============================
-   Checkbox
-============================ */
+/* =========================================================
+   CHECKBOX
+========================================================= */
 
 .checkbox {
+    display:
+        flex;
 
-    display: flex;
+    align-items:
+        flex-start;
 
-    align-items: flex-start;
+    gap:
+        11px;
 
-    gap: 11px;
+    margin:
+        5px 0 25px;
 
-    margin: 5px 0 25px;
+    color:
+        rgba(255,255,255,.48);
 
-    color: rgba(255,255,255,.48);
+    font-size:
+        .76rem;
 
-    font-size: .76rem;
+    line-height:
+        1.5;
 
-    line-height: 1.5;
-
-    cursor: pointer;
+    cursor:
+        pointer;
 }
 
 .checkbox input {
+    width:
+        16px;
 
-    width: 16px;
+    height:
+        16px;
 
-    height: 16px;
+    flex-shrink:
+        0;
 
-    flex-shrink: 0;
+    margin-top:
+        2px;
 
-    margin-top: 2px;
+    accent-color:
+        #d88933;
 
-    accent-color: #d88933;
-
-    cursor: pointer;
+    cursor:
+        pointer;
 }
 
 
-/* ============================
-   Botón
-============================ */
+/* =========================================================
+   BOTÓN
+========================================================= */
 
 .submit {
+    width:
+        100%;
 
-    width: 100%;
+    min-height:
+        54px;
 
-    min-height: 54px;
+    border:
+        0;
 
-    border: 0;
+    border-radius:
+        13px;
 
-    border-radius: 13px;
+    background:
+        #d88933;
 
-    background: #d88933;
+    color:
+        #090909;
 
-    color: #090909;
+    font-family:
+        inherit;
 
-    font-family: inherit;
+    font-size:
+        .92rem;
 
-    font-size: .92rem;
+    font-weight:
+        700;
 
-    font-weight: 700;
-
-    cursor: pointer;
+    cursor:
+        pointer;
 
     transition:
         transform .25s ease,
@@ -399,53 +490,66 @@
 }
 
 .submit:hover {
+    transform:
+        translateY(-2px);
 
-    transform: translateY(-2px);
-
-    background: #e39a4b;
+    background:
+        #e39a4b;
 
     box-shadow:
-        0 12px 30px rgba(216,137,51,.18);
+        0 12px 30px
+        rgba(216,137,51,.18);
 }
 
 .submit:active {
-
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
 
 .submit:disabled {
+    opacity:
+        .6;
 
-    opacity: .6;
+    cursor:
+        not-allowed;
 
-    cursor: not-allowed;
+    transform:
+        none;
 
-    transform: none;
-
-    box-shadow: none;
+    box-shadow:
+        none;
 }
 
 
-/* ============================
-   Mensaje de éxito
-============================ */
+/* =========================================================
+   MENSAJE ÉXITO
+========================================================= */
 
 .successMessage {
+    margin:
+        16px 0 0;
 
-    margin: 16px 0 0;
+    padding:
+        14px 16px;
 
-    padding: 14px 16px;
+    border-radius:
+        10px;
 
-    border-radius: 10px;
+    background:
+        rgba(216,137,51,.07);
 
-    background: rgba(216,137,51,.07);
+    border:
+        1px solid
+        rgba(216,137,51,.18);
 
-    border: 1px solid rgba(216,137,51,.18);
+    color:
+        rgba(255,255,255,.78);
 
-    color: rgba(255,255,255,.78);
+    font-size:
+        .82rem;
 
-    font-size: .82rem;
-
-    line-height: 1.6;
+    line-height:
+        1.6;
 
     animation:
         successAppear .4s ease;
@@ -454,73 +558,196 @@
 @keyframes successAppear {
 
     from {
+        opacity:
+            0;
 
-        opacity: 0;
-
-        transform: translateY(8px);
+        transform:
+            translateY(8px);
     }
 
     to {
+        opacity:
+            1;
 
-        opacity: 1;
-
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 }
 
 
-/* ============================
-   Tablet
-============================ */
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 900px) {
 
+    .contact {
+        padding:
+            80px 0;
+    }
+
     .layout {
+        grid-template-columns:
+            1fr;
 
-        grid-template-columns: 1fr;
+        gap:
+            45px;
 
-        gap: 60px;
+        margin-top:
+            55px;
     }
 
     .infoIntro {
+        max-width:
+            650px;
+    }
 
-        max-width: 650px;
+    .details {
+        margin-top:
+            38px;
+
+        gap:
+            18px;
     }
 }
 
 
-/* ============================
-   Mobile
-============================ */
+/* =========================================================
+   MÓVIL
+========================================================= */
 
 @media (max-width: 600px) {
 
     .contact {
-
-        padding: 90px 0;
+        padding:
+            62px 0;
     }
 
     .layout {
+        margin-top:
+            38px;
 
-        margin-top: 60px;
-    }
-
-    .form {
-
-        padding: 25px;
-
-        border-radius: 18px;
-    }
-
-    .fieldGrid {
-
-        grid-template-columns: 1fr;
-
-        gap: 0;
+        gap:
+            32px;
     }
 
     .infoIntro h3 {
+        font-size:
+            2rem;
 
-        font-size: 2.3rem;
+        line-height:
+            1.08;
+    }
+
+    .infoIntro p {
+        font-size:
+            .9rem;
+
+        line-height:
+            1.62;
+    }
+
+    .details {
+        margin-top:
+            28px;
+
+        gap:
+            15px;
+    }
+
+    .detail {
+        gap:
+            13px;
+    }
+
+    .detailIcon {
+        width:
+            42px;
+
+        height:
+            42px;
+
+        border-radius:
+            10px;
+
+        font-size:
+            .95rem;
+    }
+
+    .detailValue {
+        font-size:
+            .88rem;
+    }
+
+    .form {
+        padding:
+            20px;
+
+        border-radius:
+            17px;
+    }
+
+    .fieldGrid {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            0;
+    }
+
+    .field {
+        margin-bottom:
+            17px;
+    }
+
+    .field input {
+        height:
+            48px;
+    }
+
+    .field textarea {
+        min-height:
+            125px;
+    }
+
+    .checkbox {
+        margin:
+            3px 0 20px;
+    }
+
+    .submit {
+        min-height:
+            50px;
+    }
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .contact {
+        padding:
+            55px 0;
+    }
+
+    .layout {
+        margin-top:
+            32px;
+
+        gap:
+            28px;
+    }
+
+    .infoIntro h3 {
+        font-size:
+            1.85rem;
+    }
+
+    .form {
+        padding:
+            17px;
     }
 }

@@ -3,7 +3,6 @@
 ========================================================= */
 
 .hero {
-
     --hero-scroll-darkness: 0;
     --hero-parallax: 0px;
 
@@ -12,14 +11,11 @@
     min-height: 100vh;
     min-height: 100svh;
 
-    display: flex;
-
-    align-items: center;
+    width: 100%;
 
     overflow: hidden;
 
-    background:
-        #050505;
+    background: #050505;
 }
 
 
@@ -28,28 +24,12 @@
 ========================================================= */
 
 .background {
-
     position: absolute;
 
-    /*
-     * La imagen ocupa todo el Hero.
-     *
-     * No utilizamos un inset negativo porque queremos
-     * conservar la parte superior de la imagen.
-     */
     inset: 0;
 
     z-index: 0;
 
-    /*
-     * IMPORTANTE:
-     *
-     * Anclamos la imagen arriba.
-     * Con background-size: cover, el recorte necesario
-     * se concentra principalmente en la parte inferior.
-     *
-     * Esto permite conservar mucho mejor el cielo.
-     */
     background-position:
         center top;
 
@@ -59,9 +39,8 @@
     background-repeat:
         no-repeat;
 
-    /*
-     * Movimiento extremadamente suave durante el scroll.
-     */
+    opacity: .60;
+
     transform:
         translate3d(
             0,
@@ -71,286 +50,159 @@
             0
         );
 
-    will-change:
-        transform;
-
-    opacity: 0.6;
+    will-change: transform;
 }
 
 
 /* =========================================================
-   FILTRO MATE SUPERIOR
+   FILTRO MATE
 ========================================================= */
 
 .imageFilter {
+    position: absolute;
 
-    position:
-        absolute;
+    inset: 0;
 
-    inset:
-        0;
+    z-index: 1;
 
-    z-index:
-        1;
-
-    pointer-events:
-        none;
-
-    /*
-     * Filtro mate muy suave.
-     *
-     * Reduce ligeramente la intensidad del cielo
-     * sin apagar los colores de la imagen.
-     */
+    pointer-events: none;
 
     background:
-
         linear-gradient(
             180deg,
 
-            rgba(
-                8,
-                12,
-                18,
-                0.22
-            )
-            0%,
+            rgba(8, 12, 18, .18) 0%,
 
-            rgba(
-                8,
-                10,
-                14,
-                0.12
-            )
-            22%,
+            rgba(8, 10, 14, .08) 22%,
 
-            rgba(
-                5,
-                5,
-                5,
-                0.03
-            )
-            48%,
+            rgba(5, 5, 5, .02) 48%,
 
-            rgba(
-                5,
-                5,
-                5,
-                0.10
-            )
-            72%,
+            rgba(5, 5, 5, .08) 72%,
 
-            rgba(
-                5,
-                5,
-                5,
-                0.20
-            )
-            100%
+            rgba(5, 5, 5, .16) 100%
         );
 
-    mix-blend-mode:
-        normal;
-
-    opacity:
-        .82;
+    opacity: .60;
 }
 
 
 /* =========================================================
-   OSCURECIMIENTO DURANTE EL SCROLL
+   OSCURECIMIENTO SCROLL
 ========================================================= */
 
 .scrollDarkness {
+    position: absolute;
 
-    position:
-        absolute;
+    inset: 0;
 
-    inset:
-        0;
+    z-index: 2;
 
-    z-index:
-        2;
-
-    pointer-events:
-        none;
+    pointer-events: none;
 
     background:
-
         linear-gradient(
             180deg,
 
-            rgba(
-                0,
-                0,
-                0,
-                .015
-            )
-            0%,
+            rgba(0, 0, 0, .015) 0%,
 
-            rgba(
-                0,
-                0,
-                0,
-                .10
-            )
-            42%,
+            rgba(0, 0, 0, .10) 42%,
 
-            rgba(
-                0,
-                0,
-                0,
-                .90
-            )
-            100%
+            rgba(0, 0, 0, .90) 100%
         );
 
     opacity:
-
         calc(
-            .035
-            +
+            .035 +
             (
                 var(--hero-scroll-darkness)
-                *
-                .965
+                * .965
             )
         );
 }
 
 
 /* =========================================================
-   TRANSICIÓN HACIA EL NEGRO
+   TRANSICIÓN
 ========================================================= */
 
 .hero::after {
+    content: "";
 
-    content:
-        "";
+    position: absolute;
 
-    position:
-        absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    left:
-        0;
+    height: 42%;
 
-    right:
-        0;
+    z-index: 3;
 
-    bottom:
-        0;
-
-    height:
-        42%;
-
-    z-index:
-        3;
-
-    pointer-events:
-        none;
+    pointer-events: none;
 
     background:
-
         linear-gradient(
             180deg,
 
-            rgba(
-                5,
-                5,
-                5,
-                0
-            )
-            0%,
+            rgba(5, 5, 5, 0) 0%,
 
-            rgba(
-                5,
-                5,
-                5,
-                .12
-            )
-            28%,
+            rgba(5, 5, 5, .12) 28%,
 
-            rgba(
-                5,
-                5,
-                5,
-                .68
-            )
-            72%,
+            rgba(5, 5, 5, .68) 72%,
 
-            #050505
-            100%
+            #050505 100%
         );
 }
 
 
 /* =========================================================
-   CONTENIDO PRINCIPAL
+   CONTENIDO
 ========================================================= */
 
+.contentWrapper {
+    position: relative;
+
+    z-index: 4;
+
+    width: 100%;
+}
+
 .content {
+    width: 100%;
 
-    position:
-        relative;
+    min-height: 100vh;
+    min-height: 100svh;
 
-    z-index:
-        4;
+    display: flex;
 
-    width:
-        100%;
-
-    min-height:
-        100vh;
-
-    min-height:
-        100svh;
-
-    display:
-        flex;
-
-    align-items:
-        center;
+    align-items: center;
 
     padding:
-
-        92px
-        60px
-        76px;
+        92px 60px 76px;
 }
 
 
 /* =========================================================
-   COLUMNA DEL TEXTO
+   TEXTO
 ========================================================= */
 
 .left {
-
     width:
-
         min(
             600px,
             100%
         );
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column;
+    flex-direction: column;
 
-    align-items:
-        flex-start;
+    align-items: flex-start;
 
-    gap:
-        21px;
+    gap: 21px;
 
-    /*
-     * El bloque queda claramente separado del chip.
-     */
     transform:
-        translateX(
-            -280px
-        );
+        translateX(-280px);
 }
 
 
@@ -359,66 +211,42 @@
 ========================================================= */
 
 .title {
+    display: flex;
 
-    display:
-        flex;
+    flex-direction: column;
 
-    flex-direction:
-        column;
+    margin: 0;
 
-    margin:
-        0;
+    max-width: 560px;
 
-    max-width:
-        560px;
-
-    color:
-        #ffffff;
+    color: #ffffff;
 
     font-family:
         "Manrope",
         sans-serif;
 
     font-size:
-
         clamp(
             2.15rem,
             2.75vw,
             3.05rem
         );
 
-    font-weight:
-        800;
+    font-weight: 800;
 
-    line-height:
-        1.05;
+    line-height: 1.05;
 
-    letter-spacing:
-        -1.35px;
+    letter-spacing: -1.35px;
 
-    text-wrap:
-        balance;
+    text-wrap: balance;
 
     text-shadow:
-
         0 3px 18px
-        rgba(
-            0,
-            0,
-            0,
-            .40
-        );
+        rgba(0, 0, 0, .40);
 }
 
-
-/* =========================================================
-   TEXTO NARANJA
-========================================================= */
-
 .accent {
-
-    color:
-        #d88933;
+    color: #d88933;
 }
 
 
@@ -427,15 +255,11 @@
 ========================================================= */
 
 .description {
+    max-width: 390px;
 
-    max-width:
-        390px;
-
-    margin:
-        0;
+    margin: 0;
 
     color:
-
         rgba(
             255,
             255,
@@ -448,28 +272,19 @@
         sans-serif;
 
     font-size:
-
         clamp(
             .92rem,
             1.05vw,
             1.02rem
         );
 
-    font-weight:
-        400;
+    font-weight: 400;
 
-    line-height:
-        1.72;
+    line-height: 1.72;
 
     text-shadow:
-
         0 2px 14px
-        rgba(
-            0,
-            0,
-            0,
-            .55
-        );
+        rgba(0, 0, 0, .55);
 }
 
 
@@ -478,73 +293,45 @@
 ========================================================= */
 
 .buttons {
+    display: flex;
 
-    display:
-        flex;
-
-    margin-top:
-        4px;
+    margin-top: 4px;
 }
 
 
 /* =========================================================
-   FRANJA DE CARACTERÍSTICAS
+   FEATURES DESKTOP
 ========================================================= */
 
 .heroFeatures {
+    position: absolute;
 
-    position:
-        absolute;
-
-    left:
-        50%;
-
-    bottom:
-        34px;
+    left: 50%;
+    bottom: 34px;
 
     transform:
-        translateX(
-            -50%
-        );
+        translateX(-50%);
 
-    z-index:
-        5;
+    z-index: 5;
 
     width:
-
         min(
             1120px,
-            calc(
-                100% - 80px
-            )
+            calc(100% - 80px)
         );
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(
-            4,
-            1fr
-        );
+        repeat(4, 1fr);
 
-    align-items:
-        stretch;
+    align-items: stretch;
 
-    /*
-     * Línea superior muy discreta.
-     */
     border-top:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
-            .08
-        );
+        rgba(255, 255, 255, .08);
 
-    padding-top:
-        18px;
+    padding-top: 18px;
 }
 
 
@@ -552,38 +339,26 @@
    TABLET
 ========================================================= */
 
-@media (
-    max-width: 1100px
-) {
+@media (max-width: 1100px) {
 
     .content {
-
         padding:
-
-            100px
-            42px
-            160px;
+            100px 42px 160px;
     }
 
     .left {
-
         width:
-
             min(
                 640px,
                 100%
             );
 
         transform:
-            translateX(
-                -75px
-            );
+            translateX(-75px);
     }
 
     .title {
-
         font-size:
-
             clamp(
                 2.1rem,
                 3.8vw,
@@ -592,12 +367,8 @@
     }
 
     .heroFeatures {
-
         width:
-
-            calc(
-                100% - 50px
-            );
+            calc(100% - 50px);
     }
 }
 
@@ -606,117 +377,113 @@
    TABLET / MÓVIL
 ========================================================= */
 
-@media (
-    max-width: 768px
-) {
+@media (max-width: 768px) {
+
+    .hero {
+        min-height: 0;
+
+        overflow: hidden;
+    }
 
     .background {
+        height: 760px;
 
-        /*
-         * En pantallas pequeñas desplazamos un poco
-         * el encuadre hacia la derecha para conservar
-         * el chip y la formación rocosa.
-         */
+        bottom: auto;
+
         background-position:
-            60% top;
+            40% top;
+    }
 
-        inset:
-            0;
+    .imageFilter {
+        height: 760px;
+    }
+
+    .scrollDarkness {
+        height: 760px;
     }
 
     .hero::after {
+        height: 480px;
 
-        height:
-            52%;
+        top: 400px;
+        bottom: auto;
     }
 
     .content {
+        min-height: 0;
 
-        min-height:
-            100svh;
+        display: flex;
 
-        align-items:
-            flex-end;
+        align-items: flex-start;
 
         padding:
-
-            110px
-            28px
-            280px;
+            108px 28px 45px;
     }
 
     .left {
+        width: 100%;
 
-        width:
-            100%;
+        max-width: 520px;
 
-        max-width:
-            520px;
+        gap: 17px;
 
-        gap:
-            20px;
-
-        transform:
-            none;
+        transform: none;
     }
 
     .title {
-
-        max-width:
-            500px;
+        max-width: 500px;
 
         font-size:
-
             clamp(
-                2.1rem,
-                7.5vw,
-                3rem
+                2rem,
+                7.2vw,
+                2.7rem
             );
 
-        line-height:
-            1.03;
+        line-height: 1.04;
 
-        letter-spacing:
-            -1.1px;
+        letter-spacing: -1px;
     }
 
     .description {
+        max-width: 390px;
 
-        max-width:
-            390px;
+        font-size: .92rem;
 
-        font-size:
-            .94rem;
-
-        line-height:
-            1.7;
+        line-height: 1.62;
     }
 
-    /*
-     * En móvil la franja pasa a dos columnas.
-     */
+    .buttons {
+        margin-top: 2px;
+    }
+
     .heroFeatures {
+        position: relative;
 
-        position:
-            absolute;
+        left: auto;
+        bottom: auto;
 
-        bottom:
-            20px;
+        transform: none;
+
+        z-index: 6;
 
         width:
+            calc(100% - 40px);
 
-            calc(
-                100% - 40px
-            );
+        margin:
+            0 auto 30px;
 
-        grid-template-columns:
-            1fr 1fr;
+        display: flex;
 
-        gap:
-            0 10px;
+        flex-direction: column;
 
-        padding-top:
-            10px;
+        gap: 0;
+
+        border-top:
+            1px solid
+            rgba(255, 255, 255, .10);
+
+        padding: 0;
     }
 }
 
@@ -725,88 +492,63 @@
    MÓVIL
 ========================================================= */
 
-@media (
-    max-width: 576px
-) {
+@media (max-width: 576px) {
 
-    .background {
+    .background,
+    .imageFilter,
+    .scrollDarkness {
+        height: 700px;
+    }
 
-        background-position:
-            60% top;
+    .hero::after {
+        height: 430px;
+
+        top: 370px;
     }
 
     .content {
-
         padding:
-
-            105px
-            20px
-            300px;
+            96px 20px 38px;
     }
 
     .left {
-
-        max-width:
-            100%;
-
-        gap:
-            19px;
+        gap: 16px;
     }
 
     .title {
-
-        max-width:
-            360px;
+        max-width: 350px;
 
         font-size:
-
             clamp(
-                2.05rem,
-                9.5vw,
-                2.65rem
+                1.9rem,
+                9vw,
+                2.45rem
             );
 
-        line-height:
-            1.02;
+        line-height: 1.03;
 
-        letter-spacing:
-            -1px;
+        letter-spacing: -.9px;
     }
 
     .description {
+        max-width: 335px;
 
-        max-width:
-            340px;
+        font-size: .89rem;
 
-        font-size:
-            .91rem;
-
-        line-height:
-            1.68;
-    }
-
-    .buttons {
-
-        margin-top:
-            3px;
+        line-height: 1.62;
     }
 
     .heroFeatures {
-
-        bottom:
-            14px;
-
         width:
+            calc(100% - 28px);
 
-            calc(
-                100% - 28px
-            );
+        margin:
+            0 auto 20px;
+    }
 
-        grid-template-columns:
-            1fr;
-
-        gap:
-            0;
+    .background {
+        background-position:
+            40% top;
     }
 }
 
@@ -815,29 +557,41 @@
    MÓVIL PEQUEÑO
 ========================================================= */
 
-@media (
-    max-width: 380px
-) {
+@media (max-width: 380px) {
+
+    .background,
+    .imageFilter,
+    .scrollDarkness {
+        height: 650px;
+    }
+
+    .hero::after {
+        height: 390px;
+
+        top: 340px;
+    }
 
     .content {
-
         padding:
-
-            100px
-            18px
-            300px;
+            92px 18px 34px;
     }
 
     .title {
-
-        font-size:
-            2rem;
+        font-size: 1.82rem;
     }
 
     .description {
+        font-size: .86rem;
+    }
 
-        font-size:
-            .88rem;
+    .heroFeatures {
+        width:
+            calc(100% - 24px);
+    }
+
+    .background {
+        background-position:
+            38% top;
     }
 }
 
@@ -846,22 +600,15 @@
    REDUCIR MOVIMIENTO
 ========================================================= */
 
-@media (
-    prefers-reduced-motion: reduce
-) {
+@media (prefers-reduced-motion: reduce) {
 
     .background {
+        transform: none;
 
-        transform:
-            none;
-
-        will-change:
-            auto;
+        will-change: auto;
     }
 
     .scrollDarkness {
-
-        opacity:
-            .035;
+        opacity: .035;
     }
 }

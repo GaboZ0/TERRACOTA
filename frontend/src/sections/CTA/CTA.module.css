@@ -1,8 +1,8 @@
 .cta {
-
     position: relative;
 
-    padding: 130px 0;
+    padding:
+        130px 0;
 
     overflow: hidden;
 
@@ -18,13 +18,21 @@
             #090909
         );
 
-    border-top: 1px solid rgba(255,255,255,.05);
+    border-top:
+        1px solid
+        rgba(255,255,255,.05);
 
-    border-bottom: 1px solid rgba(255,255,255,.05);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.05);
 }
 
-.cta::before {
 
+/* =========================================================
+   DECORACIÓN
+========================================================= */
+
+.cta::before {
     content: "";
 
     position: absolute;
@@ -35,91 +43,186 @@
     top: -300px;
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     border-radius: 50%;
 
-    border: 1px solid rgba(216,137,51,.12);
+    border:
+        1px solid
+        rgba(216,137,51,.12);
 
     box-shadow:
-        0 0 100px rgba(216,137,51,.06);
+        0 0 100px
+        rgba(216,137,51,.06);
 
-    pointer-events: none;
+    pointer-events:
+        none;
 }
 
-.content {
 
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.content {
     position: relative;
 
     z-index: 2;
 
-    max-width: 850px;
+    max-width:
+        850px;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
-    text-align: center;
+    text-align:
+        center;
 }
 
 .eyebrow {
-
     display: block;
 
-    margin-bottom: 24px;
+    margin-bottom:
+        24px;
 
-    color: #d88933;
+    color:
+        #d88933;
 
-    font-size: .75rem;
+    font-size:
+        .75rem;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    letter-spacing: 3px;
+    letter-spacing:
+        3px;
 }
 
 .content h2 {
+    margin:
+        0;
 
-    margin: 0;
+    color:
+        #ffffff;
 
-    color: #ffffff;
+    font-size:
+        clamp(
+            2.8rem,
+            6vw,
+            5.2rem
+        );
 
-    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight:
+        700;
 
-    font-weight: 700;
+    line-height:
+        1;
 
-    line-height: 1;
-
-    letter-spacing: -2px;
+    letter-spacing:
+        -2px;
 }
 
 .content p {
+    max-width:
+        650px;
 
-    max-width: 650px;
+    margin:
+        30px auto 38px;
 
-    margin: 30px auto 38px;
+    color:
+        rgba(255,255,255,.68);
 
-    color: rgba(255,255,255,.68);
+    font-size:
+        1.08rem;
 
-    font-size: 1.08rem;
-
-    line-height: 1.8;
+    line-height:
+        1.8;
 }
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
 
 @media (max-width: 600px) {
 
     .cta {
+        padding:
+            68px 0;
+    }
 
-        padding: 90px 0;
+    .cta::before {
+        width:
+            430px;
+
+        height:
+            430px;
+
+        top:
+            -215px;
+    }
+
+    .eyebrow {
+        margin-bottom:
+            16px;
+
+        font-size:
+            .68rem;
+
+        letter-spacing:
+            2.2px;
     }
 
     .content h2 {
+        font-size:
+            clamp(
+                2rem,
+                9vw,
+                2.6rem
+            );
 
-        font-size: 2.7rem;
+        line-height:
+            1.04;
 
-        letter-spacing: -1px;
+        letter-spacing:
+            -1px;
     }
 
     .content p {
+        margin:
+            20px auto 28px;
 
-        font-size: 1rem;
+        padding:
+            0 8px;
+
+        font-size:
+            .92rem;
+
+        line-height:
+            1.62;
+    }
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .cta {
+        padding:
+            58px 0;
     }
 
+    .content h2 {
+        font-size:
+            1.9rem;
+    }
+
+    .content p {
+        font-size:
+            .88rem;
+    }
 }

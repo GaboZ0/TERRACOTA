@@ -1,37 +1,110 @@
-.about{
+.about {
+    background:
+        var(--color-background);
 
-    background:var(--color-background);
-
-    padding:140px 0;
-
+    padding:
+        120px 0;
 }
 
-.grid{
 
-    display:grid;
+/* =========================================================
+   GRID
+========================================================= */
 
-    grid-template-columns:repeat(3,1fr);
+.grid {
+    display: grid;
 
-    gap:30px;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
+    gap: 30px;
 }
 
-.buttonContainer{
 
-    display:flex;
+/* =========================================================
+   BOTÓN
+========================================================= */
 
-    justify-content:center;
+.buttonContainer {
+    display: flex;
 
-    margin-top:70px;
+    justify-content: center;
 
+    margin-top: 60px;
 }
 
-@media(max-width:992px){
 
-    .grid{
+/* =========================================================
+   TABLET
+   2 arriba + 1 abajo
+========================================================= */
 
-        grid-template-columns:1fr;
+@media (max-width: 900px) {
 
+    .about {
+        padding:
+            85px 0;
     }
 
+    .grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 22px;
+    }
+
+    .buttonContainer {
+        margin-top:
+            42px;
+    }
+}
+
+
+/* =========================================================
+   MÓVIL
+   1 arriba + 1 + 1
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .about {
+        padding:
+            65px 0;
+    }
+
+    .grid {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            16px;
+    }
+
+    .buttonContainer {
+        margin-top:
+            32px;
+    }
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .about {
+        padding:
+            55px 0;
+    }
+
+    .grid {
+        gap:
+            14px;
+    }
+
+    .buttonContainer {
+        margin-top:
+            28px;
+    }
 }
