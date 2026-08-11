@@ -1,3 +1,7 @@
+/* =========================================================
+   HERO
+========================================================= */
+
 .hero {
 
     --hero-scroll-darkness: 0;
@@ -28,16 +32,26 @@
     position: absolute;
 
     /*
-     * Dejamos un pequeño margen extra para que
-     * el movimiento suave nunca revele el fondo.
+     * La imagen ocupa todo el Hero.
+     *
+     * No utilizamos un inset negativo porque queremos
+     * conservar la parte superior de la imagen.
      */
-    inset:
-        -6% 0;
+    inset: 0;
 
     z-index: 0;
 
+    /*
+     * IMPORTANTE:
+     *
+     * Anclamos la imagen arriba.
+     * Con background-size: cover, el recorte necesario
+     * se concentra principalmente en la parte inferior.
+     *
+     * Esto permite conservar mucho mejor el cielo.
+     */
     background-position:
-        center center;
+        center top;
 
     background-size:
         cover;
@@ -46,7 +60,7 @@
         no-repeat;
 
     /*
-     * Movimiento extremadamente pequeño.
+     * Movimiento extremadamente suave durante el scroll.
      */
     transform:
         translate3d(
@@ -59,6 +73,8 @@
 
     will-change:
         transform;
+
+    opacity: 0.6;
 }
 
 
@@ -68,21 +84,25 @@
 
 .imageFilter {
 
-    position: absolute;
+    position:
+        absolute;
 
-    inset: 0;
+    inset:
+        0;
 
-    z-index: 1;
+    z-index:
+        1;
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
     /*
-     * Capa prácticamente transparente.
+     * Filtro mate muy suave.
      *
-     * La parte superior recibe un acabado mate
-     * muy leve, mientras que la imagen conserva
-     * sus colores y contraste.
+     * Reduce ligeramente la intensidad del cielo
+     * sin apagar los colores de la imagen.
      */
+
     background:
 
         linear-gradient(
@@ -129,9 +149,6 @@
             100%
         );
 
-    /*
-     * Mantiene el efecto muy natural.
-     */
     mix-blend-mode:
         normal;
 
@@ -141,18 +158,22 @@
 
 
 /* =========================================================
-   OSCURECIMIENTO AL HACER SCROLL
+   OSCURECIMIENTO DURANTE EL SCROLL
 ========================================================= */
 
 .scrollDarkness {
 
-    position: absolute;
+    position:
+        absolute;
 
-    inset: 0;
+    inset:
+        0;
 
-    z-index: 2;
+    z-index:
+        2;
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
     background:
 
@@ -204,20 +225,29 @@
 
 .hero::after {
 
-    content: "";
+    content:
+        "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left:
+        0;
+
+    right:
+        0;
+
+    bottom:
+        0;
 
     height:
         42%;
 
-    z-index: 3;
+    z-index:
+        3;
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
     background:
 
@@ -255,25 +285,34 @@
 
 
 /* =========================================================
-   CONTENIDO
+   CONTENIDO PRINCIPAL
 ========================================================= */
 
 .content {
 
-    position: relative;
+    position:
+        relative;
 
-    z-index: 4;
+    z-index:
+        4;
 
-    width: 100%;
+    width:
+        100%;
 
-    min-height: 100vh;
-    min-height: 100svh;
+    min-height:
+        100vh;
 
-    display: flex;
+    min-height:
+        100svh;
 
-    align-items: center;
+    display:
+        flex;
+
+    align-items:
+        center;
 
     padding:
+
         92px
         60px
         76px;
@@ -281,17 +320,20 @@
 
 
 /* =========================================================
-   COLUMNA IZQUIERDA
+   COLUMNA DEL TEXTO
 ========================================================= */
 
 .left {
+
     width:
+
         min(
             600px,
             100%
         );
 
-    display: flex;
+    display:
+        flex;
 
     flex-direction:
         column;
@@ -303,11 +345,7 @@
         21px;
 
     /*
-     * Desplazamos TODO el bloque hacia la izquierda:
-     * título + descripción + botón.
-     *
-     * Esto deja el chip completamente libre
-     * en la zona central.
+     * El bloque queda claramente separado del chip.
      */
     transform:
         translateX(
@@ -322,7 +360,8 @@
 
 .title {
 
-    display: flex;
+    display:
+        flex;
 
     flex-direction:
         column;
@@ -449,6 +488,67 @@
 
 
 /* =========================================================
+   FRANJA DE CARACTERÍSTICAS
+========================================================= */
+
+.heroFeatures {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    bottom:
+        34px;
+
+    transform:
+        translateX(
+            -50%
+        );
+
+    z-index:
+        5;
+
+    width:
+
+        min(
+            1120px,
+            calc(
+                100% - 80px
+            )
+        );
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    align-items:
+        stretch;
+
+    /*
+     * Línea superior muy discreta.
+     */
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .08
+        );
+
+    padding-top:
+        18px;
+}
+
+
+/* =========================================================
    TABLET
 ========================================================= */
 
@@ -459,14 +559,16 @@
     .content {
 
         padding:
+
             100px
             42px
-            72px;
+            160px;
     }
 
     .left {
 
         width:
+
             min(
                 640px,
                 100%
@@ -488,6 +590,15 @@
                 3rem
             );
     }
+
+    .heroFeatures {
+
+        width:
+
+            calc(
+                100% - 50px
+            );
+    }
 }
 
 
@@ -501,8 +612,16 @@
 
     .background {
 
+        /*
+         * En pantallas pequeñas desplazamos un poco
+         * el encuadre hacia la derecha para conservar
+         * el chip y la formación rocosa.
+         */
+        background-position:
+            60% top;
+
         inset:
-            -4% 0;
+            0;
     }
 
     .hero::after {
@@ -520,9 +639,10 @@
             flex-end;
 
         padding:
+
             110px
             28px
-            96px;
+            280px;
     }
 
     .left {
@@ -571,6 +691,33 @@
         line-height:
             1.7;
     }
+
+    /*
+     * En móvil la franja pasa a dos columnas.
+     */
+    .heroFeatures {
+
+        position:
+            absolute;
+
+        bottom:
+            20px;
+
+        width:
+
+            calc(
+                100% - 40px
+            );
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:
+            0 10px;
+
+        padding-top:
+            10px;
+    }
 }
 
 
@@ -585,15 +732,16 @@
     .background {
 
         background-position:
-            60% center;
+            60% top;
     }
 
     .content {
 
         padding:
+
             105px
             20px
-            92px;
+            300px;
     }
 
     .left {
@@ -642,6 +790,24 @@
         margin-top:
             3px;
     }
+
+    .heroFeatures {
+
+        bottom:
+            14px;
+
+        width:
+
+            calc(
+                100% - 28px
+            );
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            0;
+    }
 }
 
 
@@ -656,9 +822,10 @@
     .content {
 
         padding:
+
             100px
             18px
-            84px;
+            300px;
     }
 
     .title {
