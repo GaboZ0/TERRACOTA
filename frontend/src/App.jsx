@@ -1,5 +1,4 @@
 import Header from "./components/Header";
-import ScrollProgress from "./components/ScrollProgress";
 import Hero from "./sections/Hero";
 import SectionDivider from "./components/SectionDivider";
 import About from "./sections/About";
@@ -16,8 +15,6 @@ function App() {
   return (
     <>
       <Header />
-
-      <ScrollProgress />
 
       <main>
         <Hero />
