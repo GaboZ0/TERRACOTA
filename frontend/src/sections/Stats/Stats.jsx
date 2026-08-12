@@ -16,12 +16,22 @@ function Stats() {
 
     return (
         <section
+            id="stats"
             ref={sectionRef}
+            aria-labelledby="stats-title"
             className={`
                 ${styles.stats}
                 ${sectionVisible ? styles.visible : ""}
             `}
         >
+
+            <h2
+                id="stats-title"
+                className={styles.visuallyHidden}
+            >
+                Datos destacados de Terracota Software
+            </h2>
+
 
             <Container>
 

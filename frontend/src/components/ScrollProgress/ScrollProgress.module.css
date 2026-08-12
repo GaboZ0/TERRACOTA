@@ -1,19 +1,27 @@
 /* =========================================================
    SCROLL PROGRESS
+   Indicador sincronizado con la scrollbar nativa
 ========================================================= */
 
 .scrollProgress {
 
-    position: fixed;
+    position:
+        fixed;
 
-    inset: 0;
+    inset:
+        0;
 
-    width: 100vw;
-    height: 100vh;
+    width:
+        100vw;
 
-    z-index: 950;
+    height:
+        100vh;
 
-    pointer-events: none;
+    z-index:
+        950;
+
+    pointer-events:
+        none;
 }
 
 
@@ -23,7 +31,8 @@
 
 .indicator {
 
-    position: absolute;
+    position:
+        absolute;
 
     top:
         var(
@@ -31,33 +40,64 @@
             50%
         );
 
-    right: 0;
+    right:
+        0;
 
-    width: 0;
-    height: 30px;
+    width:
+        132px;
 
-    display: flex;
+    height:
+        32px;
 
-    align-items: center;
+    box-sizing:
+        border-box;
 
-    justify-content: flex-end;
+    display:
+        flex;
 
-    box-sizing: border-box;
+    align-items:
+        center;
 
-    overflow: hidden;
+    justify-content:
+        flex-end;
 
-    padding: 0;
+    padding:
+        0;
+
+    overflow:
+        hidden;
 
     border:
-        1px solid transparent;
+        1px solid
+        rgba(
+            216,
+            137,
+            51,
+            0
+        );
 
     border-radius:
         999px;
 
     background:
-        transparent;
+        rgba(
+            14,
+            14,
+            14,
+            0
+        );
 
-    opacity: 0;
+    box-shadow:
+        0 6px 22px
+        rgba(
+            0,
+            0,
+            0,
+            0
+        );
+
+    opacity:
+        0;
 
     transform:
         translateY(-50%);
@@ -65,7 +105,81 @@
     transform-origin:
         right center;
 
-    pointer-events: none;
+    transition:
+        opacity .42s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        background-color .42s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        border-color .42s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        box-shadow .42s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
+
+    pointer-events:
+        none;
+}
+
+
+/* =========================================================
+   PÍLDORA VISIBLE
+========================================================= */
+
+.visible {
+
+    opacity:
+        1;
+
+    border-color:
+        rgba(
+            216,
+            137,
+            51,
+            .20
+        );
+
+    background:
+        rgba(
+            14,
+            14,
+            14,
+            .96
+        );
+
+    box-shadow:
+        0 6px 22px
+        rgba(
+            0,
+            0,
+            0,
+            .20
+        ),
+        0 0 0 1px
+        rgba(
+            216,
+            137,
+            51,
+            .018
+        );
 }
 
 
@@ -75,13 +189,20 @@
 
 .dot {
 
-    position: absolute;
+    position:
+        absolute;
 
-    top: 50%;
-    right: 9px;
+    right:
+        9px;
 
-    width: 4px;
-    height: 9px;
+    top:
+        50%;
+
+    width:
+        4px;
+
+    height:
+        9px;
 
     border-radius:
         999px;
@@ -106,20 +227,45 @@
     transform:
         translateY(-50%);
 
-    opacity: 0;
+    opacity:
+        0;
+
+    transition:
+        opacity .32s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
 }
 
 
 /* =========================================================
-   NOMBRE DE SECCIÓN
+   PUNTO VISIBLE
+========================================================= */
+
+.visible .dot {
+
+    opacity:
+        1;
+}
+
+
+/* =========================================================
+   NOMBRE
 ========================================================= */
 
 .sectionName {
 
-    position: absolute;
+    position:
+        absolute;
 
-    top: 50%;
-    right: 22px;
+    top:
+        50%;
+
+    right:
+        22px;
 
     padding:
         7px 11px;
@@ -151,11 +297,28 @@
     text-transform:
         uppercase;
 
-    opacity: 0;
+    opacity:
+        0;
 
     transform:
-        translateX(12px)
+        translateX(7px)
         translateY(-50%);
+
+    transition:
+        opacity .38s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        transform .38s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
 
     pointer-events:
         none;
@@ -163,379 +326,17 @@
 
 
 /* =========================================================
-   APERTURA
+   NOMBRE VISIBLE
 ========================================================= */
 
-.expanded {
-
-    width:
-        132px;
-
-    height:
-        32px;
-
-    border-color:
-        rgba(
-            216,
-            137,
-            51,
-            .20
-        );
-
-    background:
-        rgba(
-            14,
-            14,
-            14,
-            .96
-        );
+.visible .sectionName {
 
     opacity:
         1;
 
-    box-shadow:
-        0 6px 22px
-        rgba(
-            0,
-            0,
-            0,
-            .20
-        );
-
-    animation:
-        scrollbarPillOpen
-        .72s
-        cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        )
-        both;
-}
-
-
-/* =========================================================
-   ANIMACIÓN DE APERTURA
-========================================================= */
-
-@keyframes scrollbarPillOpen {
-
-    0% {
-
-        width: 0;
-
-        height: 24px;
-
-        opacity: 0;
-
-        border-color:
-            transparent;
-
-        background:
-            transparent;
-
-        box-shadow:
-            none;
-    }
-
-
-    18% {
-
-        width: 18px;
-
-        height: 25px;
-
-        opacity: 1;
-    }
-
-
-    48% {
-
-        width: 66px;
-
-        height: 29px;
-    }
-
-
-    78% {
-
-        width: 116px;
-
-        height: 32px;
-    }
-
-
-    100% {
-
-        width: 132px;
-
-        height: 32px;
-
-        opacity: 1;
-    }
-}
-
-
-/* =========================================================
-   PUNTO — ENTRADA
-========================================================= */
-
-.expanded .dot {
-
-    opacity:
-        1;
-
-    animation:
-        scrollbarDotIn
-        .42s
-        cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        )
-        .18s
-        both;
-}
-
-
-@keyframes scrollbarDotIn {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            translateY(-50%)
-            scale(.55);
-    }
-
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            translateY(-50%)
-            scale(1);
-    }
-}
-
-
-/* =========================================================
-   TEXTO — ENTRADA
-========================================================= */
-
-.expanded .sectionName {
-
-    opacity:
-        1;
-
-    animation:
-        scrollbarLabelIn
-        .44s
-        cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        )
-        .28s
-        both;
-}
-
-
-@keyframes scrollbarLabelIn {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            translateX(12px)
-            translateY(-50%);
-    }
-
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            translateX(0)
-            translateY(-50%);
-    }
-}
-
-
-/* =========================================================
-   CIERRE
-========================================================= */
-
-.closing {
-
-    animation:
-        scrollbarPillClose
-        .62s
-        cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        )
-        both;
-}
-
-
-@keyframes scrollbarPillClose {
-
-    0% {
-
-        width:
-            132px;
-
-        height:
-            32px;
-
-        opacity:
-            1;
-    }
-
-
-    24% {
-
-        width:
-            116px;
-
-        height:
-            31px;
-    }
-
-
-    54% {
-
-        width:
-            64px;
-
-        height:
-            28px;
-    }
-
-
-    80% {
-
-        width:
-            20px;
-
-        height:
-            25px;
-    }
-
-
-    100% {
-
-        width:
-            0;
-
-        height:
-            24px;
-
-        opacity:
-            0;
-
-        border-color:
-            transparent;
-
-        background:
-            transparent;
-
-        box-shadow:
-            none;
-    }
-}
-
-
-/* =========================================================
-   TEXTO — CIERRE
-========================================================= */
-
-.closing .sectionName {
-
-    animation:
-        scrollbarLabelOut
-        .20s
-        ease
-        both;
-}
-
-
-@keyframes scrollbarLabelOut {
-
-    0% {
-
-        opacity:
-            1;
-
-        transform:
-            translateX(0)
-            translateY(-50%);
-    }
-
-
-    100% {
-
-        opacity:
-            0;
-
-        transform:
-            translateX(10px)
-            translateY(-50%);
-    }
-}
-
-
-/* =========================================================
-   PUNTO — CIERRE
-========================================================= */
-
-.closing .dot {
-
-    animation:
-        scrollbarDotOut
-        .38s
-        cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        )
-        both;
-}
-
-
-@keyframes scrollbarDotOut {
-
-    0% {
-
-        opacity:
-            1;
-
-        transform:
-            translateY(-50%)
-            scale(1);
-    }
-
-
-    100% {
-
-        opacity:
-            0;
-
-        transform:
-            translateY(-50%)
-            scale(.55);
-    }
+    transform:
+        translateX(0)
+        translateY(-50%);
 }
 
 
@@ -552,19 +353,19 @@
 
         height:
             100vh;
+
+        inset:
+            0;
     }
 
 
-    .expanded {
+    .indicator {
 
         width:
             116px;
 
         height:
             30px;
-
-        animation-name:
-            scrollbarPillOpenMobile;
     }
 
 
@@ -587,150 +388,6 @@
             8px;
     }
 
-
-    .closing {
-
-        animation-name:
-            scrollbarPillCloseMobile;
-    }
-}
-
-
-/* =========================================================
-   APERTURA MÓVIL
-========================================================= */
-
-@keyframes scrollbarPillOpenMobile {
-
-    0% {
-
-        width:
-            0;
-
-        height:
-            23px;
-
-        opacity:
-            0;
-    }
-
-
-    20% {
-
-        width:
-            16px;
-
-        height:
-            24px;
-
-        opacity:
-            1;
-    }
-
-
-    50% {
-
-        width:
-            58px;
-
-        height:
-            28px;
-    }
-
-
-    80% {
-
-        width:
-            102px;
-
-        height:
-            30px;
-    }
-
-
-    100% {
-
-        width:
-            116px;
-
-        height:
-            30px;
-
-        opacity:
-            1;
-    }
-}
-
-
-/* =========================================================
-   CIERRE MÓVIL
-========================================================= */
-
-@keyframes scrollbarPillCloseMobile {
-
-    0% {
-
-        width:
-            116px;
-
-        height:
-            30px;
-
-        opacity:
-            1;
-    }
-
-
-    25% {
-
-        width:
-            102px;
-
-        height:
-            29px;
-    }
-
-
-    55% {
-
-        width:
-            56px;
-
-        height:
-            27px;
-    }
-
-
-    82% {
-
-        width:
-            16px;
-
-        height:
-            24px;
-    }
-
-
-    100% {
-
-        width:
-            0;
-
-        height:
-            23px;
-
-        opacity:
-            0;
-
-        border-color:
-            transparent;
-
-        background:
-            transparent;
-
-        box-shadow:
-            none;
-    }
 }
 
 
@@ -738,16 +395,16 @@
    REDUCIR MOVIMIENTO
 ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (
+    prefers-reduced-motion: reduce
+) {
 
     .indicator,
     .dot,
     .sectionName {
 
-        animation:
-            none;
-
         transition:
             none;
     }
+
 }

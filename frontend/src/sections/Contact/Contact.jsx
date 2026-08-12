@@ -1,4 +1,8 @@
-import { useState } from "react";
+import {
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 
 import styles from "./Contact.module.css";
 
@@ -7,22 +11,56 @@ import SectionTitle from "../../components/SectionTitle";
 
 import contactData from "./contactData";
 
+
 function Contact() {
 
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        company: "",
-        message: "",
-        privacy: false,
-    });
+    const [formData, setFormData] =
+        useState({
+            name: "",
+            email: "",
+            company: "",
+            message: "",
+            privacy: false,
+        });
 
-    const [errors, setErrors] = useState({});
 
-    const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] =
+        useState({});
 
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const [submitted, setSubmitted] =
+        useState(false);
+
+
+    const [isSubmitting, setIsSubmitting] =
+        useState(false);
+
+
+    const firstErrorRef =
+        useRef(null);
+
+
+    /* =====================================================
+       MANTENER EL FOCO EN EL PRIMER ERROR
+    ===================================================== */
+
+    useEffect(() => {
+
+        if (
+            firstErrorRef.current &&
+            Object.keys(errors).length > 0
+        ) {
+
+            firstErrorRef.current.focus();
+
+        }
+
+    }, [errors]);
+
+
+    /* =====================================================
+       CAMBIOS EN LOS CAMPOS
+    ===================================================== */
 
     function handleChange(event) {
 
@@ -33,78 +71,125 @@ function Contact() {
             checked,
         } = event.target;
 
-        setFormData((previous) => ({
-            ...previous,
-            [name]:
-                type === "checkbox"
-                    ? checked
-                    : value,
-        }));
 
-        setErrors((previous) => ({
-            ...previous,
-            [name]: "",
-        }));
+        setFormData(
+            (previous) => ({
+                ...previous,
+
+                [name]:
+                    type === "checkbox"
+                        ? checked
+                        : value,
+            })
+        );
+
+
+        setErrors(
+            (previous) => ({
+                ...previous,
+                [name]: "",
+            })
+        );
+
 
         setSubmitted(false);
+
     }
 
+
+    /* =====================================================
+       VALIDACIÓN
+    ===================================================== */
 
     function validateForm() {
 
         const newErrors = {};
 
 
-        if (!formData.name.trim()) {
+        /* Nombre */
+
+        if (
+            !formData.name.trim()
+        ) {
 
             newErrors.name =
                 "Por favor, ingresá tu nombre.";
 
-        } else if (formData.name.trim().length < 2) {
+        } else if (
+            formData.name
+                .trim()
+                .length < 2
+        ) {
 
             newErrors.name =
                 "El nombre debe tener al menos 2 caracteres.";
+
         }
 
 
-        if (!formData.email.trim()) {
+        /* Email */
+
+        if (
+            !formData.email.trim()
+        ) {
 
             newErrors.email =
                 "Por favor, ingresá tu email.";
 
         } else if (
-            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-                formData.email.trim()
-            )
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                .test(
+                    formData.email.trim()
+                )
         ) {
 
             newErrors.email =
                 "Ingresá un email válido.";
+
         }
 
 
-        if (!formData.message.trim()) {
+        /* Mensaje */
+
+        if (
+            !formData.message.trim()
+        ) {
 
             newErrors.message =
                 "Por favor, escribí tu mensaje.";
 
-        } else if (formData.message.trim().length < 10) {
+        } else if (
+            formData.message
+                .trim()
+                .length < 10
+        ) {
 
             newErrors.message =
                 "El mensaje debe tener al menos 10 caracteres.";
+
         }
 
 
-        if (!formData.privacy) {
+        /* Privacidad */
+
+        if (
+            !formData.privacy
+        ) {
 
             newErrors.privacy =
                 "Necesitamos tu autorización para responder la consulta.";
+
         }
 
 
         return newErrors;
+
     }
 
+
+    /* =====================================================
+       ENVÍO
+    ===================================================== */
 
     async function handleSubmit(event) {
 
@@ -112,31 +197,44 @@ function Contact() {
 
         setSubmitted(false);
 
-        const validationErrors = validateForm();
 
-        if (Object.keys(validationErrors).length > 0) {
+        const validationErrors =
+            validateForm();
 
-            setErrors(validationErrors);
+
+        if (
+            Object.keys(
+                validationErrors
+            ).length > 0
+        ) {
+
+            setErrors(
+                validationErrors
+            );
 
             return;
+
         }
 
 
         setErrors({});
-
         setIsSubmitting(true);
 
 
         /*
-         * En este momento solamente simulamos el envío.
-         *
-         * En el siguiente paso conectaremos este formulario
-         * con un servicio real de forma segura.
+         * Actualmente simulamos el envío.
+         * Más adelante conectaremos el backend.
          */
+        await new Promise(
+            (resolve) => {
 
-        await new Promise((resolve) => {
-            setTimeout(resolve, 1000);
-        });
+                setTimeout(
+                    resolve,
+                    1000
+                );
+
+            }
+        );
 
 
         setIsSubmitting(false);
@@ -151,6 +249,7 @@ function Contact() {
             message: "",
             privacy: false,
         });
+
     }
 
 
@@ -158,34 +257,64 @@ function Contact() {
 
         <section
             id="contacto"
-            className={styles.contact}
+            className={
+                styles.contact
+            }
+            aria-labelledby="contact-form-title"
         >
 
             <Container>
 
                 <SectionTitle
-                    eyebrow={contactData.eyebrow}
-                    title={contactData.title}
-                    description={contactData.description}
+                    eyebrow={
+                        contactData.eyebrow
+                    }
+                    title={
+                        contactData.title
+                    }
+                    description={
+                        contactData.description
+                    }
                 />
 
 
-                <div className={styles.layout}>
+                <div
+                    className={
+                        styles.layout
+                    }
+                >
 
+                    {/* =================================================
+                        INFORMACIÓN
+                    ================================================= */}
 
-                    <div className={styles.info}>
+                    <div
+                        className={
+                            styles.info
+                        }
+                    >
 
-                        <div className={styles.infoIntro}>
+                        <div
+                            className={
+                                styles.infoIntro
+                            }
+                        >
 
-                            <span className={styles.label}>
+                            <span
+                                className={
+                                    styles.label
+                                }
+                            >
                                 HABLEMOS
                             </span>
+
 
                             <h3>
                                 Estamos listos para
                                 <br />
                                 escuchar tu idea.
                             </h3>
+
 
                             <p>
                                 Contanos qué necesitás y
@@ -197,140 +326,271 @@ function Contact() {
                         </div>
 
 
-                        <div className={styles.details}>
+                        <div
+                            className={
+                                styles.details
+                            }
+                        >
 
-                            {contactData.details.map((detail) => (
+                            {
+                                contactData.details.map(
+                                    (detail) => (
 
-                                <div
-                                    key={detail.id}
-                                    className={styles.detail}
-                                >
-
-                                    <span
-                                        className={styles.detailIcon}
-                                    >
-                                        {detail.icon}
-                                    </span>
-
-                                    <div>
-
-                                        <span
-                                            className={styles.detailLabel}
+                                        <div
+                                            key={
+                                                detail.id
+                                            }
+                                            className={
+                                                styles.detail
+                                            }
                                         >
-                                            {detail.label}
-                                        </span>
 
-                                        <span
-                                            className={styles.detailValue}
-                                        >
-                                            {detail.value}
-                                        </span>
+                                            <span
+                                                className={
+                                                    styles.detailIcon
+                                                }
+                                                aria-hidden="true"
+                                            >
+                                                {
+                                                    detail.icon
+                                                }
+                                            </span>
 
-                                    </div>
 
-                                </div>
+                                            <div>
 
-                            ))}
+                                                <span
+                                                    className={
+                                                        styles.detailLabel
+                                                    }
+                                                >
+                                                    {
+                                                        detail.label
+                                                    }
+                                                </span>
+
+
+                                                <span
+                                                    className={
+                                                        styles.detailValue
+                                                    }
+                                                >
+                                                    {
+                                                        detail.value
+                                                    }
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    )
+                                )
+                            }
 
                         </div>
 
                     </div>
 
 
+                    {/* =================================================
+                        FORMULARIO
+                    ================================================= */}
+
                     <form
-                        className={styles.form}
-                        onSubmit={handleSubmit}
+                        className={
+                            styles.form
+                        }
+                        onSubmit={
+                            handleSubmit
+                        }
                         noValidate
+                        aria-labelledby="contact-form-title"
+                        aria-busy={
+                            isSubmitting
+                        }
                     >
 
-                        <div className={styles.fieldGrid}>
+                        <h2
+                            id="contact-form-title"
+                            className={
+                                styles.visuallyHidden
+                            }
+                        >
+                            Formulario de contacto
+                        </h2>
 
 
-                            <div className={styles.field}>
+                        <div
+                            className={
+                                styles.fieldGrid
+                            }
+                        >
 
-                                <label htmlFor="name">
+                            {/* =========================================
+                                NOMBRE
+                            ========================================= */}
+
+                            <div
+                                className={
+                                    styles.field
+                                }
+                            >
+
+                                <label
+                                    htmlFor="name"
+                                >
                                     Nombre
                                 </label>
 
+
                                 <input
+                                    ref={
+                                        errors.name
+                                            ? firstErrorRef
+                                            : null
+                                    }
                                     id="name"
                                     name="name"
                                     type="text"
+                                    autoComplete="name"
+                                    autoCapitalize="words"
+                                    inputMode="text"
                                     placeholder="Tu nombre"
-                                    value={formData.name}
-                                    onChange={handleChange}
+                                    value={
+                                        formData.name
+                                    }
+                                    onChange={
+                                        handleChange
+                                    }
                                     className={
                                         errors.name
                                             ? styles.inputError
                                             : ""
                                     }
                                     aria-invalid={
-                                        Boolean(errors.name)
+                                        Boolean(
+                                            errors.name
+                                        )
                                     }
                                     aria-describedby={
                                         errors.name
                                             ? "name-error"
                                             : undefined
                                     }
+                                    required
                                 />
 
-                                {errors.name && (
-                                    <span
-                                        id="name-error"
-                                        className={styles.error}
-                                    >
-                                        {errors.name}
-                                    </span>
-                                )}
+
+                                {
+                                    errors.name && (
+                                        <span
+                                            id="name-error"
+                                            className={
+                                                styles.error
+                                            }
+                                            role="alert"
+                                        >
+                                            {
+                                                errors.name
+                                            }
+                                        </span>
+                                    )
+                                }
 
                             </div>
 
 
-                            <div className={styles.field}>
+                            {/* =========================================
+                                EMAIL
+                            ========================================= */}
 
-                                <label htmlFor="email">
+                            <div
+                                className={
+                                    styles.field
+                                }
+                            >
+
+                                <label
+                                    htmlFor="email"
+                                >
                                     Email
                                 </label>
 
+
                                 <input
+                                    ref={
+                                        errors.email &&
+                                        !errors.name
+                                            ? firstErrorRef
+                                            : null
+                                    }
                                     id="email"
                                     name="email"
                                     type="email"
+                                    autoComplete="email"
+                                    inputMode="email"
+                                    spellCheck="false"
                                     placeholder="tu@email.com"
-                                    value={formData.email}
-                                    onChange={handleChange}
+                                    value={
+                                        formData.email
+                                    }
+                                    onChange={
+                                        handleChange
+                                    }
                                     className={
                                         errors.email
                                             ? styles.inputError
                                             : ""
                                     }
                                     aria-invalid={
-                                        Boolean(errors.email)
+                                        Boolean(
+                                            errors.email
+                                        )
                                     }
                                     aria-describedby={
                                         errors.email
                                             ? "email-error"
                                             : undefined
                                     }
+                                    required
                                 />
 
-                                {errors.email && (
-                                    <span
-                                        id="email-error"
-                                        className={styles.error}
-                                    >
-                                        {errors.email}
-                                    </span>
-                                )}
+
+                                {
+                                    errors.email && (
+                                        <span
+                                            id="email-error"
+                                            className={
+                                                styles.error
+                                            }
+                                            role="alert"
+                                        >
+                                            {
+                                                errors.email
+                                            }
+                                        </span>
+                                    )
+                                }
 
                             </div>
 
                         </div>
 
 
-                        <div className={styles.field}>
+                        {/* =================================================
+                            EMPRESA
+                        ================================================= */}
 
-                            <label htmlFor="company">
+                        <div
+                            className={
+                                styles.field
+                            }
+                        >
+
+                            <label
+                                htmlFor="company"
+                            >
 
                                 Empresa
 
@@ -340,116 +600,213 @@ function Contact() {
 
                             </label>
 
+
                             <input
                                 id="company"
                                 name="company"
                                 type="text"
+                                autoComplete="organization"
+                                autoCapitalize="words"
+                                inputMode="text"
                                 placeholder="Nombre de tu empresa"
-                                value={formData.company}
-                                onChange={handleChange}
+                                value={
+                                    formData.company
+                                }
+                                onChange={
+                                    handleChange
+                                }
                             />
 
                         </div>
 
 
-                        <div className={styles.field}>
+                        {/* =================================================
+                            MENSAJE
+                        ================================================= */}
 
-                            <label htmlFor="message">
+                        <div
+                            className={
+                                styles.field
+                            }
+                        >
+
+                            <label
+                                htmlFor="message"
+                            >
                                 Mensaje
                             </label>
 
+
                             <textarea
+                                ref={
+                                    errors.message &&
+                                    !errors.name &&
+                                    !errors.email
+                                        ? firstErrorRef
+                                        : null
+                                }
                                 id="message"
                                 name="message"
                                 rows="6"
                                 placeholder="Contanos brevemente sobre tu proyecto..."
-                                value={formData.message}
-                                onChange={handleChange}
+                                value={
+                                    formData.message
+                                }
+                                onChange={
+                                    handleChange
+                                }
                                 className={
                                     errors.message
                                         ? styles.inputError
                                         : ""
                                 }
                                 aria-invalid={
-                                    Boolean(errors.message)
+                                    Boolean(
+                                        errors.message
+                                    )
                                 }
                                 aria-describedby={
                                     errors.message
                                         ? "message-error"
                                         : undefined
                                 }
+                                required
                             />
 
-                            {errors.message && (
-                                <span
-                                    id="message-error"
-                                    className={styles.error}
-                                >
-                                    {errors.message}
-                                </span>
-                            )}
+
+                            {
+                                errors.message && (
+                                    <span
+                                        id="message-error"
+                                        className={
+                                            styles.error
+                                        }
+                                        role="alert"
+                                    >
+                                        {
+                                            errors.message
+                                        }
+                                    </span>
+                                )
+                            }
 
                         </div>
 
 
-                        <label className={styles.checkbox}>
+                        {/* =================================================
+                            PRIVACIDAD
+                        ================================================= */}
 
-                            <input
-                                type="checkbox"
-                                name="privacy"
-                                checked={formData.privacy}
-                                onChange={handleChange}
-                                aria-invalid={
-                                    Boolean(errors.privacy)
+                        <div
+                            className={
+                                styles.checkboxGroup
+                            }
+                        >
+
+                            <label
+                                className={
+                                    styles.checkbox
                                 }
-                                aria-describedby={
-                                    errors.privacy
-                                        ? "privacy-error"
-                                        : undefined
-                                }
-                            />
-
-                            <span>
-                                Acepto que Terracota Software
-                                utilice estos datos para responder
-                                mi consulta.
-                            </span>
-
-                        </label>
-
-                        {errors.privacy && (
-                            <span
-                                id="privacy-error"
-                                className={styles.error}
                             >
-                                {errors.privacy}
-                            </span>
-                        )}
 
+                                <input
+                                    type="checkbox"
+                                    name="privacy"
+                                    checked={
+                                        formData.privacy
+                                    }
+                                    onChange={
+                                        handleChange
+                                    }
+                                    aria-invalid={
+                                        Boolean(
+                                            errors.privacy
+                                        )
+                                    }
+                                    aria-describedby={
+                                        errors.privacy
+                                            ? "privacy-error"
+                                            : undefined
+                                    }
+                                    required
+                                />
+
+
+                                <span>
+                                    Acepto que Terracota Software
+                                    utilice estos datos para responder
+                                    mi consulta.
+                                </span>
+
+                            </label>
+
+
+                            {
+                                errors.privacy && (
+                                    <span
+                                        id="privacy-error"
+                                        className={
+                                            styles.error
+                                        }
+                                        role="alert"
+                                    >
+                                        {
+                                            errors.privacy
+                                        }
+                                    </span>
+                                )
+                            }
+
+                        </div>
+
+
+                        {/* =================================================
+                            BOTÓN
+                        ================================================= */}
 
                         <button
                             type="submit"
-                            className={styles.submit}
-                            disabled={isSubmitting}
+                            className={
+                                styles.submit
+                            }
+                            disabled={
+                                isSubmitting
+                            }
+                            aria-disabled={
+                                isSubmitting
+                            }
                         >
 
-                            {isSubmitting
-                                ? "Enviando..."
-                                : "Enviar mensaje"
+                            {
+                                isSubmitting
+                                    ? "Enviando..."
+                                    : "Enviar mensaje"
                             }
 
                         </button>
 
 
-                        {submitted && (
+                        {/* =================================================
+                            ÉXITO
+                        ================================================= */}
 
-                            <p className={styles.successMessage}>
-                                ¡Gracias por tu consulta!
-                                <br />
-                                Recibimos correctamente tus datos.
-                            </p>
+                        {
+                            submitted && (
 
-                        )}
+                                <p
+                                    className={
+                                        styles.successMessage
+                                    }
+                                    role="status"
+                                    aria-live="polite"
+                                >
+                                    ¡Gracias por tu consulta!
+                                    <br />
+                                    Recibimos correctamente tus datos.
+                                </p>
+
+                            )
+                        }
 
                     </form>
 
@@ -460,5 +817,6 @@ function Contact() {
         </section>
     );
 }
+
 
 export default Contact;

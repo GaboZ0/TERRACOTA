@@ -5,102 +5,189 @@ import Logo from "../../components/Logo";
 
 import footerData from "./footerData";
 
+
 function Footer() {
-    const currentYear = new Date().getFullYear();
+
+    const currentYear =
+        new Date().getFullYear();
+
 
     return (
-        <footer className={styles.footer}>
+
+        <footer
+            className={styles.footer}
+            aria-labelledby="footer-title"
+        >
+
+            <h2
+                id="footer-title"
+                className={styles.visuallyHidden}
+            >
+                Pie de página de Terracota Software
+            </h2>
+
 
             <Container>
 
-                <div className={styles.main}>
+                <div
+                    className={styles.main}
+                >
 
-                    <div className={styles.brand}>
+                    <div
+                        className={styles.brand}
+                    >
 
                         <a
                             href="#inicio"
-                            className={styles.logoLink}
+                            className={
+                                styles.logoLink
+                            }
+                            aria-label="Ir al inicio"
                         >
                             <Logo />
                         </a>
 
+
                         <p>
-                            {footerData.description}
+                            {
+                                footerData.description
+                            }
                         </p>
 
-                        <span className={styles.location}>
-                            {footerData.location}
+
+                        <span
+                            className={
+                                styles.location
+                            }
+                        >
+                            {
+                                footerData.location
+                            }
                         </span>
 
                     </div>
 
-                    <div className={styles.column}>
+
+                    <div
+                        className={styles.column}
+                    >
 
                         <h3>
                             Navegación
                         </h3>
 
+
                         <ul>
 
-                            {footerData.navigation.map((item) => (
+                            {
+                                footerData.navigation.map(
+                                    (item) => (
 
-                                <li key={item.id}>
+                                        <li
+                                            key={
+                                                item.id
+                                            }
+                                        >
 
-                                    <a href={item.href}>
-                                        {item.title}
-                                    </a>
+                                            <a
+                                                href={
+                                                    item.href
+                                                }
+                                            >
+                                                {
+                                                    item.title
+                                                }
+                                            </a>
 
-                                </li>
+                                        </li>
 
-                            ))}
+                                    )
+                                )
+                            }
 
                         </ul>
 
                     </div>
 
-                    <div className={styles.column}>
+
+                    <div
+                        className={styles.column}
+                    >
 
                         <h3>
                             Servicios
                         </h3>
 
+
                         <ul>
 
-                            {footerData.services.map((item) => (
+                            {
+                                footerData.services.map(
+                                    (item) => (
 
-                                <li key={item.id}>
+                                        <li
+                                            key={
+                                                item.id
+                                            }
+                                        >
 
-                                    <a href={item.href}>
-                                        {item.title}
-                                    </a>
+                                            <a
+                                                href={
+                                                    item.href
+                                                }
+                                            >
+                                                {
+                                                    item.title
+                                                }
+                                            </a>
 
-                                </li>
+                                        </li>
 
-                            ))}
+                                    )
+                                )
+                            }
 
                         </ul>
 
                     </div>
 
-                    <div className={styles.column}>
+
+                    <div
+                        className={styles.column}
+                    >
 
                         <h3>
                             Contacto
                         </h3>
 
+
                         <ul>
 
-                            {footerData.contact.map((item) => (
+                            {
+                                footerData.contact.map(
+                                    (item) => (
 
-                                <li key={item.id}>
+                                        <li
+                                            key={
+                                                item.id
+                                            }
+                                        >
 
-                                    <a href={item.href}>
-                                        {item.title}
-                                    </a>
+                                            <a
+                                                href={
+                                                    item.href
+                                                }
+                                            >
+                                                {
+                                                    item.title
+                                                }
+                                            </a>
 
-                                </li>
+                                        </li>
 
-                            ))}
+                                    )
+                                )
+                            }
 
                         </ul>
 
@@ -108,11 +195,17 @@ function Footer() {
 
                 </div>
 
-                <div className={styles.bottom}>
+
+                <div
+                    className={styles.bottom}
+                >
 
                     <span>
-                        © {currentYear} Terracota Software
+                        © {currentYear}
+                        {" "}
+                        Terracota Software
                     </span>
+
 
                     <span>
                         Todos los derechos reservados.
@@ -125,5 +218,6 @@ function Footer() {
         </footer>
     );
 }
+
 
 export default Footer;
