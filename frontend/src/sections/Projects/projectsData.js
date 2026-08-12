@@ -1,6 +1,6 @@
 const projectsData = {
 
-    eyebrow: "Proyectos",
+    eyebrow: "Programas",
 
     title: "Soluciones pensadas para problemas reales",
 

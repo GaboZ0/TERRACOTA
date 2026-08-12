@@ -3,10 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./ScrollProgress.module.css";
 
 
-/* =========================================================
-   SECCIONES
-========================================================= */
-
 const sections = [
     { id: "inicio", label: "Inicio" },
     { id: "nosotros", label: "Nosotros" },
@@ -14,7 +10,7 @@ const sections = [
     { id: "stats", label: "Estadísticas" },
     { id: "proceso", label: "Proceso" },
     { id: "tecnologias", label: "Tecnologías" },
-    { id: "proyectos", label: "Proyectos" },
+    { id: "programas", label: "programas" },
     { id: "cta", label: "Empecemos" },
     { id: "contacto", label: "Contacto" },
 ];
@@ -22,7 +18,8 @@ const sections = [
 
 function ScrollProgress() {
 
-    const [scrollPosition, setScrollPosition] = useState(0);
+    const [scrollPosition, setScrollPosition] =
+        useState(0);
 
     const [activeSection, setActiveSection] =
         useState("inicio");
@@ -37,26 +34,65 @@ function ScrollProgress() {
     const previousSection =
         useRef("inicio");
 
-    const expandTimeout =
+    const scrollFrame =
         useRef(null);
 
-    const scrollFrame =
+    const hideTimeout =
         useRef(null);
 
 
     /* =====================================================
-       POSICIÓN DEL SCROLLBAR NATIVO
+       MOSTRAR / OCULTAR PÍLDORA
+    ===================================================== */
+
+    const showPill =
+        () => {
+
+            setClosing(false);
+
+            setExpanded(true);
+
+
+            clearTimeout(
+                hideTimeout.current
+            );
+
+
+            hideTimeout.current =
+                setTimeout(() => {
+
+                    setClosing(true);
+
+
+                    /*
+                     * Esperamos a que termine
+                     * la animación de cierre.
+                     */
+                    hideTimeout.current =
+                        setTimeout(() => {
+
+                            setExpanded(false);
+
+                            setClosing(false);
+
+                        }, 620);
+
+                }, 900);
+
+        };
+
+
+    /* =====================================================
+       POSICIÓN DEL INDICADOR
     ===================================================== */
 
     useEffect(() => {
 
         const updateScrollPosition = () => {
 
-            /*
-             * Si ya existe un frame pendiente,
-             * esperamos a que termine.
-             */
-            if (scrollFrame.current !== null) {
+            if (
+                scrollFrame.current !== null
+            ) {
                 return;
             }
 
@@ -67,19 +103,14 @@ function ScrollProgress() {
                     const scrollTop =
                         window.scrollY;
 
-
                     const viewportHeight =
                         window.innerHeight;
 
-
                     const documentHeight =
-                        document.documentElement.scrollHeight;
+                        document.documentElement
+                            .scrollHeight;
 
 
-                    /*
-                     * Altura real que puede recorrer
-                     * la página.
-                     */
                     const scrollableHeight =
                         documentHeight -
                         viewportHeight;
@@ -89,20 +120,21 @@ function ScrollProgress() {
                         scrollableHeight <= 0
                     ) {
 
-                        setScrollPosition(0);
+                        setScrollPosition(
+                            viewportHeight / 2
+                        );
+
 
                         scrollFrame.current =
                             null;
 
                         return;
+
                     }
 
 
                     /*
-                     * Progreso real de la página.
-                     *
-                     * 0 = arriba
-                     * 1 = abajo
+                     * Progreso general de la página.
                      */
                     const progress =
                         Math.min(
@@ -116,12 +148,8 @@ function ScrollProgress() {
 
 
                     /*
-                     * -------------------------------------------------
-                     * CALCULAMOS EL TAMAÑO DEL THUMB NATIVO
-                     * -------------------------------------------------
-                     *
-                     * El thumb de la scrollbar representa la
-                     * proporción de viewport respecto al documento.
+                     * Altura aproximada del thumb
+                     * nativo.
                      */
                     const thumbHeight =
                         Math.max(
@@ -135,8 +163,7 @@ function ScrollProgress() {
 
 
                     /*
-                     * Distancia que realmente puede recorrer
-                     * el thumb.
+                     * Recorrido real del thumb.
                      */
                     const thumbTravel =
                         Math.max(
@@ -147,18 +174,7 @@ function ScrollProgress() {
 
 
                     /*
-                     * Posición del CENTRO del thumb.
-                     *
-                     * Esto es lo importante:
-                     *
-                     * antes utilizábamos simplemente:
-                     *
-                     *     progress * 100%
-                     *
-                     * pero eso representa el desplazamiento
-                     * de la página, no el centro del indicador.
-                     *
-                     * Ahora tenemos en cuenta la altura del thumb.
+                     * Centro del thumb.
                      */
                     const thumbCenter =
                         (
@@ -183,9 +199,21 @@ function ScrollProgress() {
         };
 
 
+        /*
+         * La posición se calcula al mover el scroll.
+         */
+        const handleScroll = () => {
+
+            updateScrollPosition();
+
+            showPill();
+
+        };
+
+
         window.addEventListener(
             "scroll",
-            updateScrollPosition,
+            handleScroll,
             {
                 passive: true,
             }
@@ -198,9 +226,6 @@ function ScrollProgress() {
         );
 
 
-        /*
-         * Posición inicial.
-         */
         updateScrollPosition();
 
 
@@ -208,13 +233,18 @@ function ScrollProgress() {
 
             window.removeEventListener(
                 "scroll",
-                updateScrollPosition
+                handleScroll
             );
 
 
             window.removeEventListener(
                 "resize",
                 updateScrollPosition
+            );
+
+
+            clearTimeout(
+                hideTimeout.current
             );
 
 
@@ -234,7 +264,7 @@ function ScrollProgress() {
 
 
     /* =====================================================
-       DETECCIÓN DE SECCIÓN
+       DETECCIÓN DE SECCIONES
     ===================================================== */
 
     useEffect(() => {
@@ -255,6 +285,44 @@ function ScrollProgress() {
         ) {
 
             return undefined;
+
+        }
+
+
+        /*
+         * Detectamos la sección inicial.
+         */
+        const initialSection =
+            sectionElements.find(
+                (section) => {
+
+                    const rect =
+                        section.getBoundingClientRect();
+
+
+                    return (
+                        rect.top <=
+                        window.innerHeight * .45
+                        &&
+                        rect.bottom >
+                        window.innerHeight * .25
+                    );
+
+                }
+            );
+
+
+        if (
+            initialSection
+        ) {
+
+            previousSection.current =
+                initialSection.id;
+
+
+            setActiveSection(
+                initialSection.id
+            );
 
         }
 
@@ -292,8 +360,8 @@ function ScrollProgress() {
 
 
                     /*
-                     * Si seguimos dentro de la misma
-                     * sección no hacemos nada.
+                     * Si seguimos en la misma sección,
+                     * no cambiamos nada.
                      */
                     if (
                         currentId ===
@@ -315,58 +383,25 @@ function ScrollProgress() {
 
 
                     /*
-                     * Abrimos inmediatamente
-                     * la píldora.
+                     * Si cambiamos de sección,
+                     * nos aseguramos de que la píldora
+                     * siga visible mientras haya scroll.
                      */
-                    setClosing(false);
-
-                    setExpanded(true);
-
-
-                    /*
-                     * Limpiamos cualquier temporizador
-                     * anterior.
-                     */
-                    clearTimeout(
-                        expandTimeout.current
-                    );
-
-
-                    /*
-                     * La mantenemos abierta durante
-                     * un momento antes de comenzar
-                     * el cierre.
-                     */
-                    expandTimeout.current =
-                        setTimeout(() => {
-
-                            setClosing(true);
-
-
-                            expandTimeout.current =
-                                setTimeout(() => {
-
-                                    setExpanded(false);
-
-                                    setClosing(false);
-
-                                }, 620);
-
-                        }, 1500);
+                    showPill();
 
                 },
                 {
                     root: null,
 
                     rootMargin:
-                        "-25% 0px -55% 0px",
+                        "-30% 0px -45% 0px",
 
                     threshold: [
                         0,
-                        0.15,
-                        0.3,
-                        0.5,
-                        0.75,
+                        .15,
+                        .3,
+                        .5,
+                        .75,
                         1,
                     ],
                 }
@@ -387,11 +422,6 @@ function ScrollProgress() {
         return () => {
 
             observer.disconnect();
-
-
-            clearTimeout(
-                expandTimeout.current
-            );
 
         };
 

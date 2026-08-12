@@ -1,9 +1,16 @@
+/* =========================================================
+   STATS
+========================================================= */
+
 .stats {
     background:
         var(--color-background);
 
     padding:
-        105px 0;
+        120px 0;
+
+    overflow:
+        hidden;
 }
 
 
@@ -12,12 +19,14 @@
 ========================================================= */
 
 .grid {
-    display: grid;
+    display:
+        grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4, minmax(0, 1fr));
 
-    gap: 30px;
+    gap:
+        30px;
 }
 
 
@@ -26,6 +35,30 @@
 ========================================================= */
 
 .card {
+    position:
+        relative;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        210px;
+
+    padding:
+        40px 30px;
+
+    text-align:
+        center;
+
     background:
         rgba(
             255,
@@ -43,22 +76,72 @@
             .08
         );
 
-    border-radius: 20px;
+    border-radius:
+        20px;
 
-    padding:
-        38px 28px;
+    opacity:
+        0;
+
+    transform:
+        translate3d(
+            0,
+            22px,
+            0
+        );
 
     transition:
-        transform .35s ease,
+        opacity .68s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        transform .68s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
         border-color .35s ease,
-        box-shadow .35s ease;
-
-    text-align: center;
+        box-shadow .35s ease,
+        background-color .35s ease;
 }
+
+
+/* =========================================================
+   ENTRADA
+========================================================= */
+
+.cardVisible {
+    opacity:
+        1;
+
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        );
+
+    transition-delay:
+        var(
+            --stats-delay,
+            0ms
+        );
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
 
 .card:hover {
     transform:
-        translateY(-8px);
+        translate3d(
+            0,
+            -8px,
+            0
+        );
 
     border-color:
         rgba(
@@ -70,7 +153,20 @@
 
     box-shadow:
         0 15px 45px
-        rgba(0, 0, 0, .35);
+        rgba(
+            0,
+            0,
+            0,
+            .35
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .04
+        );
 }
 
 
@@ -79,16 +175,41 @@
 ========================================================= */
 
 .number {
-    display: block;
+    display:
+        block;
 
     color:
         var(--color-primary);
 
-    font-size: 3rem;
+    font-size:
+        3rem;
 
-    font-weight: 800;
+    font-weight:
+        800;
 
-    margin-bottom: 16px;
+    line-height:
+        1;
+
+    margin-bottom:
+        18px;
+
+    transition:
+        transform .35s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
+}
+
+
+/* =========================================================
+   MICROINTERACCIÓN DEL NÚMERO
+========================================================= */
+
+.card:hover .number {
+    transform:
+        scale(1.04);
 }
 
 
@@ -97,25 +218,42 @@
 ========================================================= */
 
 .card h3 {
+    margin:
+        0 0 16px;
+
     color:
         var(--color-text);
 
-    margin-bottom: 14px;
-
     font-size:
-        1.2rem;
+        1.25rem;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.3;
 }
 
 
 /* =========================================================
-   TEXTO
+   DESCRIPCIÓN
 ========================================================= */
 
 .card p {
+    max-width:
+        240px;
+
+    margin:
+        0;
+
     color:
         var(--color-text-secondary);
 
-    line-height: 1.65;
+    line-height:
+        1.7;
+
+    font-size:
+        .95rem;
 }
 
 
@@ -127,24 +265,57 @@
 
     .stats {
         padding:
-            80px 0;
+            90px 0;
     }
 
     .grid {
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
 
-        gap: 20px;
+        gap:
+            22px;
     }
 
     .card {
+        min-height:
+            190px;
+
         padding:
-            30px 22px;
+            32px 24px;
+
+        transform:
+            translate3d(
+                0,
+                20px,
+                0
+            );
     }
 
     .number {
         font-size:
-            2.6rem;
+            2.7rem;
+    }
+
+    .card h3 {
+        font-size:
+            1.15rem;
+    }
+
+    .card p {
+        font-size:
+            .9rem;
+    }
+
+    .card:hover {
+        transform:
+            translate3d(
+                0,
+                -5px,
+                0
+            );
     }
 }
 
@@ -157,42 +328,167 @@
 
     .stats {
         padding:
-            62px 0;
+            65px 0;
     }
 
     .grid {
         grid-template-columns:
             1fr;
 
-        gap: 14px;
+        gap:
+            16px;
     }
 
     .card {
+        min-height:
+            165px;
+
         padding:
-            25px 20px;
+            28px 20px;
 
         border-radius:
-            17px;
+            18px;
+
+        transform:
+            translate3d(
+                0,
+                18px,
+                0
+            );
+    }
+
+    .cardVisible {
+        transition-delay:
+            calc(
+                var(--stats-delay) * .7
+            );
     }
 
     .number {
-        font-size:
-            2.35rem;
-
         margin-bottom:
-            10px;
+            12px;
+
+        font-size:
+            2.4rem;
     }
 
     .card h3 {
         margin-bottom:
-            10px;
+            9px;
 
         font-size:
-            1.08rem;
+            1.05rem;
     }
 
     .card p {
+        max-width:
+            290px;
+
+        font-size:
+            .87rem;
+
         line-height:
             1.55;
+    }
+
+    .card:hover {
+        transform:
+            translate3d(
+                0,
+                -3px,
+                0
+            );
+    }
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .stats {
+        padding:
+            55px 0;
+    }
+
+    .grid {
+        gap:
+            13px;
+    }
+
+    .card {
+        min-height:
+            150px;
+
+        padding:
+            24px 17px;
+
+        border-radius:
+            16px;
+
+        transform:
+            translate3d(
+                0,
+                15px,
+                0
+            );
+    }
+
+    .number {
+        font-size:
+            2.15rem;
+    }
+
+    .card h3 {
+        font-size:
+            .98rem;
+    }
+
+    .card p {
+        max-width:
+            270px;
+
+        font-size:
+            .82rem;
+
+        line-height:
+            1.5;
+    }
+}
+
+
+/* =========================================================
+   REDUCIR MOVIMIENTO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .card,
+    .cardVisible {
+
+        opacity:
+            1;
+
+        transform:
+            none;
+
+        transition:
+            border-color .35s ease,
+            box-shadow .35s ease,
+            background-color .35s ease;
+    }
+
+    .card:hover {
+
+        transform:
+            none;
+    }
+
+    .card:hover .number {
+
+        transform:
+            none;
     }
 }

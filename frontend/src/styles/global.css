@@ -1,46 +1,157 @@
+/* =========================================================
+   RESET
+========================================================= */
+
 *,
 *::before,
-*::after{
-    box-sizing:border-box;
+*::after {
+
+    box-sizing:
+        border-box;
 }
 
-html{
 
-    scroll-behavior:smooth;
+/* =========================================================
+   HTML
+========================================================= */
 
+html {
+
+    scroll-behavior:
+        smooth;
+
+    /*
+     * Evita que los anchors queden
+     * escondidos debajo del header fijo.
+     */
+    scroll-padding-top:
+        92px;
 }
 
-body{
 
-    margin:0;
+/* =========================================================
+   BODY
+========================================================= */
 
-    padding:0;
+body {
 
-    font-family:"IBM Plex Sans", sans-serif;
+    margin:
+        0;
 
-    background:#090909;
+    padding:
+        0;
 
-    color:#fff;
+    font-family:
+        "IBM Plex Sans",
+        sans-serif;
 
-    -webkit-font-smoothing:antialiased;
+    background:
+        #090909;
 
-    -moz-osx-font-smoothing:grayscale;
+    color:
+        #ffffff;
 
+    -webkit-font-smoothing:
+        antialiased;
+
+    -moz-osx-font-smoothing:
+        grayscale;
 }
+
+
+/* =========================================================
+   ANCHORS INTERNOS
+========================================================= */
+
+[id] {
+
+    scroll-margin-top:
+        92px;
+}
+
+
+/* =========================================================
+   FORMULARIOS
+========================================================= */
 
 button,
 input,
 textarea,
-select{
+select {
 
-    font:inherit;
+    font:
+        inherit;
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+a {
+
+    color:
+        inherit;
+
+    text-decoration:
+        none;
+}
+
+
+/* =========================================================
+   TABLET / MÓVIL
+========================================================= */
+
+@media (max-width: 768px) {
+
+    html {
+
+        scroll-padding-top:
+            74px;
+    }
+
+
+    [id] {
+
+        scroll-margin-top:
+            74px;
+    }
 
 }
 
-a{
 
-    color:inherit;
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
 
-    text-decoration:none;
+@media (max-width: 480px) {
+
+    html {
+
+        scroll-padding-top:
+            70px;
+    }
+
+
+    [id] {
+
+        scroll-margin-top:
+            70px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCIR MOVIMIENTO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior:
+            auto;
+    }
 
 }

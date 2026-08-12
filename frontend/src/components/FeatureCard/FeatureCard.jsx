@@ -1,5 +1,7 @@
 import styles from "./FeatureCard.module.css";
 
+import useInView from "../../hooks/useInView";
+
 
 function FeatureIcon({ type }) {
 
@@ -178,11 +180,6 @@ function FeatureIcon({ type }) {
     }
 
 
-    /*
-     * Compatibilidad con los iconos
-     * que ya existían en About.
-     */
-
     if (type === "security") {
         return (
             <svg
@@ -284,30 +281,54 @@ function FeatureCard({
     variant = "default",
 }) {
 
+    const [
+        ref,
+        visible,
+    ] = useInView();
+
+
     const className =
         variant === "hero"
-            ? `${styles.card} ${styles.heroCard}`
-            : styles.card;
+            ? `
+                ${styles.card}
+                ${styles.heroCard}
+                ${visible ? styles.visible : ""}
+              `
+            : `
+                ${styles.card}
+                ${visible ? styles.visible : ""}
+              `;
 
 
     return (
         <article
+            ref={ref}
             className={className}
         >
 
-            <div className={styles.icon}>
-                <FeatureIcon type={icon} />
+            <div
+                className={styles.icon}
+            >
+                <FeatureIcon
+                    type={icon}
+                />
             </div>
 
 
-            <div className={styles.content}>
+            <div
+                className={styles.content}
+            >
 
-                <h3 className={styles.title}>
+                <h3
+                    className={styles.title}
+                >
                     {title}
                 </h3>
 
 
-                <p className={styles.description}>
+                <p
+                    className={styles.description}
+                >
                     {description}
                 </p>
 
@@ -315,7 +336,9 @@ function FeatureCard({
 
 
             {variant !== "hero" && (
-                <div className={styles.arrow}>
+                <div
+                    className={styles.arrow}
+                >
                     →
                 </div>
             )}

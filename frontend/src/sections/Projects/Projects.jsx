@@ -8,7 +8,7 @@ import projectsData from "./projectsData";
 function Projects() {
     return (
         <section
-            id="proyectos"
+            id="programas"
             className={styles.projects}
         >
             <Container>

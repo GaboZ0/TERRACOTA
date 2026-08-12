@@ -1,45 +1,102 @@
-import { useEffect, useRef, useState } from "react";
+import {
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 
-function useInView() {
 
-    const ref = useRef(null);
+function useInView(options = {}) {
 
-    const [isVisible, setIsVisible] = useState(false);
+    const ref =
+        useRef(null);
+
+    const [
+        isVisible,
+        setIsVisible,
+    ] = useState(false);
+
 
     useEffect(() => {
 
-        const element = ref.current;
+        const element =
+            ref.current;
 
         if (!element) {
-            return;
+            return undefined;
         }
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
 
-                if (entry.isIntersecting) {
+        /*
+         * Si el usuario tiene activado
+         * "reducir movimiento", mostramos
+         * directamente el contenido.
+         */
+        if (
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches
+        ) {
 
-                    setIsVisible(true);
+            setIsVisible(true);
 
-                    observer.unobserve(element);
+            return undefined;
+        }
+
+
+        const observer =
+            new IntersectionObserver(
+                ([entry]) => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        setIsVisible(true);
+
+                        /*
+                         * Una vez visible,
+                         * dejamos de observar.
+                         */
+                        observer.unobserve(
+                            element
+                        );
+                    }
+
+                },
+                {
+                    threshold:
+                        options.threshold ??
+                        0.12,
+
+                    rootMargin:
+                        options.rootMargin ??
+                        "0px 0px -12% 0px",
                 }
+            );
 
-            },
-            {
-                threshold: 0.05,
-                rootMargin: "0px 0px -35% 0px",
-            }
+
+        observer.observe(
+            element
         );
 
-        observer.observe(element);
 
         return () => {
+
             observer.disconnect();
+
         };
 
-    }, []);
+    }, [
+        options.threshold,
+        options.rootMargin,
+    ]);
 
-    return [ref, isVisible];
+
+    return [
+        ref,
+        isVisible,
+    ];
 }
+
 
 export default useInView;

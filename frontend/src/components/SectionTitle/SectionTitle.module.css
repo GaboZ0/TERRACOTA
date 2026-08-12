@@ -1,79 +1,397 @@
 .sectionTitle {
 
-  display:flex;
+    display:
+        flex;
 
-  flex-direction:column;
+    flex-direction:
+        column;
 
-  gap:18px;
+    gap:
+        18px;
 
-  margin-bottom:70px;
+    margin-bottom:
+        70px;
 
+    opacity: 0;
+
+    transform:
+        translate3d(
+            0,
+            24px,
+            0
+        );
+
+    transition:
+        opacity .72s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        transform .72s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
 }
 
-.center{
 
-  align-items:center;
+/* =========================================================
+   ESTADO VISIBLE
+========================================================= */
 
-  text-align:center;
+.visible {
 
+    opacity: 1;
+
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        );
 }
 
-.left{
 
-  align-items:flex-start;
+/* =========================================================
+   ALINEACIÓN
+========================================================= */
 
-  text-align:left;
+.center {
 
+    align-items:
+        center;
+
+    text-align:
+        center;
 }
 
-.eyebrow{
 
-  display:inline-flex;
+.left {
 
-  padding:8px 18px;
+    align-items:
+        flex-start;
 
-  border-radius:999px;
-
-  background:rgba(216,137,51,.10);
-
-  border:1px solid rgba(216,137,51,.20);
-
-  color:#d88933;
-
-  font-size:.78rem;
-
-  font-weight:700;
-
-  letter-spacing:3px;
-
-  text-transform:uppercase;
-
+    text-align:
+        left;
 }
 
-.title{
 
-  margin:0;
+/* =========================================================
+   EYEBROW
+========================================================= */
 
-  color:white;
+.eyebrow {
 
-  font-size:clamp(2.4rem,5vw,4rem);
+    display:
+        inline-flex;
 
-  line-height:1.1;
+    padding:
+        8px 18px;
 
-  font-weight:800;
+    border-radius:
+        999px;
 
-  letter-spacing:-2px;
+    background:
+        rgba(
+            216,
+            137,
+            51,
+            .10
+        );
 
+    border:
+        1px solid
+        rgba(
+            216,
+            137,
+            51,
+            .20
+        );
+
+    color:
+        #d88933;
+
+    font-size:
+        .78rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        3px;
+
+    text-transform:
+        uppercase;
+
+    opacity:
+        0;
+
+    transform:
+        translate3d(
+            0,
+            12px,
+            0
+        );
+
+    transition:
+        opacity .55s ease .04s,
+        transform .55s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ) .04s;
 }
 
-.description{
 
-  max-width:720px;
+/* =========================================================
+   TÍTULO
+========================================================= */
 
-  color:rgba(255,255,255,.72);
+.title {
 
-  font-size:1.1rem;
+    margin:
+        0;
 
-  line-height:1.9;
+    color:
+        white;
 
+    font-size:
+        clamp(
+            2.4rem,
+            5vw,
+            4rem
+        );
+
+    line-height:
+        1.1;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -2px;
+
+    opacity:
+        0;
+
+    transform:
+        translate3d(
+            0,
+            15px,
+            0
+        );
+
+    transition:
+        opacity .62s ease .10s,
+        transform .62s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ) .10s;
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN
+========================================================= */
+
+.description {
+
+    max-width:
+        720px;
+
+    margin:
+        0;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            .72
+        );
+
+    font-size:
+        1.1rem;
+
+    line-height:
+        1.9;
+
+    opacity:
+        0;
+
+    transform:
+        translate3d(
+            0,
+            14px,
+            0
+        );
+
+    transition:
+        opacity .62s ease .18s,
+        transform .62s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ) .18s;
+}
+
+
+/* =========================================================
+   ANIMACIÓN INTERNA
+========================================================= */
+
+.visible .eyebrow,
+.visible .title,
+.visible .description {
+
+    opacity:
+        1;
+
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        );
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .sectionTitle {
+
+        gap:
+            14px;
+
+        margin-bottom:
+            42px;
+
+        transform:
+            translate3d(
+                0,
+                20px,
+                0
+            );
+    }
+
+    .eyebrow {
+
+        padding:
+            7px 15px;
+
+        font-size:
+            .70rem;
+
+        letter-spacing:
+            2.3px;
+    }
+
+    .title {
+
+        font-size:
+            clamp(
+                2rem,
+                7vw,
+                3rem
+            );
+
+        letter-spacing:
+            -1.2px;
+    }
+
+    .description {
+
+        max-width:
+            620px;
+
+        font-size:
+            .94rem;
+
+        line-height:
+            1.65;
+    }
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .sectionTitle {
+
+        gap:
+            12px;
+
+        margin-bottom:
+            34px;
+    }
+
+    .eyebrow {
+
+        padding:
+            6px 12px;
+
+        font-size:
+            .63rem;
+
+        letter-spacing:
+            1.9px;
+    }
+
+    .title {
+
+        font-size:
+            clamp(
+                1.75rem,
+                8.8vw,
+                2.35rem
+            );
+
+        letter-spacing:
+            -.8px;
+    }
+
+    .description {
+
+        font-size:
+            .87rem;
+
+        line-height:
+            1.58;
+    }
+}
+
+
+/* =========================================================
+   REDUCIR MOVIMIENTO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .sectionTitle,
+    .eyebrow,
+    .title,
+    .description {
+
+        opacity:
+            1;
+
+        transform:
+            none;
+
+        transition:
+            none;
+    }
 }

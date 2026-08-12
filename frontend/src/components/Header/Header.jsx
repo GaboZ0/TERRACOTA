@@ -1,4 +1,7 @@
-import { useState } from "react";
+import {
+    useEffect,
+    useState,
+} from "react";
 
 import styles from "./Header.module.css";
 
@@ -8,78 +11,219 @@ import Logo from "../Logo";
 import headerData from "./headerData";
 import useScroll from "../../hooks/useScroll";
 
+
 function Header() {
 
-    const isScrolled = useScroll();
+    const isScrolled =
+        useScroll();
 
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [menuOpen, setMenuOpen] =
+        useState(false);
 
 
     function handleMenuToggle() {
-        setMenuOpen((previous) => !previous);
+
+        setMenuOpen(
+            (previous) =>
+                !previous
+        );
+
     }
 
 
     function handleMenuClose() {
+
         setMenuOpen(false);
+
     }
+
+
+    /*
+     * Si volvemos a escritorio,
+     * cerramos automáticamente el menú móvil.
+     */
+    useEffect(() => {
+
+        function handleResize() {
+
+            if (
+                window.innerWidth > 768
+            ) {
+
+                setMenuOpen(false);
+
+            }
+
+        }
+
+
+        window.addEventListener(
+            "resize",
+            handleResize
+        );
+
+
+        return () => {
+
+            window.removeEventListener(
+                "resize",
+                handleResize
+            );
+
+        };
+
+    }, []);
+
+
+    /*
+     * Escape cierra el menú móvil.
+     */
+    useEffect(() => {
+
+        if (!menuOpen) {
+            return undefined;
+        }
+
+
+        function handleKeyDown(event) {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                handleMenuClose();
+
+            }
+
+        }
+
+
+        document.addEventListener(
+            "keydown",
+            handleKeyDown
+        );
+
+
+        return () => {
+
+            document.removeEventListener(
+                "keydown",
+                handleKeyDown
+            );
+
+        };
+
+    }, [menuOpen]);
 
 
     return (
 
         <header
-            className={`${styles.header} ${
-                isScrolled ? styles.scrolled : ""
-            } ${menuOpen ? styles.menuOpen : ""}`}
+            className={`
+                ${styles.header}
+                ${isScrolled ? styles.scrolled : ""}
+                ${menuOpen ? styles.menuOpen : ""}
+            `}
         >
 
             <Container>
 
-                <div className={styles.wrapper}>
+                <div
+                    className={
+                        styles.wrapper
+                    }
+                >
+
+                    {/* =================================================
+                        LOGO
+                    ================================================= */}
 
                     <a
                         href="#inicio"
-                        className={styles.logoLink}
-                        onClick={handleMenuClose}
+                        className={
+                            styles.logoLink
+                        }
+                        onClick={
+                            handleMenuClose
+                        }
+                        aria-label="Ir al inicio"
                     >
+
                         <Logo />
+
                     </a>
 
 
-                    <nav className={styles.nav}>
+                    {/* =================================================
+                        NAVEGACIÓN DESKTOP
+                    ================================================= */}
 
-                        <ul className={styles.menu}>
+                    <nav
+                        className={
+                            styles.nav
+                        }
+                        aria-label="Navegación principal"
+                    >
 
-                            {headerData.menu.map((item) => (
+                        <ul
+                            className={
+                                styles.menu
+                            }
+                        >
 
-                                <li key={item.id}>
+                            {headerData.menu.map(
+                                (item) => (
 
-                                    <a
-                                        href={item.href}
-                                        onClick={handleMenuClose}
+                                    <li
+                                        key={
+                                            item.id
+                                        }
                                     >
-                                        {item.title}
-                                    </a>
 
-                                </li>
+                                        <a
+                                            href={
+                                                item.href
+                                            }
+                                            onClick={
+                                                handleMenuClose
+                                            }
+                                        >
+                                            {
+                                                item.title
+                                            }
+                                        </a>
 
-                            ))}
+                                    </li>
+
+                                )
+                            )}
 
                         </ul>
 
                     </nav>
 
 
+                    {/* =================================================
+                        BOTÓN HAMBURGUESA
+                    ================================================= */}
+
                     <button
                         type="button"
-                        className={styles.menuButton}
-                        onClick={handleMenuToggle}
+                        className={
+                            styles.menuButton
+                        }
+                        onClick={
+                            handleMenuToggle
+                        }
                         aria-label={
                             menuOpen
                                 ? "Cerrar menú"
                                 : "Abrir menú"
                         }
-                        aria-expanded={menuOpen}
+                        aria-expanded={
+                            menuOpen
+                        }
+                        aria-controls="mobile-navigation"
                     >
 
                         <span></span>
@@ -91,32 +235,62 @@ function Header() {
                 </div>
 
 
+                {/* =================================================
+                    MENÚ MÓVIL
+                ================================================= */}
+
                 <div
-                    className={`${styles.mobileMenu} ${
-                        menuOpen
-                            ? styles.mobileMenuOpen
-                            : ""
-                    }`}
+                    id="mobile-navigation"
+                    className={`
+                        ${styles.mobileMenu}
+                        ${
+                            menuOpen
+                                ? styles.mobileMenuOpen
+                                : ""
+                        }
+                    `}
+                    aria-hidden={
+                        !menuOpen
+                    }
                 >
 
-                    <nav>
+                    <nav
+                        aria-label="Navegación móvil"
+                    >
 
                         <ul>
 
-                            {headerData.menu.map((item) => (
+                            {headerData.menu.map(
+                                (item) => (
 
-                                <li key={item.id}>
-
-                                    <a
-                                        href={item.href}
-                                        onClick={handleMenuClose}
+                                    <li
+                                        key={
+                                            item.id
+                                        }
                                     >
-                                        {item.title}
-                                    </a>
 
-                                </li>
+                                        <a
+                                            href={
+                                                item.href
+                                            }
+                                            onClick={
+                                                handleMenuClose
+                                            }
+                                            tabIndex={
+                                                menuOpen
+                                                    ? 0
+                                                    : -1
+                                            }
+                                        >
+                                            {
+                                                item.title
+                                            }
+                                        </a>
 
-                            ))}
+                                    </li>
+
+                                )
+                            )}
 
                         </ul>
 
@@ -129,5 +303,6 @@ function Header() {
         </header>
     );
 }
+
 
 export default Header;

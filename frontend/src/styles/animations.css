@@ -1,95 +1,448 @@
-/* ============================
-   Animaciones de entrada
-============================ */
+/* =========================================================
+   TERRACOTA — SISTEMA DE ANIMACIONES
+========================================================= */
+
+
+/* =========================================================
+   REVEAL BASE
+========================================================= */
 
 .reveal {
     opacity: 0;
 
-    transform: translateY(60px);
+    transform:
+        translate3d(
+            0,
+            28px,
+            0
+        );
 
     transition:
-        opacity 1s ease,
-        transform 1s ease;
+        opacity .72s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        transform .72s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
 
     will-change:
         opacity,
         transform;
 }
 
+
 .reveal.visible {
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        );
 }
 
-/* ============================
-   Variantes
-============================ */
+
+/* =========================================================
+   REVEAL UP
+========================================================= */
 
 .reveal-up {
     opacity: 0;
 
-    transform: translateY(35px);
+    transform:
+        translate3d(
+            0,
+            24px,
+            0
+        );
 
     transition:
-        opacity .75s ease,
-        transform .75s ease;
+        opacity .68s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        transform .68s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
 }
+
 
 .reveal-up.visible {
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        );
 }
+
+
+/* =========================================================
+   REVEAL LEFT
+========================================================= */
 
 .reveal-left {
     opacity: 0;
 
-    transform: translateX(-40px);
+    transform:
+        translate3d(
+            -28px,
+            0,
+            0
+        );
 
     transition:
-        opacity .75s ease,
-        transform .75s ease;
+        opacity .7s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        transform .7s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
 }
+
 
 .reveal-left.visible {
     opacity: 1;
 
-    transform: translateX(0);
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        );
 }
+
+
+/* =========================================================
+   REVEAL RIGHT
+========================================================= */
 
 .reveal-right {
     opacity: 0;
 
-    transform: translateX(40px);
+    transform:
+        translate3d(
+            28px,
+            0,
+            0
+        );
 
     transition:
-        opacity .75s ease,
-        transform .75s ease;
+        opacity .7s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        transform .7s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
 }
+
 
 .reveal-right.visible {
     opacity: 1;
 
-    transform: translateX(0);
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        );
 }
 
-/* ============================
-   Respeta preferencias
-   de movimiento reducido
-============================ */
+
+/* =========================================================
+   STAGGER
+========================================================= */
+
+.reveal-stagger {
+    --reveal-delay: 0ms;
+}
+
+
+.reveal-stagger:nth-child(1) {
+    --reveal-delay: 0ms;
+}
+
+
+.reveal-stagger:nth-child(2) {
+    --reveal-delay: 80ms;
+}
+
+
+.reveal-stagger:nth-child(3) {
+    --reveal-delay: 160ms;
+}
+
+
+.reveal-stagger:nth-child(4) {
+    --reveal-delay: 240ms;
+}
+
+
+.reveal-stagger:nth-child(5) {
+    --reveal-delay: 320ms;
+}
+
+
+.reveal-stagger:nth-child(6) {
+    --reveal-delay: 400ms;
+}
+
+
+.reveal-stagger {
+    transition-delay:
+        var(--reveal-delay);
+}
+
+
+/* =========================================================
+   MICRO ESCALA
+========================================================= */
+
+.reveal-scale {
+    opacity: 0;
+
+    transform:
+        translate3d(
+            0,
+            16px,
+            0
+        )
+        scale(.985);
+
+    transition:
+        opacity .68s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
+        transform .68s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
+}
+
+
+.reveal-scale.visible {
+    opacity: 1;
+
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        )
+        scale(1);
+}
+
+
+/* =========================================================
+   REDUCIR MOVIMIENTO
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
     .reveal,
     .reveal-up,
     .reveal-left,
-    .reveal-right {
+    .reveal-right,
+    .reveal-scale,
+    .reveal-stagger {
 
         opacity: 1;
 
-        transform: none;
+        transform:
+            none;
 
-        transition: none;
+        transition:
+            none;
+
+        animation:
+            none;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .reveal {
+        transform:
+            translate3d(
+                0,
+                22px,
+                0
+            );
+    }
+
+    .reveal-left {
+        transform:
+            translate3d(
+                -20px,
+                0,
+                0
+            );
+    }
+
+    .reveal-right {
+        transform:
+            translate3d(
+                20px,
+                0,
+                0
+            );
+    }
+
+    .reveal-up {
+        transform:
+            translate3d(
+                0,
+                20px,
+                0
+            );
+    }
+
+    .reveal-scale {
+        transform:
+            translate3d(
+                0,
+                14px,
+                0
+            )
+            scale(.99);
+    }
+
+    .reveal-stagger:nth-child(1) {
+        --reveal-delay: 0ms;
+    }
+
+    .reveal-stagger:nth-child(2) {
+        --reveal-delay: 60ms;
+    }
+
+    .reveal-stagger:nth-child(3) {
+        --reveal-delay: 120ms;
+    }
+
+    .reveal-stagger:nth-child(4) {
+        --reveal-delay: 180ms;
+    }
+
+    .reveal-stagger:nth-child(5) {
+        --reveal-delay: 240ms;
+    }
+
+    .reveal-stagger:nth-child(6) {
+        --reveal-delay: 300ms;
+    }
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .reveal {
+        transform:
+            translate3d(
+                0,
+                17px,
+                0
+            );
+
+        transition-duration:
+            .58s;
+    }
+
+    .reveal-left,
+    .reveal-right {
+
+        transform:
+            translate3d(
+                0,
+                17px,
+                0
+            );
+    }
+
+    .reveal-up {
+
+        transform:
+            translate3d(
+                0,
+                16px,
+                0
+            );
+    }
+
+    .reveal-scale {
+
+        transform:
+            translate3d(
+                0,
+                12px,
+                0
+            )
+            scale(.995);
+
+        transition-duration:
+            .58s;
+    }
+
+    .reveal-stagger:nth-child(1) {
+        --reveal-delay: 0ms;
+    }
+
+    .reveal-stagger:nth-child(2) {
+        --reveal-delay: 50ms;
+    }
+
+    .reveal-stagger:nth-child(3) {
+        --reveal-delay: 100ms;
+    }
+
+    .reveal-stagger:nth-child(4) {
+        --reveal-delay: 150ms;
+    }
+
+    .reveal-stagger:nth-child(5) {
+        --reveal-delay: 200ms;
+    }
+
+    .reveal-stagger:nth-child(6) {
+        --reveal-delay: 250ms;
     }
 }
