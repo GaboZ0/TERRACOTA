@@ -45,7 +45,7 @@
         translate3d(
             0,
             calc(
-                var(--hero-parallax) * -1
+                var(--hero-parallax) * -1px
             ),
             0
         );
