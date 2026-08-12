@@ -14,6 +14,11 @@ import contactData from "./contactData";
 
 function Contact() {
 
+    const API_URL =
+        import.meta.env.VITE_API_URL ||
+        "http://localhost:5000";
+
+
     const [formData, setFormData] =
         useState({
             name: "",
@@ -34,6 +39,10 @@ function Contact() {
 
     const [isSubmitting, setIsSubmitting] =
         useState(false);
+
+
+    const [serverError, setServerError] =
+        useState("");
 
 
     const firstErrorRef =
@@ -92,13 +101,14 @@ function Contact() {
         );
 
 
+        setServerError("");
         setSubmitted(false);
 
     }
 
 
     /* =====================================================
-       VALIDACIÓN
+       VALIDACIÓN CLIENTE
     ===================================================== */
 
     function validateForm() {
@@ -188,14 +198,16 @@ function Contact() {
 
 
     /* =====================================================
-       ENVÍO
+       ENVÍO AL BACKEND
     ===================================================== */
 
     async function handleSubmit(event) {
 
         event.preventDefault();
 
+
         setSubmitted(false);
+        setServerError("");
 
 
         const validationErrors =
@@ -221,34 +233,96 @@ function Contact() {
         setIsSubmitting(true);
 
 
-        /*
-         * Actualmente simulamos el envío.
-         * Más adelante conectaremos el backend.
-         */
-        await new Promise(
-            (resolve) => {
+        try {
 
-                setTimeout(
-                    resolve,
-                    1000
+            const response =
+                await fetch(
+                    `${API_URL}/api/contact`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+                        },
+
+                        body: JSON.stringify({
+                            name:
+                                formData.name.trim(),
+
+                            email:
+                                formData.email.trim(),
+
+                            company:
+                                formData.company.trim(),
+
+                            message:
+                                formData.message.trim(),
+
+                            privacy:
+                                formData.privacy,
+                        }),
+                    }
+                );
+
+
+            let data = null;
+
+
+            try {
+
+                data =
+                    await response.json();
+
+            } catch {
+
+                data = null;
+
+            }
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+                    data?.message ||
+                    "No pudimos enviar tu consulta."
                 );
 
             }
-        );
 
 
-        setIsSubmitting(false);
-
-        setSubmitted(true);
+            setSubmitted(true);
 
 
-        setFormData({
-            name: "",
-            email: "",
-            company: "",
-            message: "",
-            privacy: false,
-        });
+            setFormData({
+                name: "",
+                email: "",
+                company: "",
+                message: "",
+                privacy: false,
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Error al enviar el formulario:",
+                error
+            );
+
+
+            setServerError(
+                error instanceof Error
+                    ? error.message
+                    : "No pudimos enviar tu consulta. Intentá nuevamente."
+            );
+
+        } finally {
+
+            setIsSubmitting(false);
+
+        }
 
     }
 
@@ -758,6 +832,29 @@ function Contact() {
                             }
 
                         </div>
+
+
+                        {/* =================================================
+                            ERROR DEL SERVIDOR
+                        ================================================= */}
+
+                        {
+                            serverError && (
+
+                                <p
+                                    className={
+                                        styles.error
+                                    }
+                                    role="alert"
+                                    aria-live="assertive"
+                                >
+                                    {
+                                        serverError
+                                    }
+                                </p>
+
+                            )
+                        }
 
 
                         {/* =================================================

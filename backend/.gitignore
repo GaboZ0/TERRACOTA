@@ -1,0 +1,19 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Archivos subidos
+uploads/*
+!uploads/.gitkeep
+
+# Archivos temporales
+.tmp/
+temp/

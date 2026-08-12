@@ -1,0 +1,19 @@
+{
+  "name": "terracota-backend",
+  "version": "1.0.0",
+  "description": "Backend de Terracota Software",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "terracota",
+    "software",
+    "backend",
+    "api"
+  ],
+  "author": "Terracota Software",
+  "license": "ISC",
+  "type": "commonjs"
+}
