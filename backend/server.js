@@ -19,6 +19,12 @@ const FRONTEND_URL =
     process.env.FRONTEND_URL ||
     "http://localhost:5173";
 
+const {
+    testDatabaseConnection,
+} = require(
+    "./database/connection"
+);
+
 
 /* =========================================================
    SEGURIDAD BÁSICA
@@ -155,6 +161,23 @@ app.use(
 /* =========================================================
    INICIO DEL SERVIDOR
 ========================================================= */
+testDatabaseConnection()
+    .then((result) => {
+
+        console.log(
+            "PostgreSQL conectado correctamente:",
+            result.current_time
+        );
+
+    })
+    .catch((error) => {
+
+        console.error(
+            "Error conectando a PostgreSQL:",
+            error.message
+        );
+
+    });
 
 app.listen(
     PORT,

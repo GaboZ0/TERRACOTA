@@ -1,4 +1,16 @@
-function handleContact(req, res) {
+const {
+    pool,
+} = require("../database/connection");
+
+
+/* =========================================================
+   CONTROLADOR DE CONTACTO
+========================================================= */
+
+async function handleContact(
+    req,
+    res
+) {
 
     const {
         name,
@@ -36,7 +48,9 @@ function handleContact(req, res) {
         name.trim();
 
     const cleanEmail =
-        email.trim().toLowerCase();
+        email
+            .trim()
+            .toLowerCase();
 
     const cleanCompany =
         typeof company === "string"
@@ -48,7 +62,7 @@ function handleContact(req, res) {
 
 
     /* =====================================================
-       VALIDACIÓN NOMBRE
+       VALIDACIÓN DEL NOMBRE
     ===================================================== */
 
     if (
@@ -66,7 +80,7 @@ function handleContact(req, res) {
 
 
     /* =====================================================
-       VALIDACIÓN EMAIL
+       VALIDACIÓN DEL EMAIL
     ===================================================== */
 
     if (
@@ -86,7 +100,7 @@ function handleContact(req, res) {
 
 
     /* =====================================================
-       VALIDACIÓN EMPRESA
+       VALIDACIÓN DE EMPRESA
     ===================================================== */
 
     if (
@@ -103,7 +117,7 @@ function handleContact(req, res) {
 
 
     /* =====================================================
-       VALIDACIÓN MENSAJE
+       VALIDACIÓN DEL MENSAJE
     ===================================================== */
 
     if (
@@ -138,31 +152,70 @@ function handleContact(req, res) {
 
 
     /* =====================================================
-       PRUEBA TEMPORAL
+       GUARDAR EN POSTGRESQL
     ===================================================== */
 
-    console.log(
-        "Nueva consulta de contacto:",
-        {
-            name: cleanName,
-            email: cleanEmail,
-            company: cleanCompany,
-            message: cleanMessage,
-        }
-    );
+    try {
+
+        const result =
+            await pool.query(
+                `
+                INSERT INTO contact_messages (
+                    name,
+                    email,
+                    company,
+                    message
+                )
+                VALUES (
+                    $1,
+                    $2,
+                    $3,
+                    $4
+                )
+                RETURNING
+                    id,
+                    created_at
+                `,
+                [
+                    cleanName,
+                    cleanEmail,
+                    cleanCompany || null,
+                    cleanMessage,
+                ]
+            );
 
 
-    return res.status(200).json({
-        success: true,
-        message:
-            "Consulta recibida correctamente.",
-    });
+        /* =================================================
+           RESPUESTA
+        ================================================= */
+
+        return res.status(200).json({
+            success: true,
+
+            message:
+                "Consulta recibida correctamente.",
+
+            id:
+                result.rows[0].id,
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Error guardando la consulta de contacto:",
+            error
+        );
+
+
+        return res.status(500).json({
+            success: false,
+            message:
+                "No pudimos guardar tu consulta. Intentá nuevamente.",
+        });
+
+    }
 
 }
 
-
-/* =========================================================
-   EXPORTACIÓN
-========================================================= */
 
 module.exports = handleContact;
