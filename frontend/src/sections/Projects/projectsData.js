@@ -1,24 +1,33 @@
 const projectsData = {
 
-    eyebrow: "Programas",
+    eyebrow:
+        "Productos",
 
-    title: "Soluciones pensadas para problemas reales",
+
+    title:
+        "Soluciones pensadas para problemas reales",
+
 
     description:
-        "Cada proyecto nace de una necesidad concreta y se transforma en una solución tecnológica diseñada para generar valor.",
+        "Cada producto nace de una necesidad concreta y se transforma en una solución tecnológica diseñada para generar valor.",
+
 
     projects: [
 
         {
             id: 1,
 
-            number: "01",
+            number:
+                "01",
 
-            category: "Software empresarial",
+            category:
+                "Software empresarial",
 
-            year: "Demo",
+            year:
+                "Demo",
 
-            title: "Sistema de gestión",
+            title:
+                "Sistema de gestión",
 
             description:
                 "Plataforma centralizada para gestionar operaciones, información y procesos internos de una organización.",
@@ -30,16 +39,21 @@ const projectsData = {
             ]
         },
 
+
         {
             id: 2,
 
-            number: "02",
+            number:
+                "02",
 
-            category: "Desarrollo web",
+            category:
+                "Desarrollo web",
 
-            year: "Demo",
+            year:
+                "Demo",
 
-            title: "Plataforma digital",
+            title:
+                "Plataforma digital",
 
             description:
                 "Experiencia web moderna orientada a mejorar la presencia digital y facilitar la interacción con clientes.",
@@ -51,16 +65,21 @@ const projectsData = {
             ]
         },
 
+
         {
             id: 3,
 
-            number: "03",
+            number:
+                "03",
 
-            category: "Automatización",
+            category:
+                "Automatización",
 
-            year: "Demo",
+            year:
+                "Demo",
 
-            title: "Automatización de procesos",
+            title:
+                "Automatización de procesos",
 
             description:
                 "Solución orientada a reducir tareas repetitivas, centralizar información y mejorar la eficiencia operativa.",
@@ -75,5 +94,6 @@ const projectsData = {
     ]
 
 };
+
 
 export default projectsData;

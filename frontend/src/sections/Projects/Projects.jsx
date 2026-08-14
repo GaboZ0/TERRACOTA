@@ -5,90 +5,167 @@ import SectionTitle from "../../components/SectionTitle";
 
 import projectsData from "./projectsData";
 
+
 function Projects() {
+
     return (
+
         <section
-            id="programas"
+            id="productos"
             className={styles.projects}
         >
+
             <Container>
 
                 <SectionTitle
-                    eyebrow={projectsData.eyebrow}
-                    title={projectsData.title}
-                    description={projectsData.description}
+                    eyebrow={
+                        projectsData.eyebrow
+                    }
+
+                    title={
+                        projectsData.title
+                    }
+
+                    description={
+                        projectsData.description
+                    }
                 />
 
-                <div className={styles.grid}>
 
-                    {projectsData.projects.map((project) => (
+                <div
+                    className={
+                        styles.grid
+                    }
+                >
 
-                        <article
-                            key={project.id}
-                            className={styles.card}
-                        >
+                    {
+                        projectsData.projects.map(
+                            (project) => (
 
-                            <div className={styles.imageWrapper}>
+                                <article
+                                    key={
+                                        project.id
+                                    }
+                                    className={
+                                        styles.card
+                                    }
+                                >
 
-                                <div className={styles.imagePlaceholder}>
-                                    <span>
-                                        {project.number}
-                                    </span>
-                                </div>
+                                    <div
+                                        className={
+                                            styles.imageWrapper
+                                        }
+                                    >
 
-                                <div className={styles.overlay} />
+                                        <div
+                                            className={
+                                                styles.imagePlaceholder
+                                            }
+                                        >
 
-                            </div>
-
-                            <div className={styles.content}>
-
-                                <div className={styles.meta}>
-
-                                    <span>
-                                        {project.category}
-                                    </span>
-
-                                    <span>
-                                        {project.year}
-                                    </span>
-
-                                </div>
-
-                                <h3>
-                                    {project.title}
-                                </h3>
-
-                                <p>
-                                    {project.description}
-                                </p>
-
-                                <div className={styles.technologies}>
-
-                                    {project.technologies.map(
-                                        (technology) => (
-
-                                            <span
-                                                key={technology}
-                                            >
-                                                {technology}
+                                            <span>
+                                                {
+                                                    project.number
+                                                }
                                             </span>
 
-                                        )
-                                    )}
+                                        </div>
 
-                                </div>
 
-                            </div>
+                                        <div
+                                            className={
+                                                styles.overlay
+                                            }
+                                        />
 
-                        </article>
+                                    </div>
 
-                    ))}
+
+                                    <div
+                                        className={
+                                            styles.content
+                                        }
+                                    >
+
+                                        <div
+                                            className={
+                                                styles.meta
+                                            }
+                                        >
+
+                                            <span>
+                                                {
+                                                    project.category
+                                                }
+                                            </span>
+
+
+                                            <span>
+                                                {
+                                                    project.year
+                                                }
+                                            </span>
+
+                                        </div>
+
+
+                                        <h3>
+                                            {
+                                                project.title
+                                            }
+                                        </h3>
+
+
+                                        <p>
+                                            {
+                                                project.description
+                                            }
+                                        </p>
+
+
+                                        <div
+                                            className={
+                                                styles.technologies
+                                            }
+                                        >
+
+                                            {
+                                                project.technologies.map(
+                                                    (technology) => (
+
+                                                        <span
+                                                            key={
+                                                                technology
+                                                            }
+                                                        >
+                                                            {
+                                                                technology
+                                                            }
+                                                        </span>
+
+                                                    )
+                                                )
+                                            }
+
+                                        </div>
+
+                                    </div>
+
+                                </article>
+
+                            )
+                        )
+                    }
 
                 </div>
 
             </Container>
+
         </section>
+
     );
+
 }
+
 
 export default Projects;
