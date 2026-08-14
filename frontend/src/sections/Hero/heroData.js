@@ -1,4 +1,5 @@
 const heroData = {
+
     titleTop:
         "TECNOLOGÍA SÓLIDA,",
 
@@ -13,6 +14,11 @@ const heroData = {
 
     primaryButton:
         "CONOCÉ MÁS",
+
+    productButtonUrl:
+        "",
+
 };
+
 
 export default heroData;

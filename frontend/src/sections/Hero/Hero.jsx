@@ -1,38 +1,52 @@
-import { useEffect, useRef } from "react";
+import {
+    useEffect,
+    useRef,
+} from "react";
 
 import styles from "./Hero.module.css";
 
 import Container from "../../components/Container";
 import Button from "../../components/Button";
-import FeatureCard from "../../components/FeatureCard";
 
 import heroData from "./heroData";
-import heroImage from "../../assets/images/hero-background.webp";
+
+import heroBackground
+    from "../../assets/images/hero-background.webp";
 
 
 function Hero() {
 
-    const heroRef = useRef(null);
+    const heroRef =
+        useRef(null);
 
 
     useEffect(() => {
 
-        const hero = heroRef.current;
+        const hero =
+            heroRef.current;
+
 
         if (!hero) {
+
             return undefined;
+
         }
 
 
-        let animationFrame = null;
+        let animationFrame =
+            null;
 
-        let currentScroll = window.scrollY;
-        let targetScroll = window.scrollY;
+        let currentScroll =
+            window.scrollY;
+
+        let targetScroll =
+            window.scrollY;
 
 
         const updateTarget = () => {
 
-            targetScroll = window.scrollY;
+            targetScroll =
+                window.scrollY;
 
         };
 
@@ -40,32 +54,43 @@ function Hero() {
         const animate = () => {
 
             /*
-             * Seguimiento suavizado del scroll.
+             * Movimiento suavizado del scroll.
              */
+
             currentScroll +=
-                (targetScroll - currentScroll) * 0.045;
+                (
+                    targetScroll -
+                    currentScroll
+                ) * 0.075;
 
 
             /*
              * Oscurecimiento progresivo.
              */
-            const darkness = Math.min(
-                Math.max(
-                    targetScroll /
-                    (window.innerHeight * 0.9),
-                    0
-                ),
-                1
-            );
+
+            const darkness =
+                Math.min(
+                    Math.max(
+                        targetScroll /
+                        (
+                            window.innerHeight *
+                            0.9
+                        ),
+                        0
+                    ),
+                    1
+                );
 
 
             /*
-             * Parallax extremadamente suave.
+             * Parallax muy sutil.
              */
-            const parallax = Math.min(
-                currentScroll * 0.055,
-                window.innerHeight * 0.055
-            );
+
+            const parallax =
+                Math.min(
+                    currentScroll * 0.10,
+                    window.innerHeight * 0.10
+                );
 
 
             hero.style.setProperty(
@@ -108,7 +133,9 @@ function Hero() {
             );
 
 
-            if (animationFrame !== null) {
+            if (
+                animationFrame !== null
+            ) {
 
                 window.cancelAnimationFrame(
                     animationFrame
@@ -121,145 +148,200 @@ function Hero() {
     }, []);
 
 
+    /*
+     * ERM FLEX apunta a su propia web.
+     *
+     * Mientras no tengamos la URL definitiva,
+     * usamos temporalmente #productos.
+     */
+
+    const productUrl =
+        heroData.productButtonUrl ||
+        "#productos";
+
+
+    const isExternalProduct =
+        Boolean(
+            heroData.productButtonUrl
+        );
+
+
     return (
 
         <section
             ref={heroRef}
             id="inicio"
-            className={styles.hero}
+            className={
+                styles.hero
+            }
         >
 
-
             {/* =================================================
-                FONDO
+                FONDO PRINCIPAL
             ================================================= */}
 
             <div
-                className={styles.background}
+                className={
+                    styles.background
+                }
                 aria-hidden="true"
                 style={{
                     backgroundImage:
-                        `url(${heroImage})`,
+                        `url(${heroBackground})`,
                 }}
             />
 
 
             {/* =================================================
-                FILTRO MATE
+                FILTRO
             ================================================= */}
 
             <div
-                className={styles.imageFilter}
+                className={
+                    styles.imageFilter
+                }
                 aria-hidden="true"
             />
 
 
             {/* =================================================
-                OSCURECIMIENTO DURANTE EL SCROLL
+                OSCURECIMIENTO DURANTE SCROLL
             ================================================= */}
 
             <div
-                className={styles.scrollDarkness}
+                className={
+                    styles.scrollDarkness
+                }
                 aria-hidden="true"
             />
 
 
             {/* =================================================
-                CONTENIDO PRINCIPAL
+                CONTENIDO
             ================================================= */}
 
-            <div className={styles.contentWrapper}>
+            <Container>
 
-                <Container>
+                <div
+                    className={
+                        styles.content
+                    }
+                >
 
-                    <div className={styles.content}>
+                    <div
+                        className={
+                            styles.left
+                        }
+                    >
 
-                        <div className={styles.left}>
+                        <h1
+                            className={
+                                styles.title
+                            }
+                        >
 
-                            <h1 className={styles.title}>
-
-                                <span>
-                                    {heroData.titleTop}
-                                </span>
-
-                                <span
-                                    className={styles.accent}
-                                >
-                                    {heroData.titleAccent}
-                                </span>
-
-                                <span
-                                    className={styles.accent}
-                                >
-                                    {heroData.titleBottom}
-                                </span>
-
-                            </h1>
+                            <span>
+                                {
+                                    heroData.titleTop
+                                }
+                            </span>
 
 
-                            <p className={styles.description}>
+                            <span
+                                className={
+                                    styles.accent
+                                }
+                            >
+                                {
+                                    heroData.titleAccent
+                                }
+                            </span>
 
-                                {heroData.description}
 
-                            </p>
+                            <span
+                                className={
+                                    styles.accent
+                                }
+                            >
+                                {
+                                    heroData.titleBottom
+                                }
+                            </span>
+
+                        </h1>
 
 
-                            <div className={styles.buttons}>
+                        <p
+                            className={
+                                styles.description
+                            }
+                        >
+                            {
+                                heroData.description
+                            }
+                        </p>
 
-                                <Button href="#servicios">
-                                    {heroData.primaryButton}
-                                </Button>
 
-                            </div>
+                        {/* =================================================
+                            BOTONES
+                        ================================================= */}
+
+                        <div
+                            className={
+                                styles.buttons
+                            }
+                        >
+
+                            {/* =============================================
+                                CONOCÉ MÁS
+                            ============================================= */}
+
+                            <Button
+                                href="#servicios"
+                            >
+                                {
+                                    heroData.primaryButton
+                                }
+                            </Button>
+
+
+                            {/* =============================================
+                                ERM FLEX
+                            ============================================= */}
+
+                            <a
+                                href={
+                                    productUrl
+                                }
+                                className={
+                                    styles.programButton
+                                }
+                                target={
+                                    isExternalProduct
+                                        ? "_blank"
+                                        : undefined
+                                }
+                                rel={
+                                    isExternalProduct
+                                        ? "noopener noreferrer"
+                                        : undefined
+                                }
+                                aria-label={
+                                    isExternalProduct
+                                        ? "Abrir ERM FLEX en un sitio externo"
+                                        : "Ver productos"
+                                }
+                            >
+                                ERM FLEX
+                            </a>
 
                         </div>
 
                     </div>
 
-                </Container>
+                </div>
 
-            </div>
-
-
-            {/* =================================================
-                CARACTERÍSTICAS
-            ================================================= */}
-
-            <div className={styles.heroFeatures}>
-
-                <FeatureCard
-                    variant="hero"
-                    icon="development"
-                    title="Desarrollo"
-                    description="Soluciones de software a medida."
-                />
-
-
-                <FeatureCard
-                    variant="hero"
-                    icon="technology"
-                    title="Tecnología"
-                    description="Infraestructura moderna, segura y escalable."
-                />
-
-
-                <FeatureCard
-                    variant="hero"
-                    icon="innovation"
-                    title="Innovación"
-                    description="Transformamos ideas en herramientas poderosas."
-                />
-
-
-                <FeatureCard
-                    variant="hero"
-                    icon="support"
-                    title="Soporte"
-                    description="Acompañamiento real, siempre que lo necesitás."
-                />
-
-            </div>
-
+            </Container>
 
         </section>
 

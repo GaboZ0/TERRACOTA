@@ -17,6 +17,7 @@ function Header() {
     const isScrolled =
         useScroll();
 
+
     const [menuOpen, setMenuOpen] =
         useState(false);
 
@@ -38,10 +39,10 @@ function Header() {
     }
 
 
-    /*
-     * Si volvemos a escritorio,
-     * cerramos automáticamente el menú móvil.
-     */
+    /* =====================================================
+       CERRAR MENÚ AL VOLVER A ESCRITORIO
+    ===================================================== */
+
     useEffect(() => {
 
         function handleResize() {
@@ -75,13 +76,16 @@ function Header() {
     }, []);
 
 
-    /*
-     * Escape cierra el menú móvil.
-     */
+    /* =====================================================
+       ESCAPE CIERRA MENÚ
+    ===================================================== */
+
     useEffect(() => {
 
         if (!menuOpen) {
+
             return undefined;
+
         }
 
 
@@ -178,19 +182,31 @@ function Header() {
                                         key={
                                             item.id
                                         }
+                                        className={
+                                            item.featured
+                                                ? styles.featuredItem
+                                                : ""
+                                        }
                                     >
 
                                         <a
                                             href={
                                                 item.href
                                             }
+                                            className={
+                                                item.featured
+                                                    ? styles.featuredLink
+                                                    : ""
+                                            }
                                             onClick={
                                                 handleMenuClose
                                             }
                                         >
+
                                             {
                                                 item.title
                                             }
+
                                         </a>
 
                                     </li>
@@ -267,11 +283,21 @@ function Header() {
                                         key={
                                             item.id
                                         }
+                                        className={
+                                            item.featured
+                                                ? styles.mobileFeaturedItem
+                                                : ""
+                                        }
                                     >
 
                                         <a
                                             href={
                                                 item.href
+                                            }
+                                            className={
+                                                item.featured
+                                                    ? styles.mobileFeaturedLink
+                                                    : ""
                                             }
                                             onClick={
                                                 handleMenuClose
@@ -282,9 +308,11 @@ function Header() {
                                                     : -1
                                             }
                                         >
+
                                             {
                                                 item.title
                                             }
+
                                         </a>
 
                                     </li>
@@ -301,7 +329,9 @@ function Header() {
             </Container>
 
         </header>
+
     );
+
 }
 
 

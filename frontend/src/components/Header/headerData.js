@@ -1,33 +1,49 @@
 const headerData = {
-    logo: "Terracota",
+
+    logo:
+        "Terracota",
+
 
     menu: [
+
         {
             id: 1,
             title: "Inicio",
             href: "#inicio",
+            featured: false,
         },
+
         {
             id: 2,
-            title: "Nosotros",
-            href: "#nosotros",
+            title: "Productos",
+            href: "#productos",
+            featured: true,
         },
+
         {
             id: 3,
-            title: "Servicios",
-            href: "#servicios",
+            title: "Nosotros",
+            href: "#nosotros",
+            featured: false,
         },
+
         {
             id: 4,
-            title: "Programas",
-            href: "#programas",
+            title: "Servicios",
+            href: "#servicios",
+            featured: false,
         },
+
         {
             id: 5,
             title: "Contacto",
             href: "#contacto",
+            featured: false,
         },
+
     ],
+
 };
+
 
 export default headerData;
